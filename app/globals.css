@@ -16,6 +16,10 @@
   font-display: swap;
 } */
 
+html {
+  scroll-behavior: smooth;
+}
+
 @layer base {
   :root {
     /* ── Brand tokens (from referencia-framer/styles.css) ── */
