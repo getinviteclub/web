@@ -67,11 +67,10 @@ export function Navbar() {
           ))}
         </ul>
 
-        <WhatsappCta
-          message="Hola, quiero info de Invite Club"
-          tone="outline"
-          size="sm"
-        >
+        {/* Mismo CTA que el resto del sitio: outline en tamaño md. El
+            `sm` de antes bajaba el label a 11px y era el único que se
+            salía de los 12px del sistema. */}
+        <WhatsappCta message="Hola, quiero info de Invite Club">
           Escribinos
         </WhatsappCta>
       </div>
