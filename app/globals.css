@@ -32,54 +32,74 @@ html {
 
 @layer base {
   :root {
-    /* ── Sistema de diseño editorial (referencia: studiogail.co) ── */
-    /* Fondo: crema/hueso cálido, nunca blanco puro */
-    --c-bg: rgb(243, 243, 239);
-    /* Superficies internas (cards) sobre el fondo crema: un paso más claro */
-    --c-paper: rgb(249, 249, 246);
-    /* Superficies planas de acento (bloques de foto, tags) */
-    --c-bone: rgb(236, 236, 230);
-    --c-clay: rgb(226, 226, 217);
-    /* Texto principal: casi negro por jerarquía */
-    --c-ink: rgb(44, 44, 44);
-    --c-ink-strong: rgb(0, 0, 0);
-    /* Gris cálido oscurecido a propósito: sobre el fondo crema, un gris más
-       claro no llega al contraste mínimo AA (4.5:1) para texto normal. */
-    --c-muted: rgb(105, 102, 96);
-    --c-inverse: rgb(243, 243, 239);
-    /* Bloque oscuro (antes verde bosque): mismo monocromo, casi negro */
-    --c-forest: rgb(26, 26, 24);
+    /* ── Sistema de diseño editorial (referencia: caratsandcake.com) ──
+       Los valores salen del CSS real de la referencia. Los NOMBRES de las
+       variables no cambian respecto de la versión anterior a propósito:
+       así el cambio de paleta no toca ni un componente. */
+
+    /* Fondo: blanco apenas quebrado, cálido. Nunca blanco puro. */
+    --c-bg: #faf9f8;
+    /* Superficie más clara que el fondo (cards que deben adelantarse) */
+    --c-paper: #ffffff;
+    /* Superficies planas de acento, en dos pasos */
+    --c-bone: #f6f5f3;
+    --c-clay: #eceae6;
+    /* Línea/borde: el separador del sistema */
+    --c-rule: #e4e1dc;
+    /* Texto principal: negro puro. La jerarquía la da el gris, no un
+       negro aguado. */
+    --c-ink: #000000;
+    --c-ink-strong: #000000;
+    /* Gris de texto secundario (AA sobre --c-bg) y gris suave para
+       metadatos y estados inactivos. */
+    --c-muted: #6f6f6f;
+    --c-soft: #a6a6a6;
+    --c-inverse: #ffffff;
+    /* Bloque oscuro: negro pleno */
+    --c-forest: #000000;
 
     /* Tipografía */
-    --font-display: var(--font-fraunces), "Georgia", serif;
+    --font-display: var(--font-instrument), "Georgia", serif;
     --font-ui: var(--font-inter), "Helvetica Neue", Arial, sans-serif;
-    --font-label: var(--font-mono), "IBM Plex Mono", monospace;
+    /* Los labels dejan de ser monoespaciados: pasan a la misma grotesca
+       en mayúsculas con tracking. Apunta a Inter para que los `font-mono`
+       que quedan sueltos en los componentes ya rindan bien; se limpian
+       sección por sección con <Eyebrow>. */
+    --font-label: var(--font-inter), "Helvetica Neue", Arial, sans-serif;
 
-    --pad-x: 32px;
-    --r-block: 40px;
+    /* Tracking del sistema, tomado de la referencia */
+    --ls-body: 0.045em;
+    --ls-label: 0.1em;
+
+    /* Espaciado fluido */
+    --pad-x: clamp(20px, 3.91vw, 50px);
+    --r-block: 0px;
     --max: 1440px;
 
+    /* Único radio no nulo del sistema: los CTA en pill. */
+    --r-pill: 50px;
+
     /* ── shadcn semantic tokens (mapeados a la paleta editorial) ── */
-    --background: rgb(243, 243, 239);
-    --foreground: rgb(44, 44, 44);
-    --card: rgb(249, 249, 246);
-    --card-foreground: rgb(44, 44, 44);
-    --popover: rgb(249, 249, 246);
-    --popover-foreground: rgb(44, 44, 44);
-    --primary: rgb(0, 0, 0);
-    --primary-foreground: rgb(243, 243, 239);
-    --secondary: rgb(236, 236, 230);
-    --secondary-foreground: rgb(44, 44, 44);
-    --muted: rgb(236, 236, 230);
-    --muted-foreground: rgb(105, 102, 96);
-    --accent: rgb(236, 236, 230);
-    --accent-foreground: rgb(44, 44, 44);
+    --background: #faf9f8;
+    --foreground: #000000;
+    --card: #ffffff;
+    --card-foreground: #000000;
+    --popover: #ffffff;
+    --popover-foreground: #000000;
+    --primary: #000000;
+    --primary-foreground: #ffffff;
+    --secondary: #f6f5f3;
+    --secondary-foreground: #000000;
+    --muted: #eceae6;
+    --muted-foreground: #6f6f6f;
+    --accent: #eceae6;
+    --accent-foreground: #000000;
     --destructive: #9f2f2d;
-    --destructive-foreground: rgb(243, 243, 239);
-    --border: rgb(220, 219, 211);
-    --input: rgb(220, 219, 211);
-    --ring: rgb(0, 0, 0);
-    /* Sin radios en absolutamente nada */
+    --destructive-foreground: #ffffff;
+    --border: #e4e1dc;
+    --input: #e4e1dc;
+    --ring: #000000;
+    /* Sin radios en nada, salvo los CTA (ver --r-pill) */
     --radius: 0px;
   }
 
@@ -94,7 +114,18 @@ html {
     background-color: var(--c-bg);
     color: var(--c-ink);
     font-family: var(--font-ui);
+    /* El tracking abierto del cuerpo es parte de la identidad, no un
+       detalle: es lo que hace que la grotesca lea editorial y no UI. */
+    letter-spacing: var(--ls-body);
     -webkit-font-smoothing: antialiased;
+  }
+
+  /* Los titulares serif no llevan el tracking del cuerpo. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    letter-spacing: normal;
   }
 
   img {
@@ -113,15 +144,16 @@ html {
     margin: 0;
   }
 
-  /* La serif de énfasis dentro de un headline: misma familia, itálica. */
+  /* La serif de énfasis dentro de un headline: misma familia, itálica.
+     Hereda el interlineado del titular que la contiene para no abrir un
+     escalón en medio de la línea. */
   em,
   .font-display-italic {
     font-family: var(--font-display);
     font-style: italic;
     font-weight: 400;
-    /* Colchón para que no se recorten los descendentes (g, j, p, q, y). */
-    line-height: 1.15;
-    padding-bottom: 0.05em;
+    letter-spacing: normal;
+    line-height: inherit;
   }
 }
 

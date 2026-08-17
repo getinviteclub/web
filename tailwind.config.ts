@@ -50,23 +50,30 @@ const config: Config = {
         bone: "var(--c-bone)",
         clay: "var(--c-clay)",
         forest: "var(--c-forest)",
+        rule: "var(--c-rule)",
+        soft: "var(--c-soft)",
       },
       fontFamily: {
         display: ["var(--font-display)", "Georgia", "serif"],
         ui: ["var(--font-ui)", "Helvetica Neue", "Arial", "sans-serif"],
         sans: ["var(--font-ui)", "Helvetica Neue", "Arial", "sans-serif"],
-        mono: ["var(--font-label)", "IBM Plex Mono", "monospace"],
+        // `font-mono` queda como alias del rol "label" mientras se migran
+        // las secciones a <Eyebrow>. Ya no es una monoespaciada.
+        mono: ["var(--font-label)", "Helvetica Neue", "Arial", "sans-serif"],
       },
       maxWidth: {
         max: "1440px",
       },
       letterSpacing: {
         tight: "-0.025em",
+        body: "var(--ls-body)",
+        label: "var(--ls-label)",
       },
       borderRadius: {
         lg: "0px",
         md: "0px",
         sm: "0px",
+        pill: "var(--r-pill)",
       },
     },
   },
