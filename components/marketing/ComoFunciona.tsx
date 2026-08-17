@@ -8,7 +8,7 @@ import { Eyebrow } from "@/components/ui/eyebrow"
  *
  * Los tres ítems NO van numerados a propósito. La numeración 01/02/03
  * vive en <Proceso>, que cuenta los mismos tres pasos; repetirla acá
- * duplicaría la secuencia. Acá el separador es una línea fina.
+ * duplicaría la secuencia. Acá el espacio del grid alcanza como separador.
  */
 export function ComoFunciona() {
   return (
@@ -28,10 +28,7 @@ export function ComoFunciona() {
         <Reveal from="up">
           <ul className="mx-auto mt-14 grid max-w-[1000px] grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-8 md:mt-16 md:gap-12">
             {FEATURES_CONTENT.items.map((item) => (
-              <li
-                key={item.title}
-                className="border-t border-rule pt-6 text-center"
-              >
+              <li key={item.title} className="text-center">
                 <h3 className="font-display text-xl font-normal leading-snug">
                   {item.title}
                 </h3>
