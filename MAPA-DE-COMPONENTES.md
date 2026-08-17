@@ -20,7 +20,7 @@ Regla: **una tarea = un componente = un archivo chico.** Nunca "hacé toda la la
 **Qué hace:** crea el repo, el proyecto Next y los tokens. Lo corre una sola persona.
 
 ```bash
-# 1) Crear repo vacío 'web' (privado) en la org Get-Invite-Club (por la web de GitHub)
+# 1) Crear repo vacío 'web' (privado) en la cuenta personal ramirezfacundofr-sketch (por la web de GitHub)
 # 2) En tu compu:
 pnpm create next-app@14 web --ts --tailwind --app --eslint
 cd web

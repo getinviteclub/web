@@ -1,11 +1,28 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Fraunces, Space_Mono } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+// Serif de alto contraste para headlines, con su itálica para énfasis puntual.
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
+  variable: "--font-fraunces",
+  display: "swap",
+});
+
+// Monoespaciada para labels, nav, precios y CTAs.
+const spaceMono = Space_Mono({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -21,7 +38,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={cn(inter.variable)}>
+    <html
+      lang="es"
+      className={cn(inter.variable, fraunces.variable, spaceMono.variable)}
+    >
       <body className="antialiased">{children}</body>
     </html>
   );

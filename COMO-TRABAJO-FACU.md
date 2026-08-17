@@ -16,7 +16,8 @@
 
 ## Paso 1 — Setup inicial (lo hacés una sola vez)
 
-1. Crear el repo `web` (privado, vacío) en la org `Get-Invite-Club` (por la web de GitHub).
+1. Crear el repo `web` (privado, vacío) en la **cuenta personal** `ramirezfacundofr-sketch`
+   (NO en la org: Vercel Hobby no deploya repos privados de organización). Por la web de GitHub.
 2. Abrir VS Code en la carpeta `~/Desktop/Invite club`, abrir la terminal y correr `claude`.
 3. Primer mensaje a Claude Code:
 
@@ -50,9 +51,9 @@
 
 > Reparto sugerido. El detalle/prompt de cada una está en `MAPA-DE-COMPONENTES.md`.
 
-- [ ] **Tarea 0** — Setup (repo + scaffold Next + tokens) ← arranca todo acá
-- [ ] **Tarea 1** — Navbar
-- [ ] **Tarea 2** — Hero + helper de WhatsApp (`lib/whatsapp.ts`)
+- [x] **Tarea 0** — Setup (repo + scaffold Next + tokens) ← arranca todo acá
+- [x] **Tarea 1** — Navbar ✅ (incluyó `lib/whatsapp.ts`, links de ancla, CTA "Contacto") — mergeada
+- [ ] **Tarea 2** — Hero (el helper de WhatsApp ya quedó hecho en la Tarea 1) ← **acá voy**
 - [ ] **Tarea 5** — Galería de diseños + página de template (`/templates/[slug]`)
 - [ ] **Tarea 12** — Ensamblar la landing (`page.tsx`)
 - [ ] **Tarea 7** — Quiénes somos *(coordinar con Flor)*

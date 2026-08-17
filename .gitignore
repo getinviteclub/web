@@ -5,12 +5,14 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
+/.pnpm-store/
 
 # testing
 /coverage
 
 # next.js
 /.next/
+/.next-build/
 /out/
 
 # production
