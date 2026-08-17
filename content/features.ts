@@ -1,8 +1,5 @@
-import { MOCKUPS } from "@/content/mockups"
-
 export const FEATURES_CONTENT = {
   eyebrow: "Todo en un link",
-  mockup: MOCKUPS.clasica,
   title: "Vos elegís. Nosotros nos encargamos.",
   items: [
     {

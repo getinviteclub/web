@@ -24,7 +24,7 @@ export function Footer() {
       </div>
 
       <div>
-        <Eyebrow as="h4" className="mb-3 text-ink">
+        <Eyebrow as="h4" className="mb-3">
           Menú</Eyebrow>
         {FOOTER_MENU.map((item) => (
           <a
@@ -38,7 +38,7 @@ export function Footer() {
       </div>
 
       <div>
-        <Eyebrow as="h4" className="mb-3 text-ink">
+        <Eyebrow as="h4" className="mb-3">
           Seguinos</Eyebrow>
         {SOCIAL_LINKS.map((item) => (
           <a
