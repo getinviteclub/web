@@ -57,9 +57,6 @@ const config: Config = {
         display: ["var(--font-display)", "Georgia", "serif"],
         ui: ["var(--font-ui)", "Helvetica Neue", "Arial", "sans-serif"],
         sans: ["var(--font-ui)", "Helvetica Neue", "Arial", "sans-serif"],
-        // `font-mono` queda como alias del rol "label" mientras se migran
-        // las secciones a <Eyebrow>. Ya no es una monoespaciada.
-        mono: ["var(--font-label)", "Helvetica Neue", "Arial", "sans-serif"],
       },
       maxWidth: {
         max: "1440px",

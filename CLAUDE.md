@@ -60,6 +60,20 @@ styles/ (o app/globals.css)# tokens: colores, fuentes
 - Tipografía fluida con `clamp()` (ya usada en el export); títulos con `letter-spacing: -.02em`
 - **Mobile-first.** Animaciones: solo CSS transitions, **sin Framer Motion**.
 
+### Labels: cuándo componente y cuándo clase
+
+El rol "label" (12px, mayúsculas, tracking) se define **una sola vez** en
+`.label-copy` (`globals.css`). Hay dos formas de usarlo y no son intercambiables:
+
+- **`<Eyebrow>`** — el label que **abre** una sección o un bloque. Es un elemento
+  de composición: elige la etiqueta (`as`) y resuelve la variante sobre oscuro.
+- **`.label-copy`** — labels **embebidos en UI**: contadores, badges, ítems de nav,
+  "elegido", "Ver diseño". Son una pincelada tipográfica, no estructura.
+
+Ante la duda: si lo podés borrar y la sección sigue teniendo sentido, es
+`.label-copy`. Si es lo que anuncia lo que viene abajo, es `<Eyebrow>`.
+Nunca reimplementes el rol a mano con clases sueltas de Tailwind.
+
 ## Seguridad (innegociable)
 
 - `SUPABASE_SERVICE_ROLE_KEY` **solo server-side**. Jamás en el bundle del cliente ni en el repo.

@@ -39,7 +39,7 @@ export function Faqs() {
             <details key={faq.question} className="group">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-lg font-semibold transition-colors hover:bg-bone [&::-webkit-details-marker]:hidden">
                 {faq.question}
-                <span className="shrink-0 font-mono text-xl font-normal text-muted-foreground transition-transform duration-200 group-open:rotate-45">
+                <span className="shrink-0 text-xl font-normal text-muted-foreground transition-transform duration-200 group-open:rotate-45">
                   +
                 </span>
               </summary>

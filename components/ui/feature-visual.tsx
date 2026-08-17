@@ -18,7 +18,7 @@ function Confirmacion() {
       <div className={tarjeta}>
         <div className="mb-3 flex items-baseline justify-between">
           <span className="label-copy label-copy-inverse">Confirmados</span>
-          <span className="font-mono text-2xl font-bold leading-none">
+          <span className="text-2xl font-bold leading-none">
             42
           </span>
         </div>
@@ -73,7 +73,7 @@ function Calendario() {
         {dias.map((d) => (
           <span
             key={d}
-            className={`flex aspect-square items-center justify-center rounded-none font-mono text-[11px] ${
+            className={`flex aspect-square items-center justify-center rounded-none text-[11px] ${
               d === 14
                 ? "bg-inverse font-semibold text-ink"
                 : "bg-white/10 text-white/60"

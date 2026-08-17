@@ -7,6 +7,9 @@
     text-wrap: balance;
   }
 
+  /* Rol "label": única definición del estilo. Usala directo para labels
+     embebidos en UI (contadores, badges, nav); para el label que ABRE una
+     sección usá <Eyebrow>, que envuelve a esta misma clase. */
   .label-copy {
     color: var(--c-ink);
     font-family: var(--font-label);
@@ -86,10 +89,8 @@ html {
     /* Tipografía */
     --font-display: var(--font-instrument), "Georgia", serif;
     --font-ui: var(--font-inter), "Helvetica Neue", Arial, sans-serif;
-    /* Los labels dejan de ser monoespaciados: pasan a la misma grotesca
-       en mayúsculas con tracking. Apunta a Inter para que los `font-mono`
-       que quedan sueltos en los componentes ya rindan bien; se limpian
-       sección por sección con <Eyebrow>. */
+    /* Rol "label": mayúsculas chicas con tracking (ver .label-copy). Hoy es
+       la misma grotesca que la UI; vive aparte para poder cambiarla sola. */
     --font-label: var(--font-inter), "Helvetica Neue", Arial, sans-serif;
 
     /* Tracking del sistema, tomado de la referencia */

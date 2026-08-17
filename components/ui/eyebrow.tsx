@@ -1,10 +1,13 @@
 import { cn } from "@/lib/utils"
 
 /**
- * El label chico en mayúsculas que abre cada sección.
+ * El label chico en mayúsculas que **abre** una sección o un bloque.
  *
- * Reemplaza al patrón `font-mono text-xs uppercase tracking-[...]` que
- * estaba repetido a mano en cada componente.
+ * Envuelve a `.label-copy` (globals.css), elige la etiqueta semántica y
+ * resuelve la variante sobre fondo oscuro.
+ *
+ * Para labels embebidos en UI —contadores, badges, ítems de nav— usá la
+ * clase `.label-copy` directo: no son estructura, son tipografía.
  */
 type EyebrowProps = {
   children: React.ReactNode

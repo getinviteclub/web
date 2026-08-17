@@ -18,7 +18,7 @@ export function RsvpCard({ className }: { className?: string }) {
       {/* El link */}
       <div className="flex items-center gap-2 rounded-none bg-paper px-4 py-3">
         <Link2 className="size-4 shrink-0 text-muted-foreground" />
-        <span className="truncate font-mono text-sm">
+        <span className="truncate text-sm">
           getinviteclub.com/<span className="text-muted-foreground">tu-boda</span>
         </span>
       </div>
@@ -29,7 +29,7 @@ export function RsvpCard({ className }: { className?: string }) {
           <span className="label-copy">
             Confirmados
           </span>
-          <span className="font-mono text-2xl font-bold leading-none">
+          <span className="text-2xl font-bold leading-none">
             38
           </span>
         </div>
