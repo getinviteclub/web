@@ -13,7 +13,7 @@ import { Eyebrow } from "@/components/ui/eyebrow"
 export function ComoFunciona() {
   return (
     <section id="features" className="bg-bone">
-      <div className="mx-auto max-w-max px-[var(--pad-x)] py-20 md:py-28">
+      <div className="mx-auto max-w-max px-[var(--pad-x)] pb-20 pt-8 md:pb-28 md:pt-12">
         <Reveal from="up" className="mx-auto max-w-[46ch] text-center">
           <Eyebrow>{FEATURES_CONTENT.eyebrow}</Eyebrow>
 
