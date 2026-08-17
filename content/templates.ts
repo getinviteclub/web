@@ -66,7 +66,7 @@ export const TEMPLATES: Template[] = [
   {
     slug: "aura",
     name: "Aura",
-    description: "Delicado y etéreo, con una estética suave y elegante.",
+    description: "Delicado con estética suave y elegante.",
     coverImage: "/images/disenos/aura.jpg",
     image: MOCKUPS.clasica,
     longDescription:
