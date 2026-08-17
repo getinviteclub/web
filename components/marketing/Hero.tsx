@@ -31,7 +31,7 @@ export function Hero() {
         </p>
 
         <div className="mt-8 md:mt-9">
-          <Cta href={HERO_CONTENT.ctaHref} tone="frost" size="lg">
+          <Cta href={HERO_CONTENT.ctaHref} tone="frost" size="md">
             {HERO_CONTENT.ctaText}
           </Cta>
         </div>
