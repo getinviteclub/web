@@ -1,6 +1,6 @@
+import Image from "next/image"
 import Link from "next/link"
 import { TEMPLATES } from "@/content/templates"
-import { PhoneMockup } from "@/components/ui/phone-mockup"
 import { WhatsappCta } from "@/components/ui/whatsapp-cta"
 import { Reveal } from "@/components/ui/reveal"
 import { Eyebrow } from "@/components/ui/eyebrow"
@@ -27,22 +27,27 @@ export function Galeria() {
         </div>
       </Reveal>
 
-      <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-6">
+      <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4">
         {TEMPLATES.map((template, i) => (
           <Reveal key={template.slug} from={i % 2 === 0 ? "left" : "right"}>
-            <Link href={`/templates/${template.slug}`} className="group">
-              <div className="rounded-none bg-bone px-6 py-10 transition-opacity group-hover:opacity-70">
-                <PhoneMockup
-                  src={template.image}
+            <Link href={`/templates/${template.slug}`} className="group block">
+              {/* La foto es lo único que se mueve al hover —el mismo
+                  micro-zoom que caratsandcake.com—, el texto de abajo
+                  queda quieto. */}
+              <div className="relative aspect-[4/5] overflow-hidden bg-bone">
+                <Image
+                  src={template.coverImage}
                   alt={`Invitación ${template.name}`}
-                  className="max-w-[210px]"
+                  fill
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 45vw, 90vw"
+                  className="object-cover transition-transform duration-[600ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.06]"
                 />
               </div>
-              <h3 className="mb-1 mt-5 font-display text-2xl font-normal">
+              <h3 className="mt-4 font-display text-xl font-normal">
                 {template.name}
               </h3>
-              <p className="desc-copy">{template.description}</p>
-              <span className="label-copy mt-2 inline-block underline underline-offset-4">
+              <p className="mt-1 desc-copy">{template.description}</p>
+              <span className="label-copy mt-3 inline-block underline underline-offset-4">
                 Ver diseño
               </span>
             </Link>

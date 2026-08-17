@@ -9,8 +9,8 @@
 | Uso | Medida a entregar | Ratio | Dónde se cambia |
 |---|---|---|---|
 | Hero (fondo full screen) | **2400 × 1600 px** | 3:2 | `content/hero.ts` → `bgSrc` |
-| Cards de diseños (galería) | **1936 × 1204 px** | 484:301 (~1.6:1) | `content/templates.ts` → `image` |
-| Detalle de template | misma imagen que la card | 484:301 | `content/templates.ts` → `image` |
+| Cards de diseños (galería) | **1200 × 1500 px** | 4:5 (retrato) | `content/templates.ts` → `coverImage` |
+| Detalle de template (pantalla dentro del celular) | **1170 × 2532 px** | 9:19.5 | `content/templates.ts` → `image` |
 | **Pantallas de celular** (mockups) | **1170 × 2532 px** | 9:19.5 | `content/mockups.ts` |
 | Banda CTA final | **2000 × 1000 px** | 2:1 | `content/cta-final.ts` → `bgSrc` |
 | Avatares de testimonios | **200 × 200 px** | 1:1 | `content/testimonios.ts` → `avatar` |
@@ -88,13 +88,20 @@ distinto en mobile y desktop.
   (ahí van el título y el CTA). El sujeto, centrado o a la derecha.
 - Encima lleva un degradado oscuro, así que una foto muy clara igual funciona.
 
-## Cards de diseños — 1936 × 1204 px
+## Cards de diseños — 1200 × 1500 px (4:5)
 
-Se muestran a 484 × 301 px, pero se entregan a **2x** para pantallas retina.
+`coverImage` en `content/templates.ts`. Es distinta de `image`: `image` es el
+screenshot de la invitación real que se ve en el detalle, dentro del marco de
+celular; `coverImage` es una foto editorial — la portada de la card en la
+galería de `<Galeria>`, con un micro-zoom al pasar el mouse.
 
 - **Formato:** `.webp` o `.jpg` calidad 80.
 - **Peso objetivo:** menos de 250 KB cada una.
-- Idealmente un mockup/preview de la invitación en sí, no una foto genérica.
+- Una foto por diseño, coherente con su estética (ver `description` de cada
+  uno en `content/templates.ts`: editorial minimalista, romántico luminoso,
+  blanco y negro cinematográfico, etéreo suave).
+- **Pendiente:** los 4 diseños (Studio, Cielo, Nocturna, Aura) hoy comparten
+  la misma foto provisoria (`wedding-hero.jpeg`) hasta subir las 4 reales.
 
 ## Cómo reemplazarlas (o pasarlas a local)
 
@@ -131,4 +138,7 @@ bgSrc: "/images/hero.webp"
 - **Testimonio** real de una de las 2 bodas → `content/testimonios.ts`.
 - Copy de **Quiénes somos** → `content/quienes-somos.ts`.
 - **Respuestas** de las FAQs → `content/faqs.ts`.
-- **Nombres y descripciones** reales de los diseños → `content/templates.ts`.
+- **4 fotos de portada** de los diseños (Studio, Cielo, Nocturna, Aura) →
+  `content/templates.ts` → `coverImage` (ver sección de arriba).
+- `longDescription` y `features` de los 4 diseños son placeholders razonables,
+  no copy final → `content/templates.ts`.
