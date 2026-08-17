@@ -42,7 +42,7 @@ const ctaVariants = cva(
         link: "underline underline-offset-4 transition-opacity hover:opacity-60",
       },
       tone: { outline: "", light: "", dark: "", frost: "", glass: "" },
-      size: { sm: "", md: "", lg: "" },
+      size: { sm: "", md: "" },
     },
     compoundVariants: [
       /* ── pill: color ── */
@@ -67,11 +67,6 @@ const ctaVariants = cva(
       /* ── pill: caja ── */
       { variant: "pill", size: "sm", class: "min-w-[104px] px-4 py-2" },
       { variant: "pill", size: "md", class: "min-w-[130px] px-5 py-2.5" },
-      {
-        variant: "pill",
-        size: "lg",
-        class: "min-w-[150px] px-7 py-3.5 text-[13px]",
-      },
       /* ── link: color ── */
       {
         variant: "link",

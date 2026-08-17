@@ -36,7 +36,7 @@ export function CtaFinal() {
           <WhatsappCta
             message={CTA_FINAL_CONTENT.ctaMessage}
             tone="frost"
-            size="lg"
+            size="md"
           >
             {CTA_FINAL_CONTENT.ctaText}
           </WhatsappCta>
