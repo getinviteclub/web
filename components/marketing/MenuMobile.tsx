@@ -82,7 +82,7 @@ export function MenuMobile() {
             aria-label="Menú"
             className="panel-in fixed inset-0 z-50 flex flex-col bg-background text-ink md:hidden"
           >
-            <div className="flex items-center justify-between gap-4 border-b border-rule px-[var(--pad-x)] py-4">
+            <div className="flex items-center justify-between gap-4 border-b border-ink px-[var(--pad-x)] py-4">
               <a
                 href="#"
                 onClick={cerrar}

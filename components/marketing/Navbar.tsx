@@ -42,7 +42,7 @@ export function Navbar() {
       className={cn(
         // Barra sólida sobre el fondo del sistema. Antes era vidrio con
         // tipografía blanca y sobre las secciones claras no se leía.
-        "fixed inset-x-0 top-0 z-40 border-b border-rule bg-background text-ink",
+        "fixed inset-x-0 top-0 z-40 border-b border-ink bg-background text-ink",
         "transition-transform duration-300 ease-out",
         oculto ? "-translate-y-full" : "translate-y-0"
       )}
