@@ -10,7 +10,9 @@ import { Pricing } from "@/components/marketing/Pricing"
 import { Faqs } from "@/components/marketing/Faqs"
 import { CtaFinal } from "@/components/marketing/CtaFinal"
 import { Footer } from "@/components/marketing/Footer"
-import { BotonWhatsappFlotante } from "@/components/marketing/BotonWhatsappFlotante"
+// BotonWhatsappFlotante: sacado de la página por ahora (a pedido). El
+// componente queda intacto en components/marketing/ para reactivarlo.
+// import { BotonWhatsappFlotante } from "@/components/marketing/BotonWhatsappFlotante"
 
 export default function Home() {
   return (
@@ -28,7 +30,6 @@ export default function Home() {
       <Faqs />
       <CtaFinal />
       <Footer />
-      <BotonWhatsappFlotante />
     </>
   )
 }

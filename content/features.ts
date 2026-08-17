@@ -1,6 +1,6 @@
 export const FEATURES_CONTENT = {
   eyebrow: "Todo en un link",
-  title: "Vos elegís. Nosotros nos encargamos.",
+  title: "Vos elegís. Nosotros nos encargamos de todo.",
   items: [
     {
       title: "Elegí un diseño",
