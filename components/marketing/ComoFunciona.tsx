@@ -14,12 +14,18 @@ export function ComoFunciona() {
   return (
     <section id="features" className="bg-clay">
       <div className="mx-auto max-w-max px-[var(--pad-x)] pb-20 pt-8 md:pb-28 md:pt-12">
-        <Reveal from="up" className="mx-auto max-w-[46ch] text-center">
+        {/* 34rem = 544px: la segunda línea del titular mide 502px a 44px
+            de cuerpo, y con 46ch (464px) le quedaba "todo." colgando. */}
+        <Reveal from="up" className="mx-auto max-w-[34rem] text-center">
           <Eyebrow>{FEATURES_CONTENT.eyebrow}</Eyebrow>
 
           <h2
-            className="mt-5 text-balance font-display font-normal leading-[1.15]"
-            style={{ fontSize: "clamp(28px, 4vw, 44px)" }}
+            className="mt-5 whitespace-pre-line font-display font-normal leading-[1.15]"
+            // El 7.4vw hace que el cuerpo acompañe al ancho en el rango
+            // mobile en vez de quedarse clavado en el piso: así la
+            // segunda línea entra completa desde 320px para arriba y no
+            // deja "todo." colgando solo. A 375px da ~28px, igual que antes.
+            style={{ fontSize: "clamp(24px, 7.4vw, 44px)" }}
           >
             {FEATURES_CONTENT.title}
           </h2>
