@@ -114,7 +114,7 @@ export function MenuMobile() {
             {/* Bloque compacto: filas apretadas entre sí y un respiro
                 contra el header, para que lea como un cluster y no como
                 una continuación de la barra. */}
-            <nav className="overflow-y-auto px-[var(--pad-x)] pt-6">
+            <nav className="flex flex-1 flex-col overflow-y-auto px-[var(--pad-x)] pb-8 pt-6">
               <ul>
                 {NAV_LINKS.map((link) => (
                   <li key={link.label} className="border-b border-rule">
@@ -139,9 +139,10 @@ export function MenuMobile() {
                 ))}
               </ul>
 
-              {/* Cierra el cluster en una sola fila, con el mismo CTA
-                  subrayado que usa el navbar en desktop. */}
-              <div className="flex items-center justify-between gap-4 py-3">
+              {/* Ancla al pie del viewport, en una sola fila, con el mismo
+                  CTA subrayado que usa el navbar en desktop. El pt-10 es
+                  el piso de separación cuando la pantalla es corta. */}
+              <div className="mt-auto flex items-center justify-between gap-4 pt-10">
                 <Eyebrow>Contacto</Eyebrow>
                 <WhatsappCta
                   message="Hola, quiero info de Invite Club"
