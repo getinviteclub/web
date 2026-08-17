@@ -9,6 +9,11 @@ export type Template = {
   description: string
   /** Foto de portada de la card (retrato 4:5, ver <Galeria>). */
   coverImage: string
+  /** object-position del recorte 4:5. Por defecto centrado; solo hace
+   *  falta cuando el contenido importante de la foto no está centrado
+   *  verticalmente (ver "aura", que sube el foco para no cortar la
+   *  fecha y el lugar al pie de la pieza). */
+  coverPosition?: string
   /** Captura de la pantalla real, la que se ve en el detalle del template
    *  dentro de <PhoneMockup>. Distinta de coverImage: esa es una foto,
    *  esta es el screenshot de la invitación en sí. */
@@ -68,6 +73,9 @@ export const TEMPLATES: Template[] = [
     name: "Aura",
     description: "Delicado con estética suave y elegante.",
     coverImage: "/images/disenos/aura.jpg",
+    // La foto es retrato angosto (744×1194): centrado de más se comía la
+    // fecha y el lugar al pie. Subido a 90% para que entren.
+    coverPosition: "50% 90%",
     image: MOCKUPS.clasica,
     longDescription:
       "Texturas suaves y una paleta neutra, con foco en la fotografía. Para quienes buscan algo etéreo y sereno.",

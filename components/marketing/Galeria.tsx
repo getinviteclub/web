@@ -40,6 +40,7 @@ export function Galeria() {
                   alt={`Invitación ${template.name}`}
                   fill
                   sizes="(min-width: 1024px) 25vw, (min-width: 640px) 45vw, 90vw"
+                  style={{ objectPosition: template.coverPosition }}
                   className="object-cover transition-transform duration-[600ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.06]"
                 />
               </div>
