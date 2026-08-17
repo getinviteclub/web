@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { NAV_LINKS } from "@/content/nav"
 import { WhatsappCta } from "@/components/ui/whatsapp-cta"
+import { MenuMobile } from "@/components/marketing/MenuMobile"
 import { cn } from "@/lib/utils"
 
 /** Píxeles a recorrer antes de empezar a esconder la barra. */
@@ -68,10 +69,18 @@ export function Navbar() {
         </ul>
 
         {/* Subrayado, igual que el "Ver diseño" de las fichas: dentro de
-            la barra un pill compite con el logo y los links. */}
-        <WhatsappCta message="Hola, quiero info de Invite Club" variant="link">
-          Escribinos
-        </WhatsappCta>
+            la barra un pill compite con el logo y los links. En mobile
+            el CTA se va adentro del menú. */}
+        <div className="hidden md:block">
+          <WhatsappCta
+            message="Hola, quiero info de Invite Club"
+            variant="link"
+          >
+            Escribinos
+          </WhatsappCta>
+        </div>
+
+        <MenuMobile />
       </div>
     </nav>
   )

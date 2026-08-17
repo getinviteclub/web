@@ -221,6 +221,18 @@ body {
     transform: translateX(0) translateY(0);
   }
 
+  /* Entrada del panel de menú. El bloque de prefers-reduced-motion de
+     más arriba ya le lleva la duración a 0.01ms. */
+  @keyframes panel-in {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+  }
+  .panel-in {
+    animation: panel-in 0.18s ease-out both;
+  }
+
   /* En pantallas angostas 110px es casi un tercio del ancho: el barrido
      lateral se lee como un salto. Ahí entra de abajo, como el resto.
      Va con :not(.is-visible) porque esta regla tiene la misma
