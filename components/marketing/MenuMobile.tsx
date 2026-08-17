@@ -111,14 +111,17 @@ export function MenuMobile() {
               </button>
             </div>
 
-            <nav className="flex flex-1 flex-col overflow-y-auto px-[var(--pad-x)]">
+            {/* Bloque compacto: filas apretadas entre sí y un respiro
+                contra el header, para que lea como un cluster y no como
+                una continuación de la barra. */}
+            <nav className="overflow-y-auto px-[var(--pad-x)] pt-6">
               <ul>
                 {NAV_LINKS.map((link) => (
                   <li key={link.label} className="border-b border-rule">
                     <a
                       href={link.href}
                       onClick={cerrar}
-                      className="flex items-center justify-between gap-4 py-5 font-display text-2xl font-normal"
+                      className="flex items-center justify-between gap-4 py-3 font-display text-2xl font-normal"
                       {...(link.external
                         ? { target: "_blank", rel: "noopener noreferrer" }
                         : {})}
@@ -136,11 +139,17 @@ export function MenuMobile() {
                 ))}
               </ul>
 
-              <div className="mt-auto pb-12 pt-14">
-                <Eyebrow className="mb-4">Contacto</Eyebrow>
+              {/* Cierra el cluster en una sola fila, con el mismo CTA
+                  subrayado que usa el navbar en desktop. */}
+              <div className="flex items-center justify-between gap-4 py-3">
+                <Eyebrow>Contacto</Eyebrow>
                 <WhatsappCta
                   message="Hola, quiero info de Invite Club"
-                  className="w-full"
+                  variant="link"
+                  // El texto mide 14px de alto: el padding agranda el
+                  // área táctil y el margen negativo lo saca del layout,
+                  // así no cambia nada visualmente.
+                  className="-my-3 py-3"
                 >
                   Escribinos
                 </WhatsappCta>
