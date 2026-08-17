@@ -31,6 +31,7 @@ type WhatsappCtaProps = VariantProps<typeof ctaVariants> & {
 export function WhatsappCta({
   message,
   children,
+  variant,
   tone,
   size,
   className,
@@ -38,6 +39,7 @@ export function WhatsappCta({
   return (
     <Cta
       href={waLink(message)}
+      variant={variant}
       tone={tone}
       size={size}
       className={className}
