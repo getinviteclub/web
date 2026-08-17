@@ -1,15 +1,13 @@
 import { MOCKUPS } from "@/content/mockups"
 
 // TODO: longDescription y features son placeholders razonables, no copy
-// final — falta que Facu los revise. `coverImage` de los 4 diseños apunta
-// a la misma foto provisoria (mismo criterio que ya usaba ASSETS.md para
-// el hero) hasta tener las 4 fotos de portada reales.
+// final — falta que Facu los revise.
 export type Template = {
   slug: string
   name: string
   /** Bajada corta, la que se ve en la card de la galería. */
   description: string
-  /** Foto de portada de la card (retrato, ver <Galeria>). Provisoria. */
+  /** Foto de portada de la card (retrato 4:5, ver <Galeria>). */
   coverImage: string
   /** Captura de la pantalla real, la que se ve en el detalle del template
    *  dentro de <PhoneMockup>. Distinta de coverImage: esa es una foto,
@@ -19,14 +17,12 @@ export type Template = {
   features: string[]
 }
 
-const COVER_PROVISORIA = "/images/wedding-hero.jpeg"
-
 export const TEMPLATES: Template[] = [
   {
     slug: "studio",
     name: "Studio",
     description: "Minimalismo editorial, limpio y atemporal.",
-    coverImage: COVER_PROVISORIA,
+    coverImage: "/images/disenos/studio.jpg",
     image: MOCKUPS.clasica,
     longDescription:
       "Tipografía como protagonista y mucho aire en blanco. Para parejas que prefieren la elegancia de lo simple antes que la decoración.",
@@ -41,7 +37,7 @@ export const TEMPLATES: Template[] = [
     slug: "cielo",
     name: "Cielo",
     description: "Romántico y luminoso, con detalles delicados.",
-    coverImage: COVER_PROVISORIA,
+    coverImage: "/images/disenos/cielo.jpg",
     image: MOCKUPS.manuscrita,
     longDescription:
       "Colores suaves y detalles delicados sobre fondo claro. Para celebraciones con una estética cálida y femenina.",
@@ -56,7 +52,7 @@ export const TEMPLATES: Template[] = [
     slug: "nocturna",
     name: "Nocturna",
     description: "Elegancia cinematográfica en blanco y negro.",
-    coverImage: COVER_PROVISORIA,
+    coverImage: "/images/disenos/nocturna.jpg",
     image: MOCKUPS.editorial,
     longDescription:
       "Fotografía en blanco y negro con tipografía de alto contraste. La opción de mayor impacto visual, para bodas con estética editorial.",
@@ -71,7 +67,7 @@ export const TEMPLATES: Template[] = [
     slug: "aura",
     name: "Aura",
     description: "Delicado y etéreo, con una estética suave y elegante.",
-    coverImage: COVER_PROVISORIA,
+    coverImage: "/images/disenos/aura.jpg",
     image: MOCKUPS.clasica,
     longDescription:
       "Texturas suaves y una paleta neutra, con foco en la fotografía. Para quienes buscan algo etéreo y sereno.",
