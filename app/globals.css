@@ -49,9 +49,15 @@ html {
   scroll-behavior: smooth;
   /* El navbar es fixed: sin esto las anclas quedan tapadas por la barra. */
   scroll-padding-top: 88px;
-  /* El reveal anima translateX(±110px): esto evita que ese desplazamiento
-     genere scroll horizontal mientras el elemento todavía está oculto. */
-  overflow-x: hidden;
+}
+
+/* El reveal anima translateX(±110px) y eso agranda el documento: en 375px
+   el ancho pasaba a 465px y quedaba una franja vacía a la derecha.
+   `clip` —y no `hidden`— recorta ese desborde sin convertir al elemento
+   en contenedor de scroll, que era justo lo que rompía el ancho. */
+html,
+body {
+  overflow-x: clip;
 }
 
 /* Respeta a quien pidió menos movimiento en el sistema. */
@@ -213,6 +219,18 @@ html {
   .reveal.is-visible {
     opacity: 1;
     transform: translateX(0) translateY(0);
+  }
+
+  /* En pantallas angostas 110px es casi un tercio del ancho: el barrido
+     lateral se lee como un salto. Ahí entra de abajo, como el resto.
+     Va con :not(.is-visible) porque esta regla tiene la misma
+     especificidad que .reveal.is-visible y está después: sin eso le
+     ganaría y el elemento nunca volvería a su posición final. */
+  @media (max-width: 767px) {
+    .reveal[data-from="left"]:not(.is-visible),
+    .reveal[data-from="right"]:not(.is-visible) {
+      transform: translateY(24px);
+    }
   }
 }
 
