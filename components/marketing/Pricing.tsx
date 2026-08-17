@@ -18,7 +18,7 @@ export function Pricing() {
         >
           Una propuesta para cada forma de celebrar
         </h2>
-        <p className="mt-4 text-lg text-muted-foreground">
+        <p className="mt-4 text-lg desc-copy">
           Elegí el plan que mejor se adapte a tu evento. Pago único, sin
           suscripciones.
         </p>

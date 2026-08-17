@@ -14,7 +14,7 @@ export function Footer() {
         >
           Invite<span className="font-display-italic"> Club</span>
         </a>
-        <p className="max-w-[40ch] text-muted-foreground">
+        <p className="max-w-[40ch] desc-copy">
           Creá y compartí tu invitación digital. Gestión de invitados,
           confirmaciones online y más.
         </p>

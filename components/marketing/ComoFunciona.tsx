@@ -35,7 +35,7 @@ export function ComoFunciona() {
                 <h3 className="font-display text-xl font-normal leading-snug">
                   {item.title}
                 </h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-2.5 text-sm leading-relaxed desc-copy">
                   {item.text}
                 </p>
               </li>

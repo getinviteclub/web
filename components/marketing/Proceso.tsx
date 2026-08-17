@@ -28,7 +28,7 @@ export function Proceso() {
         >
           {PROCESO_CONTENT.title}
         </h2>
-        <p className="mt-4 text-lg text-muted-foreground">
+        <p className="mt-4 text-lg desc-copy">
           {PROCESO_CONTENT.subtitle}
         </p>
       </Reveal>
@@ -54,7 +54,7 @@ export function Proceso() {
                   <h3 className="mb-2 mt-2 text-xl font-semibold">
                     {step.title}
                   </h3>
-                  <p className="leading-relaxed text-muted-foreground">
+                  <p className="leading-relaxed desc-copy">
                     {step.text}
                   </p>
                 </div>

@@ -41,7 +41,7 @@ export function Galeria() {
               <h3 className="mb-1 mt-5 font-display text-2xl font-normal">
                 {template.name}
               </h3>
-              <p className="text-muted-foreground">{template.description}</p>
+              <p className="desc-copy">{template.description}</p>
               <span className="label-copy mt-2 inline-block underline underline-offset-4">
                 Ver diseño
               </span>
@@ -57,7 +57,7 @@ export function Galeria() {
             <p className="font-display text-xl font-normal">
               ¿No sabés cuál elegir?
             </p>
-            <p className="mt-1 text-muted-foreground">
+            <p className="mt-1 desc-copy">
               Contanos cómo es tu boda y te recomendamos el diseño que mejor va.
             </p>
           </div>

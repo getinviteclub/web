@@ -34,6 +34,15 @@
   .note-copy-inverse {
     color: var(--c-inverse);
   }
+
+  /* Bajadas y descripciones en gris. El tracking abierto del body
+     (--ls-body) da carácter en frases sueltas, pero en un bloque de texto
+     corrido separa demasiado y cuesta leerlo: acá va en normal. El tamaño
+     lo pone quien la usa (text-sm / text-lg), esto solo fija color y tracking. */
+  .desc-copy {
+    color: var(--c-muted);
+    letter-spacing: normal;
+  }
 }
 
 html {

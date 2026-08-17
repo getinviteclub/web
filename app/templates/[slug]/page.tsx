@@ -41,7 +41,7 @@ export default function TemplatePage({
           >
             {template.name}
           </h1>
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p className="mt-4 text-lg desc-copy">
             {template.longDescription}
           </p>
 

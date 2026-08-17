@@ -21,7 +21,7 @@ export function Faqs() {
           >
             Todo lo que suelen preguntarnos
           </h2>
-          <p className="mt-4 text-muted-foreground">
+          <p className="mt-4 desc-copy">
             ¿No encontrás tu respuesta? Escribinos y te contestamos en el día.
           </p>
           <WhatsappCta
@@ -43,7 +43,7 @@ export function Faqs() {
                   +
                 </span>
               </summary>
-              <p className="px-6 pb-6 leading-relaxed text-muted-foreground">
+              <p className="px-6 pb-6 leading-relaxed desc-copy">
                 {faq.answer}
               </p>
             </details>
