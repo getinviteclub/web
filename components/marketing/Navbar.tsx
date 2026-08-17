@@ -56,7 +56,7 @@ export function Navbar() {
             <li key={link.label}>
               <a
                 href={link.href}
-                className="font-ui text-xs font-medium uppercase tracking-label text-muted-foreground transition-colors hover:text-ink"
+                className="label-copy transition-opacity hover:opacity-70"
                 {...(link.external
                   ? { target: "_blank", rel: "noopener noreferrer" }
                   : {})}

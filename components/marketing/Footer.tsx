@@ -18,7 +18,7 @@ export function Footer() {
           Creá y compartí tu invitación digital. Gestión de invitados,
           confirmaciones online y más.
         </p>
-        <span className="mt-6 block text-sm text-muted-foreground">
+        <span className="note-copy mt-6 block">
           ©2026 Invite Club. Todos los derechos reservados.
         </span>
       </div>
@@ -30,7 +30,7 @@ export function Footer() {
           <a
             key={item.label}
             href={item.href}
-            className="mb-1.5 block text-muted-foreground transition-opacity hover:opacity-70"
+            className="mb-1.5 block text-ink transition-opacity hover:opacity-70"
           >
             {item.label}
           </a>
@@ -46,7 +46,7 @@ export function Footer() {
             href={item.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="mb-1.5 block text-muted-foreground transition-opacity hover:opacity-70"
+            className="mb-1.5 block text-ink transition-opacity hover:opacity-70"
           >
             {item.label}
           </a>

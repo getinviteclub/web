@@ -40,7 +40,7 @@ export function Pricing() {
                   {plan.name}
                 </h3>
                 {plan.featured && (
-                  <span className="rounded-none bg-ink px-2.5 py-1 font-ui text-[10px] font-medium uppercase tracking-label text-inverse">
+                  <span className="label-copy label-copy-inverse rounded-none bg-ink px-2.5 py-1">
                     Más elegido
                   </span>
                 )}
@@ -74,7 +74,7 @@ export function Pricing() {
         ))}
       </div>
 
-      <p className="mt-6 text-sm text-muted-foreground">
+      <p className="note-copy mt-6">
         ¿Dudas sobre qué plan te conviene? Escribinos y te ayudamos a elegir —
         te respondemos en el día.
       </p>

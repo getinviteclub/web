@@ -26,7 +26,7 @@ export function RsvpCard({ className }: { className?: string }) {
       {/* Confirmaciones */}
       <div className="rounded-none bg-paper p-4">
         <div className="mb-3 flex items-baseline justify-between">
-          <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground">
+          <span className="label-copy">
             Confirmados
           </span>
           <span className="font-mono text-2xl font-bold leading-none">
@@ -41,7 +41,7 @@ export function RsvpCard({ className }: { className?: string }) {
                 <Check className="size-3 text-inverse" strokeWidth={3} />
               </span>
               <span className="flex-1 truncate text-sm">{item.name}</span>
-              <span className="shrink-0 text-xs text-muted-foreground">
+              <span className="note-copy shrink-0">
                 {item.detail}
               </span>
             </li>

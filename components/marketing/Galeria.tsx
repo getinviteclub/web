@@ -42,7 +42,7 @@ export function Galeria() {
                 {template.name}
               </h3>
               <p className="text-muted-foreground">{template.description}</p>
-              <span className="mt-2 inline-block font-mono text-xs uppercase tracking-[0.08em] underline underline-offset-4">
+              <span className="label-copy mt-2 inline-block underline underline-offset-4">
                 Ver diseño
               </span>
             </Link>

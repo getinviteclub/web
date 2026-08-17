@@ -48,7 +48,7 @@ export function Proceso() {
                 </div>
 
                 <div className="p-6">
-                  <span className="font-mono text-sm text-muted-foreground">
+                  <span className="label-copy">
                     {step.number}
                   </span>
                   <h3 className="mb-2 mt-2 text-xl font-semibold">

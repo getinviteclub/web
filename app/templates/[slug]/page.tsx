@@ -20,7 +20,7 @@ export default function TemplatePage({
     <main className="mx-auto max-w-max px-[var(--pad-x)] py-12 md:py-20">
       <Link
         href="/#disenos"
-        className="font-mono text-xs uppercase tracking-wide text-muted-foreground transition-opacity hover:opacity-70"
+        className="label-copy transition-opacity hover:opacity-70"
       >
         ← Volver a diseños
       </Link>
@@ -63,7 +63,7 @@ export default function TemplatePage({
           >
             Quiero este diseño
           </WhatsappCta>
-          <p className="mt-3 text-sm text-muted-foreground">
+          <p className="note-copy mt-3">
             Te respondemos en el día · Sin compromiso
           </p>
         </div>

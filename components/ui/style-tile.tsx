@@ -15,14 +15,14 @@ export function StyleTile({ className }: { className?: string }) {
         <span className="font-display text-3xl font-semibold leading-none">
           Aa
         </span>
-        <span className="ml-2 text-xs text-muted-foreground">
+        <span className="note-copy ml-2">
           Tipografía elegida con vos
         </span>
       </div>
 
       {/* Paleta */}
       <div className="rounded-xl bg-white px-4 py-3 shadow-sm">
-        <span className="mb-2 block text-xs text-muted-foreground">
+        <span className="label-copy mb-2 block">
           Tu paleta
         </span>
         <div className="flex gap-1.5">
@@ -42,8 +42,8 @@ export function StyleTile({ className }: { className?: string }) {
           <span
             key={step}
             className={cn(
-              "rounded-full px-3 py-1.5 text-xs font-semibold",
-              i === 0 ? "bg-ink text-inverse" : "bg-white text-muted-foreground"
+              "note-copy rounded-full px-3 py-1.5 font-semibold",
+              i === 0 ? "bg-ink note-copy-inverse" : "bg-white"
             )}
           >
             {step}

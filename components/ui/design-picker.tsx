@@ -45,7 +45,7 @@ export function DesignPicker({ className }: { className?: string }) {
 
       <div className="rounded-none bg-paper px-4 py-2.5">
         <span className="text-sm font-semibold">{ELEGIDO.name}</span>
-        <span className="ml-2 font-mono text-xs uppercase tracking-wide text-muted-foreground">
+        <span className="label-copy ml-2">
           elegido
         </span>
       </div>

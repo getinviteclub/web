@@ -24,7 +24,7 @@ export function InfoTile({ className }: { className?: string }) {
             key={campo.label}
             className="flex items-baseline justify-between gap-3"
           >
-            <span className="shrink-0 font-mono text-xs uppercase tracking-wide text-muted-foreground">
+            <span className="label-copy shrink-0">
               {campo.label}
             </span>
             <span className="truncate text-sm font-medium">
@@ -45,7 +45,7 @@ export function InfoTile({ className }: { className?: string }) {
             </div>
           ))}
         </div>
-        <p className="mt-2 font-mono text-xs uppercase tracking-wide text-muted-foreground">
+        <p className="label-copy mt-2">
           12 fotos adjuntas
         </p>
       </div>

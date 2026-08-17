@@ -4,8 +4,7 @@ import { cn } from "@/lib/utils"
  * El label chico en mayúsculas que abre cada sección.
  *
  * Reemplaza al patrón `font-mono text-xs uppercase tracking-[...]` que
- * estaba repetido a mano en cada componente. Ahora el tracking y el
- * color salen del sistema y se cambian en un solo lugar.
+ * estaba repetido a mano en cada componente.
  */
 type EyebrowProps = {
   children: React.ReactNode
@@ -24,8 +23,8 @@ export function Eyebrow({
   return (
     <Tag
       className={cn(
-        "block font-ui text-xs font-medium uppercase tracking-label",
-        onDark ? "text-white/70" : "text-muted-foreground",
+        "label-copy block",
+        onDark && "label-copy-inverse",
         className
       )}
     >

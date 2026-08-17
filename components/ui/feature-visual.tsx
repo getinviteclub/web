@@ -17,7 +17,7 @@ function Confirmacion() {
     <div className={panel}>
       <div className={tarjeta}>
         <div className="mb-3 flex items-baseline justify-between">
-          <span className="text-xs text-white/60">Confirmados</span>
+          <span className="label-copy label-copy-inverse">Confirmados</span>
           <span className="font-mono text-2xl font-bold leading-none">
             42
           </span>
@@ -32,14 +32,14 @@ function Confirmacion() {
                 <Check className="size-3.5 shrink-0 text-white/70" />
                 {inv.name}
               </span>
-              <span className="shrink-0 text-xs text-white/50">
+              <span className="note-copy note-copy-inverse shrink-0">
                 {inv.detail}
               </span>
             </div>
           ))}
         </div>
       </div>
-      <p className="text-sm text-white/70">
+      <p className="note-copy note-copy-inverse">
         Formulario y planilla con los datos de cada invitado
       </p>
     </div>
@@ -59,7 +59,7 @@ function Mapa() {
         </div>
         <MapPin className="absolute left-1/2 top-1/2 size-7 -translate-x-1/2 -translate-y-full text-inverse" />
       </div>
-      <p className="text-sm text-white/70">Estancia La Serena · Pilar</p>
+      <p className="note-copy note-copy-inverse">Estancia La Serena · Pilar</p>
     </div>
   )
 }
@@ -91,14 +91,14 @@ function Regalos() {
   return (
     <div className={panel}>
       <div className={tarjeta}>
-        <p className="text-xs text-white/60">Alias</p>
+        <p className="label-copy label-copy-inverse">Alias</p>
         <div className="mt-1 flex items-center justify-between gap-3">
           <span className="font-semibold">boda.mica.nico</span>
           <Copy className="size-4 text-white/70" />
         </div>
       </div>
       <div className={tarjeta}>
-        <p className="text-xs text-white/60">CBU</p>
+        <p className="label-copy label-copy-inverse">CBU</p>
         <span className="mt-1 block font-semibold">0000003100010000000001</span>
       </div>
     </div>
@@ -119,7 +119,7 @@ function Galeria() {
           </div>
         ))}
       </div>
-      <p className="text-sm text-white/70">12 fotos de ustedes</p>
+      <p className="note-copy note-copy-inverse">12 fotos de ustedes</p>
     </div>
   )
 }
@@ -133,7 +133,7 @@ function InformacionEvento() {
   return (
     <div className={panel}>
       <div className={tarjeta}>
-        <div className="mb-3 flex items-center gap-2 text-xs text-white/60">
+        <div className="label-copy label-copy-inverse mb-3 flex items-center gap-2">
           <Info className="size-3.5" />
           Antes de llegar
         </div>
@@ -143,13 +143,13 @@ function InformacionEvento() {
               key={d.label}
               className="flex items-baseline justify-between gap-3 text-sm"
             >
-              <span className="text-white/60">{d.label}</span>
+              <span className="label-copy label-copy-inverse">{d.label}</span>
               <span className="font-medium">{d.value}</span>
             </div>
           ))}
         </div>
       </div>
-      <p className="text-sm text-white/70">
+      <p className="note-copy note-copy-inverse">
         Todo lo que necesitan saber antes de llegar
       </p>
     </div>
@@ -165,10 +165,10 @@ function DressCode() {
         </span>
         <div>
           <p className="text-sm font-semibold">Formal</p>
-          <p className="text-xs text-white/60">Colores tierra, evitar blanco</p>
+          <p className="note-copy note-copy-inverse">Colores tierra, evitar blanco</p>
         </div>
       </div>
-      <p className="text-sm text-white/70">Cómo vestirse, todo clarito</p>
+      <p className="note-copy note-copy-inverse">Cómo vestirse, todo clarito</p>
     </div>
   )
 }
@@ -203,7 +203,7 @@ function Playlist() {
             {i === 0 ? (
               <Play className="size-3.5 fill-current" />
             ) : (
-              <span className="text-xs text-white/60">{i + 1}</span>
+              <span className="label-copy label-copy-inverse">{i + 1}</span>
             )}
           </span>
           <span className="text-sm">{t}</span>

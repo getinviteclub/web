@@ -36,7 +36,7 @@ export function ChatMockup({ className }: { className?: string }) {
               )}
             >
               {msg.text}
-              <span className="mt-1 block text-right text-[10px] text-muted-foreground">
+              <span className="note-copy mt-1 block text-right">
                 {msg.time}
               </span>
             </div>
