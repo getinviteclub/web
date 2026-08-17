@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { HERO_CONTENT } from "@/content/hero"
-import { ctaVariants } from "@/components/ui/whatsapp-cta"
+import { Cta } from "@/components/ui/cta"
 
 // Oscurece abajo-izquierda, que es donde vive el texto, sin apagar la foto.
 const OVERLAY =
@@ -36,14 +36,9 @@ export function Hero() {
         </p>
 
         <div className="mt-8">
-          <a
-            href={HERO_CONTENT.ctaHref}
-            className={ctaVariants({ tone: "frost", size: "lg" })}
-          >
-            <span aria-hidden="true">(</span>
+          <Cta href={HERO_CONTENT.ctaHref} tone="frost" size="lg">
             {HERO_CONTENT.ctaText}
-            <span aria-hidden="true">)</span>
-          </a>
+          </Cta>
         </div>
       </div>
     </header>
