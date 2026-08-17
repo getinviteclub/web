@@ -12,7 +12,7 @@ export function StyleTile({ className }: { className?: string }) {
     >
       {/* Tipografía */}
       <div className="rounded-xl bg-white px-4 py-3 shadow-sm">
-        <span className="font-display text-3xl font-semibold leading-none tracking-tight">
+        <span className="font-display text-3xl font-semibold leading-none">
           Aa
         </span>
         <span className="ml-2 text-xs text-muted-foreground">

@@ -12,7 +12,7 @@ type EyebrowProps = {
   /** Sobre imagen o bloque oscuro. */
   onDark?: boolean
   className?: string
-  as?: "span" | "p" | "h2"
+  as?: "span" | "p" | "h2" | "h3" | "h4"
 }
 
 export function Eyebrow({

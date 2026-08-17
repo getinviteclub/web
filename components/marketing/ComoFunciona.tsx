@@ -1,6 +1,7 @@
 import { FEATURES_CONTENT } from "@/content/features"
 import { PhoneMockup } from "@/components/ui/phone-mockup"
 import { Reveal } from "@/components/ui/reveal"
+import { Eyebrow } from "@/components/ui/eyebrow"
 
 export function ComoFunciona() {
   return (
@@ -11,12 +12,12 @@ export function ComoFunciona() {
       <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-16">
         {/* Texto */}
         <Reveal from="left">
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground">
+          <Eyebrow>
             {FEATURES_CONTENT.eyebrow}
-          </span>
+          </Eyebrow>
 
           <h2
-            className="mt-4 font-display font-normal leading-[1.05] tracking-tight"
+            className="mt-4 font-display font-normal leading-[1.05]"
             style={{ fontSize: "clamp(28px, 4vw, 44px)" }}
           >
             {FEATURES_CONTENT.title}

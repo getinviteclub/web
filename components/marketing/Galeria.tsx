@@ -3,6 +3,7 @@ import { TEMPLATES } from "@/content/templates"
 import { PhoneMockup } from "@/components/ui/phone-mockup"
 import { WhatsappCta } from "@/components/ui/whatsapp-cta"
 import { Reveal } from "@/components/ui/reveal"
+import { Eyebrow } from "@/components/ui/eyebrow"
 
 export function Galeria() {
   return (
@@ -13,11 +14,11 @@ export function Galeria() {
       <Reveal from="left" className="mb-10 md:mb-14">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <div>
-            <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground">
+            <Eyebrow>
               Diseños
-            </span>
+            </Eyebrow>
             <h2
-              className="mt-4 font-display font-normal tracking-tight"
+              className="mt-4 font-display font-normal"
               style={{ fontSize: "clamp(28px, 4vw, 44px)" }}
             >
               Encontrá su estilo

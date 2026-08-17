@@ -1,17 +1,18 @@
 import { TESTIMONIOS } from "@/content/testimonios"
 import { Avatar } from "@/components/ui/avatar"
 import { Reveal } from "@/components/ui/reveal"
+import { Eyebrow } from "@/components/ui/eyebrow"
 
 export function Testimonios() {
   return (
     <section id="testimonios" className="px-[var(--pad-x)] py-8">
       <div className="mx-auto max-w-max rounded-none bg-clay px-7 py-16 md:px-14 md:py-24">
         <Reveal from="left" className="mb-10 max-w-[52ch] md:mb-14">
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-ink/70">
+          <Eyebrow>
             Testimonios
-          </span>
+          </Eyebrow>
           <h2
-            className="mt-4 font-display font-normal leading-[1.05] tracking-tight"
+            className="mt-4 font-display font-normal leading-[1.05]"
             style={{ fontSize: "clamp(28px, 4vw, 44px)" }}
           >
             Parejas que ya lo usaron

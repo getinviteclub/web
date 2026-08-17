@@ -1,17 +1,18 @@
 import { QUIENES_SOMOS_CONTENT } from "@/content/quienes-somos"
 import { Reveal } from "@/components/ui/reveal"
+import { Eyebrow } from "@/components/ui/eyebrow"
 
 export function QuienesSomos() {
   return (
     <section className="overflow-hidden rounded-none bg-ink text-inverse">
       <div className="mx-auto max-w-max px-[var(--pad-x)] py-20 md:py-28">
         <Reveal from="left">
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-white/60">
+          <Eyebrow onDark>
             {QUIENES_SOMOS_CONTENT.label}
-          </span>
+          </Eyebrow>
 
           <p
-            className="mt-6 max-w-[24ch] font-display font-normal leading-[1.05] tracking-tight md:max-w-[30ch]"
+            className="mt-6 max-w-[24ch] font-display font-normal leading-[1.05] md:max-w-[30ch]"
             style={{ fontSize: "clamp(30px, 5vw, 60px)" }}
           >
             {QUIENES_SOMOS_CONTENT.statementStart}{" "}

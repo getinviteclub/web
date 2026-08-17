@@ -4,6 +4,7 @@ import { InfoTile } from "@/components/ui/info-tile"
 import { RsvpCard } from "@/components/ui/rsvp-card"
 import { WhatsappCta } from "@/components/ui/whatsapp-cta"
 import { Reveal } from "@/components/ui/reveal"
+import { Eyebrow } from "@/components/ui/eyebrow"
 
 const VISUALES: Record<ProcesoVisual, React.ComponentType<{ className?: string }>> = {
   diseno: DesignPicker,
@@ -18,11 +19,11 @@ export function Proceso() {
       className="mx-auto max-w-max px-[var(--pad-x)] py-20 md:py-28"
     >
       <Reveal from="left" className="mb-12 max-w-[52ch] md:mb-16">
-        <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground">
+        <Eyebrow>
           {PROCESO_CONTENT.eyebrow}
-        </span>
+        </Eyebrow>
         <h2
-          className="mt-4 font-display font-normal leading-[1.05] tracking-tight"
+          className="mt-4 font-display font-normal leading-[1.05]"
           style={{ fontSize: "clamp(28px, 4vw, 44px)" }}
         >
           {PROCESO_CONTENT.title}

@@ -1,6 +1,7 @@
 import { PLANES } from "@/content/planes"
 import { WhatsappCta } from "@/components/ui/whatsapp-cta"
 import { Reveal } from "@/components/ui/reveal"
+import { Eyebrow } from "@/components/ui/eyebrow"
 import { cn } from "@/lib/utils"
 
 export function Pricing() {
@@ -10,8 +11,9 @@ export function Pricing() {
       className="mx-auto max-w-max px-[var(--pad-x)] py-20 md:py-24"
     >
       <Reveal from="left" className="mb-10 max-w-[52ch] md:mb-14">
+        <Eyebrow className="mb-4">Planes</Eyebrow>
         <h2
-          className="font-display font-normal tracking-tight"
+          className="font-display font-normal leading-[1.15]"
           style={{ fontSize: "clamp(28px, 4vw, 44px)" }}
         >
           Una propuesta para cada forma de celebrar
@@ -27,8 +29,10 @@ export function Pricing() {
           <Reveal key={plan.id} from={i % 2 === 0 ? "left" : "right"}>
             <article
               className={cn(
-                "flex h-full flex-col gap-5 rounded-none border border-border p-7",
-                plan.featured && "border-ink ring-1 ring-ink"
+                // Las tarjetas se levantan del fondo con blanco, no con
+                // sombra ni radio: el sistema no tiene ninguno de los dos.
+                "flex h-full flex-col gap-5 rounded-none border bg-paper p-7",
+                plan.featured ? "border-ink" : "border-rule"
               )}
             >
               <div className="flex items-center justify-between gap-3">
@@ -36,13 +40,13 @@ export function Pricing() {
                   {plan.name}
                 </h3>
                 {plan.featured && (
-                  <span className="rounded-none bg-ink px-2.5 py-1 font-mono text-xs font-bold uppercase tracking-wide text-inverse">
+                  <span className="rounded-none bg-ink px-2.5 py-1 font-ui text-[10px] font-medium uppercase tracking-label text-inverse">
                     Más elegido
                   </span>
                 )}
               </div>
 
-              <p className="font-mono text-[34px] font-bold leading-none tracking-tight">
+              <p className="font-display text-[40px] font-normal leading-none">
                 {plan.price}
               </p>
 

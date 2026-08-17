@@ -1,4 +1,5 @@
 import { SOCIAL_LINKS, FOOTER_MENU } from "@/content/social"
+import { Eyebrow } from "@/components/ui/eyebrow"
 
 export function Footer() {
   return (
@@ -9,7 +10,7 @@ export function Footer() {
       <div>
         <a
           href="#"
-          className="mb-4 inline-block font-display font-normal tracking-tight"
+          className="mb-4 inline-block font-display font-normal"
         >
           Invite<span className="font-display-italic"> Club</span>
         </a>
@@ -23,9 +24,8 @@ export function Footer() {
       </div>
 
       <div>
-        <h4 className="mb-3 font-mono text-xs font-bold uppercase tracking-wide">
-          Menú
-        </h4>
+        <Eyebrow as="h4" className="mb-3 text-ink">
+          Menú</Eyebrow>
         {FOOTER_MENU.map((item) => (
           <a
             key={item.label}
@@ -38,9 +38,8 @@ export function Footer() {
       </div>
 
       <div>
-        <h4 className="mb-3 font-mono text-xs font-bold uppercase tracking-wide">
-          Seguinos
-        </h4>
+        <Eyebrow as="h4" className="mb-3 text-ink">
+          Seguinos</Eyebrow>
         {SOCIAL_LINKS.map((item) => (
           <a
             key={item.label}

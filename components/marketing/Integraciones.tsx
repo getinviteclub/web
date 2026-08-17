@@ -8,6 +8,7 @@ import {
 import { FeatureVisual } from "@/components/ui/feature-visual"
 import { Reveal } from "@/components/ui/reveal"
 import { cn } from "@/lib/utils"
+import { Eyebrow } from "@/components/ui/eyebrow"
 
 export function Integraciones() {
   const [activa, setActiva] = useState<VisualKey>(
@@ -18,11 +19,11 @@ export function Integraciones() {
     <section className="overflow-hidden rounded-none bg-forest text-inverse">
       <div className="mx-auto max-w-max px-[var(--pad-x)] py-20 md:py-28">
         <Reveal from="left" className="max-w-[52ch]">
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-white/55">
+          <Eyebrow onDark>
             {INTEGRACIONES_CONTENT.eyebrow}
-          </span>
+          </Eyebrow>
           <h2
-            className="mt-4 font-display font-normal leading-[1.05] tracking-tight"
+            className="mt-4 font-display font-normal leading-[1.05]"
             style={{ fontSize: "clamp(28px, 4vw, 44px)" }}
           >
             {INTEGRACIONES_CONTENT.title}
@@ -33,9 +34,9 @@ export function Integraciones() {
         </Reveal>
 
         {/* Features: lista a la izquierda, visual a la derecha */}
-        <h3 className="mb-6 mt-14 font-mono text-xs font-bold uppercase tracking-[0.14em] text-white/55">
+        <Eyebrow as="h3" onDark className="mb-6 mt-14">
           {INTEGRACIONES_CONTENT.featuresLabel}
-        </h3>
+        </Eyebrow>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-14">
           <Reveal from="left">
@@ -67,8 +68,10 @@ export function Integraciones() {
                       </span>
                       <span
                         className={cn(
+                          // white/40 sobre negro da 3.65:1 y no llega al
+                          // mínimo AA (4.5:1) para texto normal; 55% da 6.1:1.
                           "mt-1 block pl-9 text-sm leading-relaxed transition-colors",
-                          seleccionada ? "text-white/70" : "text-white/40"
+                          seleccionada ? "text-white/80" : "text-white/55"
                         )}
                       >
                         {feature.text}

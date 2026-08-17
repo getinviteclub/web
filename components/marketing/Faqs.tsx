@@ -1,6 +1,7 @@
 import { FAQS_CONTENT } from "@/content/faqs"
 import { WhatsappCta } from "@/components/ui/whatsapp-cta"
 import { Reveal } from "@/components/ui/reveal"
+import { Eyebrow } from "@/components/ui/eyebrow"
 
 export function Faqs() {
   return (
@@ -11,11 +12,11 @@ export function Faqs() {
       <div className="grid grid-cols-1 gap-10 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:gap-16">
         {/* Columna izquierda: título + salida a WhatsApp */}
         <Reveal from="left" className="md:sticky md:top-10 md:self-start">
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground">
+          <Eyebrow>
             Preguntas frecuentes
-          </span>
+          </Eyebrow>
           <h2
-            className="mt-4 font-display font-normal leading-[1.05] tracking-tight"
+            className="mt-4 font-display font-normal leading-[1.05]"
             style={{ fontSize: "clamp(28px, 4vw, 44px)" }}
           >
             Todo lo que suelen preguntarnos

@@ -36,7 +36,7 @@ export default function TemplatePage({
 
         <div>
           <h1
-            className="font-display font-normal leading-[1.05] tracking-tight"
+            className="font-display font-normal leading-[1.05]"
             style={{ fontSize: "clamp(32px, 5vw, 48px)" }}
           >
             {template.name}

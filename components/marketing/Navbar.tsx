@@ -39,16 +39,15 @@ export function Navbar() {
   return (
     <nav
       className={cn(
-        // Vidrio transparente con tipografía blanca, igual que en el hero.
-        // OJO: al ser casi transparente, depende de que haya algo oscuro
-        // detrás. Sobre las secciones claras el texto blanco no se lee.
-        "fixed inset-x-0 top-0 z-40 border-b border-white/15 bg-white/[0.06] text-inverse backdrop-blur-md",
+        // Barra sólida sobre el fondo del sistema. Antes era vidrio con
+        // tipografía blanca y sobre las secciones claras no se leía.
+        "fixed inset-x-0 top-0 z-40 border-b border-rule bg-background text-ink",
         "transition-transform duration-300 ease-out",
         oculto ? "-translate-y-full" : "translate-y-0"
       )}
     >
       <div className="mx-auto flex max-w-max items-center justify-between gap-4 px-[var(--pad-x)] py-4">
-        <a href="#" className="font-display text-base font-normal tracking-tight">
+        <a href="#" className="font-display text-lg font-normal">
           Invite<span className="font-display-italic"> Club</span>
         </a>
 
@@ -57,7 +56,7 @@ export function Navbar() {
             <li key={link.label}>
               <a
                 href={link.href}
-                className="font-mono text-xs uppercase tracking-wide transition-opacity hover:opacity-70"
+                className="font-ui text-xs font-medium uppercase tracking-label text-muted-foreground transition-colors hover:text-ink"
                 {...(link.external
                   ? { target: "_blank", rel: "noopener noreferrer" }
                   : {})}
@@ -70,7 +69,7 @@ export function Navbar() {
 
         <WhatsappCta
           message="Hola, quiero info de Invite Club"
-          tone="glass"
+          tone="outline"
           size="sm"
         >
           Escribinos

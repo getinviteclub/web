@@ -25,7 +25,7 @@ export function CtaFinal() {
       <div className="relative z-[2] mx-auto max-w-max px-[var(--pad-x)] py-24 md:py-32">
         <Reveal from="left" className="flex flex-col items-start gap-6">
           <h2
-            className="max-w-[18ch] font-display font-normal leading-[1.05] tracking-tight"
+            className="max-w-[18ch] font-display font-normal leading-[1.05]"
             style={{ fontSize: "clamp(30px, 5vw, 56px)" }}
           >
             {CTA_FINAL_CONTENT.title}
