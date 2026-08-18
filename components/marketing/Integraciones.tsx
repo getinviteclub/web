@@ -117,11 +117,12 @@ function FeatureRow({
             {feature.text}
           </span>
         </span>
-        {/* Aparece con el hover/selección: hace más notorio el cambio
-            de fila activa, ahora que no queda la rayita de antes. */}
+        {/* Aparece con el hover: hace más notorio el cambio de fila
+            activa en desktop. En mobile no hay hover —el tap ya abre
+            la foto debajo— así que ahí no va. */}
         <ArrowGlyph
           className={cn(
-            "size-6 shrink-0 text-ink transition-all duration-300",
+            "hidden size-6 shrink-0 text-ink transition-all duration-300 md:block",
             seleccionada
               ? "translate-x-0 opacity-100"
               : "-translate-x-1 opacity-0"
