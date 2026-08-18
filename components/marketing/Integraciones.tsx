@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { ArrowRight } from "lucide-react"
 import { INTEGRACIONES_CONTENT, type FeatureId } from "@/content/integraciones"
 import { PhoneMockup } from "@/components/ui/phone-mockup"
 import { Reveal } from "@/components/ui/reveal"
@@ -103,12 +102,12 @@ function FeatureRow({
         onMouseEnter={() => onSelect(feature.id)}
         aria-pressed={seleccionada}
         aria-expanded={abierta}
-        className="flex w-full items-center justify-between gap-4 py-5 text-left"
+        className="flex w-full items-center justify-between gap-8 py-5 text-left"
       >
         <span className="min-w-0">
           <span
             className={cn(
-              "block font-display text-lg font-normal transition-colors",
+              "block font-display text-2xl font-normal transition-colors",
               seleccionada ? "text-ink" : "text-muted-foreground"
             )}
           >
@@ -120,10 +119,9 @@ function FeatureRow({
         </span>
         {/* Aparece con el hover/selección: hace más notorio el cambio
             de fila activa, ahora que no queda la rayita de antes. */}
-        <ArrowRight
-          aria-hidden="true"
+        <ArrowGlyph
           className={cn(
-            "size-5 shrink-0 text-ink transition-all duration-300",
+            "size-6 shrink-0 text-ink transition-all duration-300",
             seleccionada
               ? "translate-x-0 opacity-100"
               : "-translate-x-1 opacity-0"
@@ -146,5 +144,28 @@ function FeatureRow({
         </div>
       )}
     </li>
+  )
+}
+
+/**
+ * Flecha caligráfica: un solo trazo fino en vez del glifo genérico de
+ * ícono. Vara recta + dos curvas que se abren hacia el asta, como una
+ * pluma. currentColor, sin relleno: hereda el color del texto.
+ */
+function ArrowGlyph({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.25"
+      strokeLinecap="round"
+      aria-hidden="true"
+      className={className}
+    >
+      <path d="M2 12h15" />
+      <path d="M12.5 3c1 4.5 4.5 7.5 9 9" />
+      <path d="M12.5 21c1-4.5 4.5-7.5 9-9" />
+    </svg>
   )
 }
