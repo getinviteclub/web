@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { Star } from "lucide-react"
 import { TESTIMONIOS } from "@/content/testimonios"
 import { Avatar } from "@/components/ui/avatar"
 import { Reveal } from "@/components/ui/reveal"
@@ -21,13 +22,18 @@ export function Testimonios() {
   const siguiente = () => setI((v) => (v + 1) % total)
 
   return (
-    <section id="testimonios" className="bg-clay">
+    <section id="testimonios" className="bg-paper">
       <div className="mx-auto max-w-max px-[var(--pad-x)] py-20 md:py-28">
         <Reveal from="up" className="mx-auto max-w-[46ch] text-center">
           <Eyebrow>Testimonios</Eyebrow>
+          <div className="mt-4 flex justify-center gap-1" aria-hidden="true">
+            {Array.from({ length: 5 }).map((_, idx) => (
+              <Star key={idx} className="size-3.5 fill-ink text-ink" />
+            ))}
+          </div>
         </Reveal>
 
-        <Reveal from="up" className="mx-auto mt-14 max-w-[62ch] md:mt-16">
+        <Reveal from="up" className="mx-auto mt-10 max-w-[62ch] md:mt-12">
           <div aria-live="polite" className="text-center">
             <blockquote
               key={i}
