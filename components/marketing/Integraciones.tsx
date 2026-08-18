@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { ArrowRight } from "lucide-react"
 import { INTEGRACIONES_CONTENT, type FeatureId } from "@/content/integraciones"
 import { PhoneMockup } from "@/components/ui/phone-mockup"
 import { Reveal } from "@/components/ui/reveal"
@@ -102,19 +103,32 @@ function FeatureRow({
         onMouseEnter={() => onSelect(feature.id)}
         aria-pressed={seleccionada}
         aria-expanded={abierta}
-        className="w-full py-5 text-left"
+        className="flex w-full items-center justify-between gap-4 py-5 text-left"
       >
-        <span
+        <span className="min-w-0">
+          <span
+            className={cn(
+              "block font-display text-lg font-normal transition-colors",
+              seleccionada ? "text-ink" : "text-muted-foreground"
+            )}
+          >
+            {feature.label}
+          </span>
+          <span className="mt-1 block text-sm leading-relaxed desc-copy">
+            {feature.text}
+          </span>
+        </span>
+        {/* Aparece con el hover/selección: hace más notorio el cambio
+            de fila activa, ahora que no queda la rayita de antes. */}
+        <ArrowRight
+          aria-hidden="true"
           className={cn(
-            "block font-display text-lg font-normal transition-colors",
-            seleccionada ? "text-ink" : "text-muted-foreground"
+            "size-5 shrink-0 text-ink transition-all duration-300",
+            seleccionada
+              ? "translate-x-0 opacity-100"
+              : "-translate-x-1 opacity-0"
           )}
-        >
-          {feature.label}
-        </span>
-        <span className="mt-1 block text-sm leading-relaxed desc-copy">
-          {feature.text}
-        </span>
+        />
       </button>
 
       {/* Solo en mobile: dropdown simple, cada fila abre y cierra la
