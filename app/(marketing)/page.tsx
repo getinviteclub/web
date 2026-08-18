@@ -2,7 +2,10 @@ import { Navbar } from "@/components/marketing/Navbar"
 import { Hero } from "@/components/marketing/Hero"
 import { ComoFunciona } from "@/components/marketing/ComoFunciona"
 import { Galeria } from "@/components/marketing/Galeria"
-import { Proceso } from "@/components/marketing/Proceso"
+// Proceso: oculto (a pedido) porque repite lo que ya cuenta ComoFunciona
+// justo después del header. El componente queda intacto en
+// components/marketing/ para reutilizarlo más adelante o en otra sección.
+// import { Proceso } from "@/components/marketing/Proceso"
 import { Integraciones } from "@/components/marketing/Integraciones"
 import { Testimonios } from "@/components/marketing/Testimonios"
 import { QuienesSomos } from "@/components/marketing/QuienesSomos"
@@ -22,7 +25,7 @@ export default function Home() {
       {/* Beneficio → deseo → facilidad → prueba → marca → precio → objeciones → cierre */}
       <ComoFunciona />
       <Galeria />
-      <Proceso />
+      {/* <Proceso /> */}
       <Integraciones />
       <Testimonios />
       <QuienesSomos />

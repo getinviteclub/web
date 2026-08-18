@@ -12,7 +12,7 @@ import { Eyebrow } from "@/components/ui/eyebrow"
  */
 export function ComoFunciona() {
   return (
-    <section id="features" className="bg-clay">
+    <section id="como-funciona" className="bg-clay">
       <div className="mx-auto max-w-max px-[var(--pad-x)] py-20 md:py-28">
         {/* 34rem = 544px: la segunda línea del titular mide 502px a 44px
             de cuerpo, y con 46ch (464px) le quedaba "todo." colgando. */}
