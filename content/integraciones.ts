@@ -17,6 +17,10 @@ export type FeatureId =
   | "galeria"
   | "playlist"
   | "faq"
+  | "historia"
+  | "countdown"
+  | "cronograma"
+  | "alojamiento"
 
 export const INTEGRACIONES_CONTENT = {
   eyebrow: "Sin apps que descargar",
@@ -77,6 +81,30 @@ export const INTEGRACIONES_CONTENT = {
       label: "Preguntas frecuentes",
       text: "Dudas, consultas y toda la ayuda que puedan necesitar.",
       image: MOCKUPS.editorial,
+    },
+    {
+      id: "historia" as FeatureId,
+      label: "Nuestra historia",
+      text: "Tres fotos y el texto de cómo se conocieron, contado por ustedes.",
+      image: MOCKUPS.clasica,
+    },
+    {
+      id: "countdown" as FeatureId,
+      label: "Countdown",
+      text: "Los días, horas y minutos que faltan para el gran día, en vivo.",
+      image: MOCKUPS.manuscrita,
+    },
+    {
+      id: "cronograma" as FeatureId,
+      label: "Cronograma de la fiesta",
+      text: "Ceremonia, recepción y after: los horarios del día, todo en un lugar.",
+      image: MOCKUPS.editorial,
+    },
+    {
+      id: "alojamiento" as FeatureId,
+      label: "Dónde alojarse",
+      text: "Hoteles cerca del lugar, con las tarifas especiales si hay convenio.",
+      image: MOCKUPS.clasica,
     },
   ],
 } as const
