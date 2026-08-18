@@ -8,10 +8,11 @@ import { cn } from "@/lib/utils"
 import { Eyebrow } from "@/components/ui/eyebrow"
 
 /**
- * Lista de features + una sola foto que va cambiando según cuál está
- * activa. En desktop la foto queda fija (sticky) mientras se recorre la
- * lista; en mobile no hay sticky posible, así que cada ítem abre su
- * propia foto justo debajo al tocarlo (ver <FeatureRow>).
+ * Lista de features. En desktop hay una sola foto fija (sticky) que
+ * cambia según cuál está activa (hover/click, estado `activa`). En
+ * mobile no hay sticky posible: cada ítem se abre y cierra solo, como
+ * un dropdown común —no depende de cuál está "activa" ni afecta a las
+ * demás filas al abrirse (ver <FeatureRow>, estado `abierta`).
  *
  * Las fotos son las 3 capturas reales que ya usa <Galeria>, en rotación:
  * placeholder a propósito hasta tener una por feature (ver content/integraciones.ts).
@@ -42,12 +43,13 @@ export function Integraciones() {
         <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-14">
           <Reveal from="left">
             <ul className="flex flex-col divide-y divide-rule border-y border-rule">
-              {INTEGRACIONES_CONTENT.features.map((f) => (
+              {INTEGRACIONES_CONTENT.features.map((f, i) => (
                 <FeatureRow
                   key={f.id}
                   feature={f}
                   activa={activa}
                   onSelect={setActiva}
+                  abiertaInicial={i === 0}
                 />
               ))}
             </ul>
@@ -76,20 +78,30 @@ function FeatureRow({
   feature,
   activa,
   onSelect,
+  abiertaInicial,
 }: {
   feature: Feature
   activa: FeatureId
   onSelect: (id: FeatureId) => void
+  abiertaInicial: boolean
 }) {
   const seleccionada = feature.id === activa
+  // Independiente de `activa`: abrir esta fila en mobile no cierra
+  // ninguna otra, así no hay contenido de arriba que se colapse y
+  // corra todo hacia arriba al tocar una fila más abajo.
+  const [abierta, setAbierta] = useState(abiertaInicial)
 
   return (
     <li>
       <button
         type="button"
-        onClick={() => onSelect(feature.id)}
+        onClick={() => {
+          onSelect(feature.id)
+          setAbierta((v) => !v)
+        }}
         onMouseEnter={() => onSelect(feature.id)}
         aria-pressed={seleccionada}
+        aria-expanded={abierta}
         className="w-full py-5 text-left"
       >
         <span
@@ -105,11 +117,12 @@ function FeatureRow({
         </span>
       </button>
 
-      {/* Solo en mobile: la foto de ESTE ítem aparece debajo al tocarlo.
-          En desktop no existe —ahí es el panel sticky el que cambia.
-          Monta/desmonta en vez de animar el alto: el truco CSS de
-          grid-template-rows 0fr→1fr no transiciona parejo entre motores. */}
-      {seleccionada && (
+      {/* Solo en mobile: dropdown simple, cada fila abre y cierra la
+          suya sola. En desktop no existe —ahí es el panel sticky el
+          que cambia. Monta/desmonta en vez de animar el alto: el
+          truco CSS de grid-template-rows 0fr→1fr no transiciona
+          parejo entre motores. */}
+      {abierta && (
         <div className="pb-6 md:hidden">
           <PhoneMockup
             src={feature.image}
