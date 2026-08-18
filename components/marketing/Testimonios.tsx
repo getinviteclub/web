@@ -1,16 +1,30 @@
+"use client"
+
+import { useState } from "react"
 import { TESTIMONIOS } from "@/content/testimonios"
 import { Avatar } from "@/components/ui/avatar"
 import { Reveal } from "@/components/ui/reveal"
 import { Eyebrow } from "@/components/ui/eyebrow"
+import { ArrowGlyph } from "@/components/ui/arrow-glyph"
 
+/**
+ * Carrusel editorial: un testimonio a la vez, centrado, sin card —
+ * mismo criterio de banda gris que <ComoFunciona>. Las flechas usan el
+ * mismo glifo caligráfico que <Integraciones>.
+ */
 export function Testimonios() {
+  const [i, setI] = useState(0)
+  const total = TESTIMONIOS.length
+  const testimonio = TESTIMONIOS[i]
+
+  const anterior = () => setI((v) => (v - 1 + total) % total)
+  const siguiente = () => setI((v) => (v + 1) % total)
+
   return (
-    <section id="testimonios" className="px-[var(--pad-x)] py-8">
-      <div className="mx-auto max-w-max rounded-none bg-clay px-7 py-16 md:px-14 md:py-24">
-        <Reveal from="left" className="mb-10 max-w-[52ch] md:mb-14">
-          <Eyebrow>
-            Testimonios
-          </Eyebrow>
+    <section id="testimonios" className="bg-clay">
+      <div className="mx-auto max-w-max px-[var(--pad-x)] py-20 md:py-28">
+        <Reveal from="up" className="mx-auto max-w-[46ch] text-center">
+          <Eyebrow>Testimonios</Eyebrow>
           <h2
             className="mt-4 font-display font-normal leading-[1.05]"
             style={{ fontSize: "clamp(28px, 4vw, 44px)" }}
@@ -19,31 +33,57 @@ export function Testimonios() {
           </h2>
         </Reveal>
 
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {TESTIMONIOS.map((testimonio, i) => (
-            <Reveal key={testimonio.author + testimonio.quote} from={i % 2 === 0 ? "left" : "right"}>
-              <figure className="flex h-full flex-col justify-between rounded-none bg-bone p-7">
-                <blockquote className="text-lg leading-relaxed">
-                  &ldquo;{testimonio.quote}&rdquo;
-                </blockquote>
+        <Reveal from="up" className="mx-auto mt-14 max-w-[62ch] md:mt-16">
+          <div aria-live="polite" className="text-center">
+            <blockquote
+              key={i}
+              className="fade-in font-display font-normal leading-snug"
+              style={{ fontSize: "clamp(22px, 3vw, 32px)" }}
+            >
+              &ldquo;{testimonio.quote}&rdquo;
+            </blockquote>
 
-                <figcaption className="mt-7 flex items-center gap-3 border-t border-ink/10 pt-5">
-                  <Avatar
-                    name={testimonio.author}
-                    src={testimonio.avatar}
-                    className="bg-forest text-inverse"
-                  />
-                  <span className="flex flex-col">
-                    <strong className="text-sm font-semibold">
-                      {testimonio.author}
-                    </strong>
-                    <span className="text-sm text-ink/70">{testimonio.role}</span>
-                  </span>
-                </figcaption>
-              </figure>
-            </Reveal>
-          ))}
-        </div>
+            <figcaption className="mt-8 flex flex-col items-center gap-3">
+              <Avatar
+                name={testimonio.author}
+                src={testimonio.avatar}
+                className="bg-forest text-inverse"
+              />
+              <span className="flex flex-col items-center">
+                <strong className="text-sm font-semibold">
+                  {testimonio.author}
+                </strong>
+                <span className="text-sm text-muted-foreground">
+                  {testimonio.role}
+                </span>
+              </span>
+            </figcaption>
+          </div>
+
+          {total > 1 && (
+            <div className="mt-10 flex items-center justify-center gap-8">
+              <button
+                type="button"
+                onClick={anterior}
+                aria-label="Testimonio anterior"
+                className="p-1 text-ink transition-opacity hover:opacity-60"
+              >
+                <ArrowGlyph flip className="size-6" />
+              </button>
+              <span className="text-xs uppercase tracking-label text-muted-foreground">
+                {i + 1} / {total}
+              </span>
+              <button
+                type="button"
+                onClick={siguiente}
+                aria-label="Testimonio siguiente"
+                className="p-1 text-ink transition-opacity hover:opacity-60"
+              >
+                <ArrowGlyph className="size-6" />
+              </button>
+            </div>
+          )}
+        </Reveal>
       </div>
     </section>
   )
