@@ -233,6 +233,17 @@ body {
     animation: panel-in 0.18s ease-out both;
   }
 
+  /* Foto que cambia dentro de <Integraciones> al seleccionar otra feature:
+     un fundido corto en vez de un corte seco. */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+  .fade-in {
+    animation: fade-in 0.4s ease-out both;
+  }
+
   /* En pantallas angostas 110px es casi un tercio del ancho: el barrido
      lateral se lee como un salto. Ahí entra de abajo, como el resto.
      Va con :not(.is-visible) porque esta regla tiene la misma
