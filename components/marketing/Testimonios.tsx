@@ -26,14 +26,19 @@ export function Testimonios() {
       <div className="mx-auto max-w-max px-[var(--pad-x)] py-20 md:py-28">
         <Reveal from="up" className="mx-auto max-w-[46ch] text-center">
           <Eyebrow>Testimonios</Eyebrow>
-          <div className="mt-4 flex justify-center gap-1" aria-hidden="true">
+        </Reveal>
+
+        {/* A mitad de camino entre el label y la cita: mismo margen
+            arriba y abajo, no pegadas a ninguno de los dos. */}
+        <Reveal from="up" className="mt-7 flex justify-center md:mt-8">
+          <div className="flex justify-center gap-1" aria-hidden="true">
             {Array.from({ length: 5 }).map((_, idx) => (
               <Star key={idx} className="size-3.5 fill-ink text-ink" />
             ))}
           </div>
         </Reveal>
 
-        <Reveal from="up" className="mx-auto mt-10 max-w-[62ch] md:mt-12">
+        <Reveal from="up" className="mx-auto mt-7 max-w-[62ch] md:mt-8">
           <div aria-live="polite" className="text-center">
             <blockquote
               key={i}
@@ -60,29 +65,33 @@ export function Testimonios() {
             </figcaption>
           </div>
 
-          {total > 1 && (
-            <div className="mt-10 flex items-center justify-center gap-8">
-              <button
-                type="button"
-                onClick={anterior}
-                aria-label="Testimonio anterior"
-                className="p-1 text-ink transition-opacity hover:opacity-60"
-              >
-                <ArrowGlyph flip className="size-6" />
-              </button>
+          {/* Las flechas quedan aunque hoy haya un solo testimonio —se
+              suman más a content/testimonios.ts sin tocar el
+              componente. El contador sí se esconde con uno solo: "1 / 1"
+              delataría que por ahora no hay más para recorrer. */}
+          <div className="mt-10 flex items-center justify-center gap-8">
+            <button
+              type="button"
+              onClick={anterior}
+              aria-label="Testimonio anterior"
+              className="p-1 text-ink transition-opacity hover:opacity-60"
+            >
+              <ArrowGlyph flip className="size-6" />
+            </button>
+            {total > 1 && (
               <span className="text-xs uppercase tracking-label text-muted-foreground">
                 {i + 1} / {total}
               </span>
-              <button
-                type="button"
-                onClick={siguiente}
-                aria-label="Testimonio siguiente"
-                className="p-1 text-ink transition-opacity hover:opacity-60"
-              >
-                <ArrowGlyph className="size-6" />
-              </button>
-            </div>
-          )}
+            )}
+            <button
+              type="button"
+              onClick={siguiente}
+              aria-label="Testimonio siguiente"
+              className="p-1 text-ink transition-opacity hover:opacity-60"
+            >
+              <ArrowGlyph className="size-6" />
+            </button>
+          </div>
         </Reveal>
       </div>
     </section>
