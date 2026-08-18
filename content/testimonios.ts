@@ -1,4 +1,6 @@
-// TODO: reemplazar por los testimonios reales de las 2 bodas.
+// Un solo testimonio real por ahora. Sumá más objetos al array a medida que
+// lleguen; el carrusel de <Testimonios> se acomoda solo (con 1 no muestra
+// flechas ni contador, eso ya lo resuelve el componente).
 // `avatar` es opcional: si no hay foto, se muestran las iniciales del nombre.
 // Foto ideal: 200×200 px, cuadrada, cara centrada.
 export type Testimonio = {
@@ -10,21 +12,10 @@ export type Testimonio = {
 
 export const TESTIMONIOS: Testimonio[] = [
   {
-    quote:
-      "[Testimonio pendiente — 2 o 3 líneas en palabras del cliente sobre cómo fue trabajar con ustedes y qué resolvió la invitación.]",
-    author: "[Nombre y Apellido]",
-    role: "[Boda mes año]",
-  },
-  {
-    quote:
-      "[Segundo testimonio pendiente — corto, idealmente mencionando el RSVP o lo fácil que fue compartirlo por WhatsApp.]",
-    author: "[Nombre y Apellido]",
-    role: "[Boda mes año]",
-  },
-  {
-    quote:
-      "[Tercer testimonio pendiente — si solo tenés dos, borrá este objeto del array y la grilla se acomoda sola.]",
-    author: "[Nombre y Apellido]",
-    role: "[Boda mes año]",
+    quote: "Súper profesionales, nos sacaron todas las dudas, quedó impecable.",
+    author: "Gonzalo Busquets",
+    // TODO: confirmar la fecha — el mensaje original decía "05.09.206",
+    // asumí que faltaba un dígito y era 2026.
+    role: "05.09.2026",
   },
 ]

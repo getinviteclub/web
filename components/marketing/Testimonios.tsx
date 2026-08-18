@@ -25,12 +25,6 @@ export function Testimonios() {
       <div className="mx-auto max-w-max px-[var(--pad-x)] py-20 md:py-28">
         <Reveal from="up" className="mx-auto max-w-[46ch] text-center">
           <Eyebrow>Testimonios</Eyebrow>
-          <h2
-            className="mt-4 font-display font-normal leading-[1.05]"
-            style={{ fontSize: "clamp(28px, 4vw, 44px)" }}
-          >
-            Parejas que ya lo usaron
-          </h2>
         </Reveal>
 
         <Reveal from="up" className="mx-auto mt-14 max-w-[62ch] md:mt-16">
