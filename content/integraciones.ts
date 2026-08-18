@@ -21,6 +21,7 @@ export type FeatureId =
   | "countdown"
   | "cronograma"
   | "alojamiento"
+  | "otros"
 
 export const INTEGRACIONES_CONTENT = {
   eyebrow: "Sin apps que descargar",
@@ -105,6 +106,12 @@ export const INTEGRACIONES_CONTENT = {
       label: "Dónde alojarse",
       text: "Hoteles cerca del lugar, con las tarifas especiales si hay convenio.",
       image: MOCKUPS.clasica,
+    },
+    {
+      id: "otros" as FeatureId,
+      label: "Otros",
+      text: "¿No encontrás lo que buscabas? Consultanos: si necesitan algo más, vemos cómo resolverlo.",
+      image: MOCKUPS.manuscrita,
     },
   ],
 } as const

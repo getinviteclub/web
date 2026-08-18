@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { INTEGRACIONES_CONTENT, type FeatureId } from "@/content/integraciones"
 import { PhoneMockup } from "@/components/ui/phone-mockup"
 import { Reveal } from "@/components/ui/reveal"
@@ -84,12 +84,31 @@ function FeatureRow({
   onSelect: (id: FeatureId) => void
 }) {
   const seleccionada = feature.id === activa
+  const liRef = useRef<HTMLLIElement>(null)
 
   return (
-    <li>
+    <li ref={liRef}>
       <button
         type="button"
-        onClick={() => onSelect(feature.id)}
+        onClick={() => {
+          // En mobile no hay panel sticky que avise qué se abrió: sin
+          // esto, tocar una fila más abajo en la lista deja el título
+          // y la foto nuevos fuera de pantalla. Solo si esta fila no
+          // estaba ya abierta —evita un scroll de más al re-tocarla.
+          const abriendola = !seleccionada
+          onSelect(feature.id)
+          if (abriendola && window.innerWidth < 768) {
+            // setTimeout, no requestAnimationFrame: alcanza con ceder
+            // el turno a React para que la foto ya esté montada, sin
+            // atarlo al ciclo de pintado del navegador.
+            setTimeout(() => {
+              liRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+              })
+            }, 0)
+          }
+        }}
         onMouseEnter={() => onSelect(feature.id)}
         aria-pressed={seleccionada}
         aria-expanded={seleccionada}
