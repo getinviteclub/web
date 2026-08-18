@@ -39,11 +39,7 @@ export function Integraciones() {
         </Reveal>
 
         {/* Features: lista a la izquierda, foto a la derecha */}
-        <Eyebrow as="h3" className="mb-6 mt-14">
-          {INTEGRACIONES_CONTENT.featuresLabel}
-        </Eyebrow>
-
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-14">
+        <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-14">
           <Reveal from="left">
             <ul className="flex flex-col divide-y divide-rule border-y border-rule">
               {INTEGRACIONES_CONTENT.features.map((f) => (
@@ -98,19 +94,13 @@ function FeatureRow({
       >
         <span
           className={cn(
-            "flex items-baseline gap-3 font-semibold transition-colors",
+            "block font-display text-lg font-normal transition-colors",
             seleccionada ? "text-ink" : "text-muted-foreground"
           )}
         >
-          <span
-            className={cn(
-              "h-px shrink-0 translate-y-[-4px] bg-ink transition-all duration-300",
-              seleccionada ? "w-8 opacity-100" : "w-6 opacity-30"
-            )}
-          />
           {feature.label}
         </span>
-        <span className="mt-1 block pl-11 text-sm leading-relaxed desc-copy">
+        <span className="mt-1 block text-sm leading-relaxed desc-copy">
           {feature.text}
         </span>
       </button>
@@ -120,7 +110,7 @@ function FeatureRow({
           Monta/desmonta en vez de animar el alto: el truco CSS de
           grid-template-rows 0fr→1fr no transiciona parejo entre motores. */}
       {seleccionada && (
-        <div className="pb-6 pl-11 md:hidden">
+        <div className="pb-6 md:hidden">
           <PhoneMockup
             src={feature.image}
             alt={feature.label}

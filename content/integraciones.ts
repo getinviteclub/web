@@ -23,8 +23,6 @@ export const INTEGRACIONES_CONTENT = {
   title: "Funciona con lo que tus invitados ya usan",
   subtitle:
     "Desde la invitación hasta la confirmación de asistencia, toda la información de su casamiento disponible desde un solo link.",
-
-  featuresLabel: "¿Qué puede hacer mi invitación?",
   features: [
     {
       id: "confirmacion" as FeatureId,
