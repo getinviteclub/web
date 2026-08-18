@@ -6,53 +6,142 @@
   .text-balance {
     text-wrap: balance;
   }
-}
 
-/* ─── Switzer self-hosted (add woff2 files to app/fonts/ when available) ─── */
-/* @font-face {
-  font-family: "Switzer";
-  src: url("/fonts/Switzer-Variable.woff2") format("woff2-variations");
-  font-weight: 100 900;
-  font-display: swap;
-} */
+  /* Rol "label": única definición del estilo. Usala directo para labels
+     embebidos en UI (contadores, badges, nav); para el label que ABRE una
+     sección usá <Eyebrow>, que envuelve a esta misma clase. */
+  .label-copy {
+    color: var(--c-ink);
+    font-family: var(--font-label);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: var(--ls-label);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .label-copy-inverse {
+    color: var(--c-inverse);
+  }
+
+  .note-copy {
+    color: var(--c-ink);
+    font-family: var(--font-ui);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .note-copy-inverse {
+    color: var(--c-inverse);
+  }
+
+  /* Bajadas y descripciones en gris. El tracking abierto del body
+     (--ls-body) da carácter en frases sueltas, pero en un bloque de texto
+     corrido separa demasiado y cuesta leerlo: acá va en normal. El tamaño
+     lo pone quien la usa (text-sm / text-lg), esto solo fija color y tracking. */
+  .desc-copy {
+    color: var(--c-muted);
+    letter-spacing: normal;
+  }
+}
 
 html {
   scroll-behavior: smooth;
+  /* El navbar es fixed: sin esto las anclas quedan tapadas por la barra. */
+  scroll-padding-top: 88px;
+}
+
+/* El reveal anima translateX(±110px) y eso agranda el documento: en 375px
+   el ancho pasaba a 465px y quedaba una franja vacía a la derecha.
+   `clip` —y no `hidden`— recorta ese desborde sin convertir al elemento
+   en contenedor de scroll, que era justo lo que rompía el ancho. */
+html,
+body {
+  overflow-x: clip;
+}
+
+/* Respeta a quien pidió menos movimiento en el sistema. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
 
 @layer base {
   :root {
-    /* ── Brand tokens (from referencia-framer/styles.css) ── */
-    --c-bg: #ffffff;
-    --c-ink: #0a0a0a;
-    --c-muted: #6b6b6b;
+    /* ── Sistema de diseño editorial (referencia: caratsandcake.com) ──
+       Los valores salen del CSS real de la referencia. Los NOMBRES de las
+       variables no cambian respecto de la versión anterior a propósito:
+       así el cambio de paleta no toca ni un componente. */
+
+    /* Fondo: blanco apenas quebrado, cálido. Nunca blanco puro. */
+    --c-bg: #faf9f8;
+    /* Superficie más clara que el fondo (cards que deben adelantarse) */
+    --c-paper: #ffffff;
+    /* Superficies planas de acento, en dos pasos */
+    --c-bone: #f6f5f3;
+    --c-clay: #eceae6;
+    /* Línea/borde: el separador del sistema */
+    --c-rule: #e4e1dc;
+    /* Texto principal: negro puro. La jerarquía la da el gris, no un
+       negro aguado. */
+    --c-ink: #000000;
+    --c-ink-strong: #000000;
+    /* Gris de texto secundario (AA sobre --c-bg) y gris suave para
+       metadatos y estados inactivos. */
+    --c-muted: #6f6f6f;
+    --c-soft: #a6a6a6;
     --c-inverse: #ffffff;
-    --font-display: var(--font-inter), "Inter", sans-serif;
-    --font-ui: "Switzer", system-ui, sans-serif;
-    --pad-x: 16px;
+    /* Bloque oscuro: negro pleno */
+    --c-forest: #000000;
+
+    /* Tipografía */
+    --font-display: var(--font-instrument), "Georgia", serif;
+    --font-ui: var(--font-inter), "Helvetica Neue", Arial, sans-serif;
+    /* Rol "label": mayúsculas chicas con tracking (ver .label-copy). Hoy es
+       la misma grotesca que la UI; vive aparte para poder cambiarla sola. */
+    --font-label: var(--font-inter), "Helvetica Neue", Arial, sans-serif;
+
+    /* Tracking del sistema, tomado de la referencia */
+    --ls-body: 0.045em;
+    --ls-label: 0.1em;
+
+    /* Espaciado fluido */
+    --pad-x: clamp(20px, 3.91vw, 50px);
+    --r-block: 0px;
     --max: 1440px;
 
-    /* ── shadcn semantic tokens (mapped to brand palette) ── */
-    --background: #ffffff;
-    --foreground: #0a0a0a;
+    /* Único radio no nulo del sistema: los CTA en pill. */
+    --r-pill: 50px;
+
+    /* ── shadcn semantic tokens (mapeados a la paleta editorial) ── */
+    --background: #faf9f8;
+    --foreground: #000000;
     --card: #ffffff;
-    --card-foreground: #0a0a0a;
+    --card-foreground: #000000;
     --popover: #ffffff;
-    --popover-foreground: #0a0a0a;
-    --primary: #0a0a0a;
+    --popover-foreground: #000000;
+    --primary: #000000;
     --primary-foreground: #ffffff;
-    --secondary: #f5f5f5;
-    --secondary-foreground: #0a0a0a;
-    --muted: #f5f5f5;
-    --muted-foreground: #6b6b6b;
-    --accent: #f5f5f5;
-    --accent-foreground: #0a0a0a;
-    --destructive: #ef4444;
+    --secondary: #f6f5f3;
+    --secondary-foreground: #000000;
+    --muted: #eceae6;
+    --muted-foreground: #6f6f6f;
+    --accent: #eceae6;
+    --accent-foreground: #000000;
+    --destructive: #9f2f2d;
     --destructive-foreground: #ffffff;
-    --border: #e5e5e5;
-    --input: #e5e5e5;
-    --ring: #0a0a0a;
-    --radius: 0.625rem;
+    --border: #e4e1dc;
+    --input: #e4e1dc;
+    --ring: #000000;
+    /* Sin radios en nada, salvo los CTA (ver --r-pill) */
+    --radius: 0px;
   }
 
   *,
@@ -66,7 +155,18 @@ html {
     background-color: var(--c-bg);
     color: var(--c-ink);
     font-family: var(--font-ui);
+    /* El tracking abierto del cuerpo es parte de la identidad, no un
+       detalle: es lo que hace que la grotesca lea editorial y no UI. */
+    letter-spacing: var(--ls-body);
     -webkit-font-smoothing: antialiased;
+  }
+
+  /* Los titulares serif no llevan el tracking del cuerpo. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    letter-spacing: normal;
   }
 
   img {
@@ -83,5 +183,87 @@ html {
     list-style: none;
     padding: 0;
     margin: 0;
+  }
+
+  /* La serif de énfasis dentro de un headline: misma familia, itálica.
+     Hereda el interlineado del titular que la contiene para no abrir un
+     escalón en medio de la línea. */
+  em,
+  .font-display-italic {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: inherit;
+  }
+}
+
+/* ─── Microinteracción de entrada: fade + desplazamiento lateral ─── */
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transition:
+      opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal[data-from="left"] {
+    transform: translateX(-110px);
+  }
+  .reveal[data-from="right"] {
+    transform: translateX(110px);
+  }
+  .reveal[data-from="up"] {
+    transform: translateY(24px);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+
+  /* Entrada del panel de menú. El bloque de prefers-reduced-motion de
+     más arriba ya le lleva la duración a 0.01ms. */
+  @keyframes panel-in {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+  }
+  .panel-in {
+    animation: panel-in 0.18s ease-out both;
+  }
+
+  /* Foto que cambia dentro de <Integraciones> al seleccionar otra feature:
+     un fundido corto en vez de un corte seco. */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+  .fade-in {
+    animation: fade-in 0.4s ease-out both;
+  }
+
+  /* En pantallas angostas 110px es casi un tercio del ancho: el barrido
+     lateral se lee como un salto. Ahí entra de abajo, como el resto.
+     Va con :not(.is-visible) porque esta regla tiene la misma
+     especificidad que .reveal.is-visible y está después: sin eso le
+     ganaría y el elemento nunca volvería a su posición final. */
+  @media (max-width: 767px) {
+    .reveal[data-from="left"]:not(.is-visible),
+    .reveal[data-from="right"]:not(.is-visible) {
+      transform: translateY(24px);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal[data-from="left"],
+  .reveal[data-from="right"],
+  .reveal[data-from="up"] {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }

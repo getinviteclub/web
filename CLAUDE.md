@@ -51,14 +51,59 @@ styles/ (o app/globals.css)# tokens: colores, fuentes
 
 ## Design tokens (identidad visual)
 
-> Decisión: replicar el sitio actual (estética editorial limpia). Tokens extraídos
-> del export real (`styles.css`).
+> Referencia: **caratsandcake.com** (editorial, serif de alto contraste sobre
+> fondo cálido). La fuente de verdad es `app/globals.css`; esto es el resumen.
+> Si tocás un token, actualizá también esta sección.
 
-- Paleta: fondo blanco `#FFFFFF` · tinta/negro `#0A0A0A` · gris muted `#6B6B6B` · inverso `#FFFFFF`
-- Fuentes: **Inter Display / Inter** (display/títulos) + **Switzer** (UI/body), self-hosted (`.woff2`)
-- Layout: `--pad-x: 16px` · `--max: 1440px`
-- Tipografía fluida con `clamp()` (ya usada en el export); títulos con `letter-spacing: -.02em`
-- **Mobile-first.** Animaciones: solo CSS transitions, **sin Framer Motion**.
+**Paleta** — nunca blanco puro ni gris azulado:
+
+| Token | Valor | Para qué |
+|---|---|---|
+| `--c-bg` | `#faf9f8` | fondo, blanco apenas quebrado |
+| `--c-paper` | `#ffffff` | cards que deben adelantarse al fondo |
+| `--c-bone` / `--c-clay` | `#f6f5f3` / `#eceae6` | superficies de acento, en dos pasos |
+| `--c-rule` | `#e4e1dc` | líneas y bordes |
+| `--c-ink` | `#000000` | texto principal, negro pleno |
+| `--c-muted` / `--c-soft` | `#6f6f6f` / `#a6a6a6` | texto secundario / metadatos |
+| `--c-forest` | `#000000` | fondo del bloque oscuro (`bg-forest`) |
+| `--c-inverse` | `#ffffff` | texto sobre bloque oscuro |
+
+La jerarquía la da el gris, **no** un negro aguado.
+
+**Tipografía** — dos familias, cargadas con `next/font/google` (no self-hosted):
+
+- **Instrument Serif** (`--font-display`) — headlines. Un solo peso (400) + itálica
+  para énfasis: la jerarquía la da el tamaño, no el grosor. Sin tracking negativo.
+- **Inter** (`--font-ui`, `--font-label`) — cuerpo, UI y labels. Única sans del sistema.
+- Tracking: `--ls-body: .045em` en el body (parte de la identidad, hace que la
+  grotesca lea editorial y no UI) · `--ls-label: .1em` en labels · titulares en `normal`.
+- Tamaños de headline con `clamp()` inline; el rol "label" vive en `.label-copy`.
+
+**Layout y forma**
+
+- `--pad-x: clamp(20px, 3.91vw, 50px)` · `--max: 1440px`
+- **Sin radios**: todo en `0px`. La única excepción son los CTA en pill (`--r-pill: 50px`).
+
+**Movimiento**
+
+- **Mobile-first.** Solo CSS transitions, **sin Framer Motion**.
+- La entrada de secciones es `<Reveal>` (`components/ui/reveal.tsx`): fade +
+  desplazamiento con IntersectionObserver, una vez por elemento. Respeta
+  `prefers-reduced-motion`.
+
+### Labels: cuándo componente y cuándo clase
+
+El rol "label" (12px, mayúsculas, tracking) se define **una sola vez** en
+`.label-copy` (`globals.css`). Hay dos formas de usarlo y no son intercambiables:
+
+- **`<Eyebrow>`** — el label que **abre** una sección o un bloque. Es un elemento
+  de composición: elige la etiqueta (`as`) y resuelve la variante sobre oscuro.
+- **`.label-copy`** — labels **embebidos en UI**: contadores, badges, ítems de nav,
+  "elegido", "Ver diseño". Son una pincelada tipográfica, no estructura.
+
+Ante la duda: si lo podés borrar y la sección sigue teniendo sentido, es
+`.label-copy`. Si es lo que anuncia lo que viene abajo, es `<Eyebrow>`.
+Nunca reimplementes el rol a mano con clases sueltas de Tailwind.
 
 ## Seguridad (innegociable)
 

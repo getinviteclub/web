@@ -21,7 +21,7 @@
 
 1. Abrir la Terminal y clonar el repo en tu compu:
    ```bash
-   git clone https://github.com/Get-Invite-Club/web.git
+   git clone https://github.com/ramirezfacundofr-sketch/web.git
    cd web
    ```
 2. Instalar dependencias: `pnpm install`.

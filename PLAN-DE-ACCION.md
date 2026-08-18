@@ -41,10 +41,10 @@ dos pudiendo trabajar sin pisarse.
   ```bash
   git init && git branch -M main && git add .
   git commit -m "Scaffold inicial Next.js + estructura + docs"
-  git remote add origin https://github.com/Get-Invite-Club/web.git
+  git remote add origin https://github.com/ramirezfacundofr-sketch/web.git
   git push -u origin main
   ```
-- [ ] **Conectar Vercel** al repo (Add New → Project → Import `Get-Invite-Club/web`). Plan Hobby.
+- [ ] **Conectar Vercel** al repo (Add New → Project → Import `ramirezfacundofr-sketch/web`). Plan Hobby. (El repo va en la cuenta personal, NO en la org: Vercel Hobby no deploya repos privados de organización.)
 - [ ] **Cargar env vars en Vercel** (y en `.env.local` de cada uno): `NEXT_PUBLIC_SUPABASE_URL`,
       `NEXT_PUBLIC_SUPABASE_ANON_KEY`, y `SUPABASE_SERVICE_ROLE_KEY` (solo server). Llaves por gestor de contraseñas, nunca por chat.
 - [ ] **Proteger `main`** (Settings → Branches → Require a pull request before merging).
