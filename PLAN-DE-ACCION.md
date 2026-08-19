@@ -91,11 +91,41 @@ Se puede adelantar sin tocar el sitio vivo ni el DNS.
 
 ## Fase 1 (cierre) — DNS cutover
 
-**Solo cuando la landing esté lista y aprobada.**
+**Solo cuando la landing esté lista y aprobada.** Frenado a propósito por ahora
+(agosto 2026): la landing nueva todavía tiene placeholders (precios, quiénes
+somos, FAQs) — no tiene sentido cortar el dominio antes de cerrar eso.
 
-- [ ] Cloudflare: apex `getinviteclub.com` → Vercel.
+⚠️ **Dato nuevo que no estaba contemplado en junio:** hoy hay al menos una
+invitación REAL y en uso bajo el dominio raíz, no un subdominio:
+`getinviteclub.com/matiyden`. El home (`getinviteclub.com/`, con el form de
+contacto) también vive en Framer. Cortar el DNS del apex a Vercel sin resolver
+esto rompe esa invitación (Vercel no tiene esa ruta, devuelve 404).
+
+- [ ] **Auditar en Framer si hay más invitaciones reales publicadas** además
+      de `/matiyden` (o cualquier otra ruta bajo el dominio raíz que siga en
+      uso). Hacer la lista completa antes de tocar el DNS.
+- [ ] **Por cada ruta real que deba seguir viva:** conseguir su URL de
+      respaldo de Framer (el `algo.framer.website` que Framer sigue sirviendo
+      aunque el dominio custom esté conectado — confirmar en el panel de
+      Framer que sigue activo).
+- [ ] **Armar los rewrites en `next.config.mjs`** (uno por ruta real, ver
+      ejemplo abajo) y probarlos ANTES de tocar Cloudflare — deployado en
+      Vercel, entrando directo a la URL de preview con esa ruta.
+  ```js
+  // next.config.mjs — reenvía rutas puntuales al Framer viejo,
+  // sin que el visitante note el salto.
+  async rewrites() {
+    return [
+      { source: "/matiyden", destination: "https://ALGO.framer.website/matiyden" },
+    ]
+  }
+  ```
+- [ ] Cloudflare: apex `getinviteclub.com` → Vercel (**recién después** del
+      punto anterior, no antes).
 - [ ] Subdominios `template1..5.getinviteclub.com` → Framer.
 - [ ] Todos los registros en **"DNS only" (nube gris)**.
+- [ ] Confirmar que `/matiyden` (y cualquier otra ruta real) sigue andando
+      **después** del cutover, no solo en preview.
 
 ---
 
