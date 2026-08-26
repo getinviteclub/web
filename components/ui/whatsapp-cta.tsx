@@ -1,5 +1,6 @@
 import { type VariantProps } from "class-variance-authority"
 import { Cta, ctaVariants } from "@/components/ui/cta"
+import { FUNNEL_EVENTS } from "@/lib/analytics"
 import { waLink } from "@/lib/whatsapp"
 
 /**
@@ -26,6 +27,8 @@ type WhatsappCtaProps = VariantProps<typeof ctaVariants> & {
   message: string
   children: React.ReactNode
   className?: string
+  /** Contexto del click, p. ej. el plan o el diseño desde el que sale. */
+  trackLabel?: string
 }
 
 export function WhatsappCta({
@@ -35,6 +38,7 @@ export function WhatsappCta({
   tone,
   size,
   className,
+  trackLabel,
 }: WhatsappCtaProps) {
   return (
     <Cta
@@ -44,6 +48,8 @@ export function WhatsappCta({
       size={size}
       className={className}
       external
+      trackAs={FUNNEL_EVENTS.whatsappCta}
+      trackLabel={trackLabel}
     >
       {children}
     </Cta>

@@ -1,5 +1,8 @@
+"use client"
+
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
+import { track, type FunnelEvent } from "@/lib/analytics"
 
 /**
  * CTA del sistema. Dos formas, misma tipografía de label:
@@ -89,6 +92,10 @@ type CtaProps = VariantProps<typeof ctaVariants> & {
   className?: string
   /** Abre en pestaña nueva con el rel seguro. */
   external?: boolean
+  /** Evento de funnel a registrar al hacer click. */
+  trackAs?: FunnelEvent
+  /** Contexto extra del evento, p. ej. el plan o el diseño. */
+  trackLabel?: string
 }
 
 export function Cta({
@@ -99,11 +106,16 @@ export function Cta({
   size,
   className,
   external,
+  trackAs,
+  trackLabel,
 }: CtaProps) {
   return (
     <a
       href={href}
       className={cn(ctaVariants({ variant, tone, size }), className)}
+      onClick={() => {
+        if (trackAs) track(trackAs, { label: trackLabel })
+      }}
       {...(external
         ? { target: "_blank", rel: "noopener noreferrer" }
         : {})}
