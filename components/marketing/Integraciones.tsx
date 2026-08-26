@@ -9,11 +9,15 @@ import { Eyebrow } from "@/components/ui/eyebrow"
 import { ArrowGlyph } from "@/components/ui/arrow-glyph"
 
 /**
- * Lista de features, una sola activa a la vez (estado `activa`, click o
- * hover). En desktop esa selección mueve la foto fija (sticky) de la
- * derecha; en mobile no hay sticky posible, así que es la MISMA
- * selección la que abre la foto de esa fila debajo —al elegir otra, la
- * anterior se cierra sola, nunca quedan dos abiertas.
+ * Features agrupadas en 3 clusters narrativos (auditoría, Bloque 4): cada
+ * grupo abre con el beneficio y recién debajo lista las features que lo
+ * prueban. Antes era una lista plana de 14 ítems.
+ *
+ * La interacción no cambia: una sola feature activa a la vez (estado
+ * `activa`, click o hover). En desktop esa selección mueve la foto fija
+ * (sticky) de la derecha; en mobile no hay sticky posible, así que es la
+ * MISMA selección la que abre la foto de esa fila debajo —al elegir otra,
+ * la anterior se cierra sola, nunca quedan dos abiertas.
  *
  * Las fotos son las 3 capturas reales que ya usa <Galeria>, en rotación:
  * placeholder a propósito hasta tener una por feature (ver content/integraciones.ts).
@@ -42,17 +46,33 @@ export function Integraciones() {
 
         {/* Features: lista a la izquierda, foto a la derecha */}
         <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-14">
-          <Reveal from="left">
-            <ul className="flex flex-col divide-y divide-rule border-y border-rule">
-              {INTEGRACIONES_CONTENT.features.map((f) => (
-                <FeatureRow
-                  key={f.id}
-                  feature={f}
-                  activa={activa}
-                  onSelect={setActiva}
-                />
-              ))}
-            </ul>
+          <Reveal from="left" className="flex flex-col gap-10">
+            {INTEGRACIONES_CONTENT.clusters.map((cluster) => (
+              <div key={cluster.id}>
+                <h3 className="font-display text-2xl font-normal">
+                  {cluster.title}
+                </h3>
+                <p className="mt-1 max-w-[46ch] text-sm leading-relaxed desc-copy">
+                  {cluster.text}
+                </p>
+                <ul className="mt-5 flex flex-col divide-y divide-rule border-y border-rule">
+                  {INTEGRACIONES_CONTENT.features
+                    .filter((f) => f.cluster === cluster.id)
+                    .map((f) => (
+                      <FeatureRow
+                        key={f.id}
+                        feature={f}
+                        activa={activa}
+                        onSelect={setActiva}
+                      />
+                    ))}
+                </ul>
+              </div>
+            ))}
+
+            <p className="max-w-[46ch] text-sm leading-relaxed desc-copy">
+              {INTEGRACIONES_CONTENT.consulta}
+            </p>
           </Reveal>
 
           <Reveal
