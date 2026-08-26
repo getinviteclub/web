@@ -1,8 +1,11 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { TEMPLATES } from "@/content/templates"
+import { PRECIO_DESDE, PLAZO_ENTREGA } from "@/content/planes"
 import { PhoneMockup } from "@/components/ui/phone-mockup"
 import { WhatsappCta } from "@/components/ui/whatsapp-cta"
+import { TrackView } from "@/components/ui/track-view"
+import { FUNNEL_EVENTS } from "@/lib/analytics"
 
 export function generateStaticParams() {
   return TEMPLATES.map((template) => ({ slug: template.slug }))
@@ -35,6 +38,11 @@ export default function TemplatePage({
         </div>
 
         <div>
+          <TrackView
+            event={FUNNEL_EVENTS.viewTemplate}
+            label={template.slug}
+          />
+
           <h1
             className="font-display font-normal leading-[1.05]"
             style={{ fontSize: "clamp(32px, 5vw, 48px)" }}
@@ -43,6 +51,24 @@ export default function TemplatePage({
           </h1>
           <p className="mt-4 text-lg desc-copy">
             {template.longDescription}
+          </p>
+
+          {/* El precio acá cierra el punto ciego #2 de la auditoría: el
+              usuario llegaba al diseño que le gustaba y no encontraba
+              cuánto salía, así que su única salida era WhatsApp. */}
+          <div className="mt-8 flex flex-wrap items-baseline gap-x-3 gap-y-1 border-t border-border pt-6">
+            <span className="font-display text-3xl font-normal">
+              Desde {PRECIO_DESDE}
+            </span>
+            <Link
+              href="/#planes"
+              className="label-copy underline underline-offset-4 transition-opacity hover:opacity-60"
+            >
+              Ver qué incluye cada plan
+            </Link>
+          </div>
+          <p className="note-copy mt-2">
+            Cualquier diseño entra en cualquier plan · Lista en {PLAZO_ENTREGA}
           </p>
 
           <ul className="mt-8 flex flex-col gap-2.5 border-t border-border pt-6">
@@ -58,6 +84,7 @@ export default function TemplatePage({
 
           <WhatsappCta
             message={`Hola, me interesa el diseño ${template.name}`}
+            trackLabel={template.slug}
             size="md"
             className="mt-8"
           >

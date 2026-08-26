@@ -23,8 +23,11 @@ export default function Home() {
       <Navbar />
       <Hero />
       {/* Beneficio → deseo → facilidad → prueba → marca → precio → objeciones → cierre */}
-      <ComoFunciona />
+      {/* Galería al segundo viewport: la auditoría marca el salto
+          hero → galería como el mayor contribuyente al bounce. Lo primero
+          después del hero tiene que ser el activo real, los diseños. */}
       <Galeria />
+      <ComoFunciona />
       {/* <Proceso /> */}
       <Integraciones />
       <Testimonios />

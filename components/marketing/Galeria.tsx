@@ -4,6 +4,8 @@ import { TEMPLATES } from "@/content/templates"
 import { WhatsappCta } from "@/components/ui/whatsapp-cta"
 import { Reveal } from "@/components/ui/reveal"
 import { Eyebrow } from "@/components/ui/eyebrow"
+import { TrackView } from "@/components/ui/track-view"
+import { FUNNEL_EVENTS } from "@/lib/analytics"
 
 export function Galeria() {
   return (
@@ -11,6 +13,8 @@ export function Galeria() {
       id="disenos"
       className="mx-auto max-w-max px-[var(--pad-x)] pb-16 pt-20 md:pt-28"
     >
+      <TrackView event={FUNNEL_EVENTS.viewGallery} />
+
       <Reveal from="left" className="mb-10 md:mb-14">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <div>

@@ -2,6 +2,8 @@ import { PLANES } from "@/content/planes"
 import { WhatsappCta } from "@/components/ui/whatsapp-cta"
 import { Reveal } from "@/components/ui/reveal"
 import { Eyebrow } from "@/components/ui/eyebrow"
+import { TrackView } from "@/components/ui/track-view"
+import { FUNNEL_EVENTS } from "@/lib/analytics"
 import { cn } from "@/lib/utils"
 
 export function Pricing() {
@@ -10,6 +12,8 @@ export function Pricing() {
       id="planes"
       className="mx-auto max-w-max px-[var(--pad-x)] py-20 md:py-24"
     >
+      <TrackView event={FUNNEL_EVENTS.viewPricing} />
+
       <Reveal from="left" className="mb-10 max-w-[52ch] md:mb-14">
         <Eyebrow className="mb-4">Planes</Eyebrow>
         <h2
@@ -39,15 +43,19 @@ export function Pricing() {
                 <h3 className="font-display text-2xl font-normal">
                   {plan.name}
                 </h3>
-                {plan.featured && (
+                {plan.featured && plan.badge && (
                   <span className="label-copy label-copy-inverse rounded-none bg-ink px-2.5 py-1">
-                    Más elegido
+                    {plan.badge}
                   </span>
                 )}
               </div>
 
               <p className="font-display text-[40px] font-normal leading-none">
                 {plan.price}
+              </p>
+
+              <p className="text-sm leading-relaxed desc-copy">
+                {plan.tagline}
               </p>
 
               <ul className="flex flex-col gap-2.5">
@@ -63,6 +71,7 @@ export function Pricing() {
 
               <WhatsappCta
                 message={`Hola, quiero el plan ${plan.name}`}
+                trackLabel={plan.id}
                 tone={plan.featured ? "dark" : "outline"}
                 size="md"
                 className="mt-auto w-full"
@@ -75,8 +84,12 @@ export function Pricing() {
       </div>
 
       <p className="note-copy mt-6">
-        ¿Dudas sobre qué plan te conviene? Escribinos y te ayudamos a elegir —
-        te respondemos en el día.
+        Pago único, sin suscripción. Los precios están en dólares; te pasamos
+        el equivalente en pesos al momento de contratar.
+      </p>
+      <p className="note-copy mt-2">
+        ¿No sabés cuál te conviene? Escribinos y te ayudamos a elegir — te
+        respondemos en el día.
       </p>
     </section>
   )

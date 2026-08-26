@@ -1,71 +1,91 @@
 export type Plan = {
   id: string
   name: string
-  // TODO: reemplazar por los 3 precios reales (hoy placeholder)
+  /** Precio en USD. Ver nota de moneda abajo. */
   price: string
+  /** Una línea que explica a quién le sirve el plan. */
+  tagline: string
   features: string[]
   featured?: boolean
+  /** Etiqueta del badge cuando `featured` es true. */
+  badge?: string
   ctaLabel: string
 }
 
+/**
+ * Precio en USD y no en pesos: protege el margen de la inflación y señala
+ * calidad, igual que NosCasamos. El equivalente local se muestra recién en
+ * el checkout (Batch 3).
+ *
+ * RSVP vive en el plan más barato a propósito: es la razón de compra #1,
+ * cobrarlo aparte sería cobrar por la propuesta de valor central.
+ *
+ * La línea Atelier (USD 180+) todavía no está acá: entra en Batch 2.
+ */
 export const PLANES: Plan[] = [
   {
-    id: "basico",
-    name: "Básico",
-    price: "$XXX.XXX",
+    id: "esencial",
+    name: "Esencial",
+    price: "USD 25",
+    tagline: "Todo lo que tu invitación necesita para funcionar.",
     features: [
-      "Foto de la pareja (1)",
-      "Nombres, día y horario",
-      "Dirección",
-      "Dress Code",
-      "Una (1) revisión",
+      "Cualquier diseño del catálogo",
+      "Confirmación de asistencia (RSVP)",
+      "Mapa y cómo llegar",
+      "Regalos con alias y CBU",
+      "Una revisión",
     ],
-    ctaLabel: "Elegir Básico",
+    ctaLabel: "Elegir Esencial",
   },
   {
-    id: "plus",
-    name: "Plus",
-    price: "$XXX.XXX",
+    id: "completa",
+    name: "Completa",
+    price: "USD 45",
+    tagline: "La que eligen la mayoría de las parejas.",
     featured: true,
+    badge: "Más elegida",
     features: [
-      "Todo lo del plan Básico",
+      "Todo lo del plan Esencial",
       "Cuenta regresiva",
-      "RSVP",
-      "Regalos (Alias/CBU)",
-      "Galería de fotos (4)",
-      "Hasta dos (2) revisiones",
+      "Galería de fotos",
+      "Dress code",
+      "Cronograma del casamiento",
+      "Dos revisiones",
     ],
-    ctaLabel: "Elegir Plus",
+    ctaLabel: "Elegir Completa",
   },
   {
     id: "premium",
     name: "Premium",
-    price: "$XXX.XXX",
+    price: "USD 75",
+    tagline: "Para quienes quieren una pieza propia de punta a punta.",
     features: [
-      "Todo lo del plan Plus",
-      '"Nuestra historia"',
+      "Todo lo del plan Completa",
+      "Sección “Nuestra historia”",
       "Paleta de colores a elección",
-      "Agendá la fecha/evento",
-      "Opciones de alojamiento",
-      '"Preguntas frecuentes"',
-      "Cronograma del casamiento",
-      "Hasta tres (3) revisiones",
+      "Dominio propio",
+      "Tres revisiones",
     ],
     ctaLabel: "Elegir Premium",
   },
 ]
 
-// NO SE MUESTRA HOY. Se sacó de la landing porque sumaba ruido antes de tener
-// los precios definidos. Los datos quedan acá para cuando se quiera reactivar.
-export const EXTRAS = {
+/** El precio más bajo, para el ancla del hero y del detalle de diseño. */
+export const PRECIO_DESDE = PLANES[0].price
+
+/** Plazo de entrega, usado en el hero y en las FAQ. */
+export const PLAZO_ENTREGA = "72 horas"
+
+// NO SE MUESTRA HOY. Los add-ons son el motor de AOV pero entran con el
+// checkout (Batch 3), no antes: sin carrito no hay dónde sumarlos.
+export const ADD_ONS = {
   title: "Extras",
-  description: "Sumá funcionalidades a cualquier plan — $14.999 cada uno.",
+  description: "Sumá funcionalidades a cualquier plan.",
   items: [
-    "Save the Date",
-    "Invitación personalizada por invitado",
-    "E-card de agradecimiento",
-    "Muro de mensajes",
-    "Monograma personalizado",
-    "Código QR",
+    { label: "Save the date a juego", price: "USD 12" },
+    { label: "Monograma propio", price: "USD 25" },
+    { label: "Dominio propio", price: "USD 15" },
+    { label: "Muro post-boda", price: "USD 20" },
+    { label: "PDF imprimible", price: "USD 8" },
   ],
 } as const
