@@ -9,7 +9,7 @@ export function Galeria() {
   return (
     <section
       id="disenos"
-      className="mx-auto max-w-max px-[var(--pad-x)] py-20 md:py-28"
+      className="mx-auto max-w-max px-[var(--pad-x)] pb-16 pt-20 md:pt-28"
     >
       <Reveal from="left" className="mb-10 md:mb-14">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
@@ -58,23 +58,29 @@ export function Galeria() {
         ))}
       </div>
 
-      {/* Rescate para quien no se decide: que no tenga que elegir para escribir */}
+      {/* Rescate para quien no se decide. Es lo único sin caja y
+          centrado de toda la página: destaca por romper la estructura
+          de grilla, no por color, así no suma un cuarto bloque oscuro
+          a una sección de Integraciones. Las dos líneas lo enmarcan. */}
       <Reveal from="up">
-        <div className="mt-14 flex flex-col items-start gap-4 rounded-none border border-border p-7 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="font-display text-xl font-normal">
-              ¿No sabés cuál elegir?
-            </p>
-            <p className="mt-1 text-sm leading-relaxed desc-copy">
-              Contanos cómo es tu boda y te recomendamos el diseño que mejor va.
-            </p>
-          </div>
-          <WhatsappCta
-            message="Hola, quiero ayuda para elegir un diseño"
-            className="shrink-0"
+        <div className="mt-16 border-y border-rule py-14 text-center">
+          <p
+            className="mx-auto max-w-[18ch] font-display font-normal leading-[1.15]"
+            style={{ fontSize: "clamp(26px, 3.4vw, 38px)" }}
           >
-            Que me recomienden
-          </WhatsappCta>
+            ¿No sabés cuál elegir?
+          </p>
+          <p className="mx-auto mt-3 max-w-[44ch] text-sm leading-relaxed desc-copy">
+            Contanos cómo es tu boda y te recomendamos el diseño que mejor va.
+          </p>
+          <div className="mt-6">
+            <WhatsappCta
+              message="Hola, quiero ayuda para elegir un diseño"
+              variant="link"
+            >
+              Que me recomienden
+            </WhatsappCta>
+          </div>
         </div>
       </Reveal>
     </section>
