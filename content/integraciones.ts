@@ -2,11 +2,13 @@
 // el feature es la prueba, el beneficio es el argumento. Antes era una lista
 // plana de 14 ítems donde el usuario tenía que deducir solo para qué le sirven.
 //
-// Los títulos y bajadas de cada cluster salen textuales de la PPT. Los 13
-// features son los que ya existían: no se inventó ninguno. La PPT menciona
-// "recordatorios" y "exportar a Excel" en el cluster 2, pero como features
-// propias no existen —lo de la planilla ya está dentro del texto de RSVP—
-// así que ese cluster queda con 2 y no con 4.
+// Los títulos y bajadas de cada cluster salen textuales de la PPT.
+//
+// Sobre el cluster "Que confirmen": la PPT lo lista con 4 features.
+// "Exportar a Excel" sí existe (Facu confirmó que los invitados se bajan en
+// planilla) y por eso ahora es una feature propia: estaba enterrada dentro
+// del texto de RSVP, donde no se leía como beneficio. "Recordatorios" queda
+// omitido a pedido de Facu: no es algo que el producto haga hoy.
 //
 // `image`: hoy son las 3 capturas reales que ya usamos en <Galeria> y en el
 // detalle de cada template (content/mockups.ts), repetidas en rotación —
@@ -16,6 +18,7 @@ import { MOCKUPS } from "@/content/mockups"
 
 export type FeatureId =
   | "confirmacion"
+  | "exportar"
   | "mapa"
   | "regalos"
   | "informacion"
@@ -61,8 +64,15 @@ export const INTEGRACIONES_CONTENT = {
       id: "confirmacion" as FeatureId,
       cluster: "confirmar" as ClusterId,
       label: "Confirmación de asistencia",
-      text: "Restricciones alimentarias, cómo viajan, un formulario y una planilla con los datos de cada invitado.",
+      text: "Restricciones alimentarias, cómo viajan y todo lo que necesiten contarte, en un solo formulario.",
       image: MOCKUPS.clasica,
+    },
+    {
+      id: "exportar" as FeatureId,
+      cluster: "confirmar" as ClusterId,
+      label: "Exportar la lista",
+      text: "Descargás a los confirmados en una planilla de Excel, lista para pasarle al salón.",
+      image: MOCKUPS.manuscrita,
     },
     {
       id: "mapa" as FeatureId,

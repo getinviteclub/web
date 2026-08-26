@@ -12,9 +12,10 @@ import { CTA_INLINE_ID } from "@/lib/dom-ids"
  * gusta, es el momento de máxima intención, y su única salida era
  * scrollear de nuevo hasta encontrar cómo escribir.
  *
- * En la landing se dejó afuera a propósito: una franja comercial siempre
- * presente contradice el posicionamiento premium que definió Facu al
- * sacar el precio del hero.
+ * En la landing NO va, decidido con Facu: una franja comercial siempre
+ * presente contradice el posicionamiento premium que se fijó al sacar el
+ * precio del hero. La PPT la proponía general; acá queda acotada al
+ * detalle a propósito.
  *
  * SE MUESTRA con dos condiciones a la vez: que el CTA de la página no
  * esté a la vista Y que el usuario ya haya scrolleado un poco.
