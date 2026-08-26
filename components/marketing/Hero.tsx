@@ -21,19 +21,15 @@ export function Hero() {
 
       <div className="relative z-[2] mx-auto flex w-full max-w-[980px] flex-col items-center px-[var(--pad-x)] pt-16 text-center">
         <h1
-          // 22ch y no 18: el 18 estaba calibrado para el título viejo, más
-          // corto. "Tu invitación de casamiento," necesita 21ch, así que con
-          // 18 el título se partía en 3 líneas en vez de las 2 que tiene el
-          // copy. Sin text-balance: el corte ya lo define el \n del content,
-          // y balance competía con él.
+          // Sin text-balance: el corte lo define el \n del content y
+          // balance competía con él.
           className="max-w-[22ch] whitespace-pre-line font-display font-normal leading-[1.06]"
-          // El H1 nuevo es más largo que el anterior: "Tu invitación de
-          // casamiento," necesita 444px a 46px de cuerpo y en un teléfono de
-          // 375px hay 335px. Con el piso en 46 quedaba partido en 3 líneas.
-          // El 8.9vw lo hace acompañar al ancho: 33px a 375px, donde entra
-          // en las 2 líneas que el copy tiene pensadas. El tope baja de 96 a 88
-          // porque el contenedor deja 880px y a 96 la primera línea pedía 927.
-          style={{ fontSize: "clamp(30px, 8.9vw, 88px)" }}
+          // Recalibrado para el copy actual: la línea más larga es "una
+          // gran celebración" (20ch). Con el 8.9vw anterior —pensado para
+          // un título más largo— en un teléfono de 375px ocupaba 236px de
+          // los 335 disponibles y quedaba chico al pedo. El 10.5vw lo lleva
+          // a ~39px ahí, con margen suficiente para no partirse.
+          style={{ fontSize: "clamp(32px, 10.5vw, 88px)" }}
         >
           {HERO_CONTENT.title}
         </h1>
