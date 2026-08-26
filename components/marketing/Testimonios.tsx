@@ -3,7 +3,6 @@
 import { useState } from "react"
 import { Star } from "lucide-react"
 import { TESTIMONIOS } from "@/content/testimonios"
-import { Avatar } from "@/components/ui/avatar"
 import { Reveal } from "@/components/ui/reveal"
 import { Eyebrow } from "@/components/ui/eyebrow"
 import { ArrowGlyph } from "@/components/ui/arrow-glyph"
@@ -48,19 +47,14 @@ export function Testimonios() {
               &ldquo;{testimonio.quote}&rdquo;
             </blockquote>
 
-            <figcaption className="mt-8 flex flex-col items-center gap-3">
-              <Avatar
-                name={testimonio.author}
-                src={testimonio.avatar}
-                className="bg-forest text-inverse"
-              />
-              <span className="flex flex-col items-center">
-                <strong className="text-sm font-semibold">
-                  {testimonio.author}
-                </strong>
-                <span className="text-sm text-muted-foreground">
-                  {testimonio.role}
-                </span>
+            {/* Sin avatar: quitarlo ya achica el bloque solo (era un
+                size-11 + su gap), no queda hueco que compensar a mano. */}
+            <figcaption className="mt-8 flex flex-col items-center">
+              <strong className="text-sm font-semibold">
+                {testimonio.author}
+              </strong>
+              <span className="text-sm text-muted-foreground">
+                {testimonio.role}
               </span>
             </figcaption>
           </div>

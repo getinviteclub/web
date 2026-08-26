@@ -13,7 +13,7 @@ export type Testimonio = {
 export const TESTIMONIOS: Testimonio[] = [
   {
     quote: "Súper profesionales, nos sacaron todas las dudas, quedó impecable.",
-    author: "Gonzalo Busquets",
+    author: "Mili y Gon",
     // TODO: confirmar la fecha — el mensaje original decía "05.09.206",
     // asumí que faltaba un dígito y era 2026.
     role: "05.09.2026",
