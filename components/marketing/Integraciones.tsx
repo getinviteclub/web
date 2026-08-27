@@ -9,14 +9,7 @@ import { Eyebrow } from "@/components/ui/eyebrow"
 import { ArrowGlyph } from "@/components/ui/arrow-glyph"
 
 /**
- * Features agrupadas en 3 clusters narrativos (auditoría, Bloque 4).
- * Antes era una lista plana de 14 ítems donde el usuario tenía que deducir
- * solo para qué le sirve cada una.
- *
- * Los títulos van sin bajada: la frase explicativa de cada grupo repetía lo
- * que ya dicen las features de abajo. Quedan como separadores.
- *
- * La interacción no cambia: una sola feature activa a la vez (estado
+ * Lista de features: una sola feature activa a la vez (estado
  * `activa`, click o hover). En desktop esa selección mueve la foto fija
  * (sticky) de la derecha; en mobile no hay sticky posible, así que es la
  * MISMA selección la que abre la foto de esa fila debajo —al elegir otra,
@@ -49,26 +42,17 @@ export function Integraciones() {
 
         {/* Features: lista a la izquierda, foto a la derecha */}
         <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-14">
-          <Reveal from="left" className="flex flex-col gap-10">
-            {INTEGRACIONES_CONTENT.clusters.map((cluster) => (
-              <div key={cluster.id}>
-                <h3 className="font-display text-2xl font-normal">
-                  {cluster.title}
-                </h3>
-                <ul className="mt-4 flex flex-col divide-y divide-rule border-y border-rule">
-                  {INTEGRACIONES_CONTENT.features
-                    .filter((f) => f.cluster === cluster.id)
-                    .map((f) => (
-                      <FeatureRow
-                        key={f.id}
-                        feature={f}
-                        activa={activa}
-                        onSelect={setActiva}
-                      />
-                    ))}
-                </ul>
-              </div>
-            ))}
+          <Reveal from="left" className="flex flex-col gap-6">
+            <ul className="flex flex-col divide-y divide-rule border-y border-rule">
+              {INTEGRACIONES_CONTENT.features.map((f) => (
+                <FeatureRow
+                  key={f.id}
+                  feature={f}
+                  activa={activa}
+                  onSelect={setActiva}
+                />
+              ))}
+            </ul>
 
             <p className="max-w-[46ch] text-sm leading-relaxed desc-copy">
               {INTEGRACIONES_CONTENT.consulta}

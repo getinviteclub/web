@@ -107,13 +107,15 @@ export function Pricing() {
               <p className="mt-2 text-sm leading-relaxed desc-copy">
                 {plan.tagline}
               </p>
-              <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1">
-                {plan.features.map((feature) => (
-                  <li key={feature} className="text-sm desc-copy">
-                    {feature}
-                  </li>
-                ))}
-              </ul>
+              {plan.features.length > 0 && (
+                <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1">
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="text-sm desc-copy">
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
             <WhatsappCta
               message={`Hola, me interesa la línea ${plan.name}`}

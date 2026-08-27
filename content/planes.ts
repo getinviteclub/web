@@ -82,10 +82,9 @@ export const PLANES: Plan[] = [
     price: "USD 180+",
     tagline: "Una pieza única, diseñada desde cero con ustedes.",
     atelier: true,
-    features: [
-      "Diseño original, fuera del catálogo",
-      "Monograma propio",
-    ],
+    // Sin lista: Atelier no se vende por features sino por el trabajo a
+    // medida. Enumerar dos ítems lo hacía leer como un plan más, chico.
+    features: [],
     ctaLabel: "Hablar con el estudio",
   },
 ]
