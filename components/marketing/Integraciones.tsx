@@ -9,7 +9,11 @@ import { Eyebrow } from "@/components/ui/eyebrow"
 import { ArrowGlyph } from "@/components/ui/arrow-glyph"
 
 /**
- * Lista de features: una sola feature activa a la vez (estado
+ * OPCIÓN 1 (curada): solo 5 features llevan fila propia con descripción y
+ * foto; las otras 9 se listan como una línea corrida abajo. La sección
+ * medía 2457px (3,2 pantallas) con las 14 en fila.
+ *
+ * Interacción: una sola feature activa a la vez (estado
  * `activa`, click o hover). En desktop esa selección mueve la foto fija
  * (sticky) de la derecha; en mobile no hay sticky posible, así que es la
  * MISMA selección la que abre la foto de esa fila debajo —al elegir otra,
@@ -19,9 +23,10 @@ import { ArrowGlyph } from "@/components/ui/arrow-glyph"
  * placeholder a propósito hasta tener una por feature (ver content/integraciones.ts).
  */
 export function Integraciones() {
-  const [activa, setActiva] = useState<FeatureId>(
-    INTEGRACIONES_CONTENT.features[0].id
-  )
+  const destacadas = INTEGRACIONES_CONTENT.features.filter((f) => f.destacada)
+  const resto = INTEGRACIONES_CONTENT.features.filter((f) => !f.destacada)
+
+  const [activa, setActiva] = useState<FeatureId>(destacadas[0].id)
   const feature = INTEGRACIONES_CONTENT.features.find((f) => f.id === activa)!
 
   return (
@@ -44,7 +49,7 @@ export function Integraciones() {
         <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-14">
           <Reveal from="left" className="flex flex-col gap-6">
             <ul className="flex flex-col divide-y divide-rule border-y border-rule">
-              {INTEGRACIONES_CONTENT.features.map((f) => (
+              {destacadas.map((f) => (
                 <FeatureRow
                   key={f.id}
                   feature={f}
@@ -53,6 +58,13 @@ export function Integraciones() {
                 />
               ))}
             </ul>
+
+            {/* El resto no desaparece: se lista sin descripción ni foto.
+                Su trabajo acá es mostrar alcance, no convencer una por una. */}
+            <p className="text-sm leading-relaxed desc-copy">
+              <span className="text-ink">Además:</span>{" "}
+              {resto.map((f) => f.label.toLowerCase()).join(" · ")}.
+            </p>
 
             <p className="max-w-[46ch] text-sm leading-relaxed desc-copy">
               {INTEGRACIONES_CONTENT.consulta}
