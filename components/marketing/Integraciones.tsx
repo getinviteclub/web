@@ -9,9 +9,12 @@ import { Eyebrow } from "@/components/ui/eyebrow"
 import { ArrowGlyph } from "@/components/ui/arrow-glyph"
 
 /**
- * Features agrupadas en 3 clusters narrativos (auditoría, Bloque 4): cada
- * grupo abre con el beneficio y recién debajo lista las features que lo
- * prueban. Antes era una lista plana de 14 ítems.
+ * Features agrupadas en 3 clusters narrativos (auditoría, Bloque 4).
+ * Antes era una lista plana de 14 ítems donde el usuario tenía que deducir
+ * solo para qué le sirve cada una.
+ *
+ * Los títulos van sin bajada: la frase explicativa de cada grupo repetía lo
+ * que ya dicen las features de abajo. Quedan como separadores.
  *
  * La interacción no cambia: una sola feature activa a la vez (estado
  * `activa`, click o hover). En desktop esa selección mueve la foto fija
@@ -52,10 +55,7 @@ export function Integraciones() {
                 <h3 className="font-display text-2xl font-normal">
                   {cluster.title}
                 </h3>
-                <p className="mt-1 max-w-[46ch] text-sm leading-relaxed desc-copy">
-                  {cluster.text}
-                </p>
-                <ul className="mt-5 flex flex-col divide-y divide-rule border-y border-rule">
+                <ul className="mt-4 flex flex-col divide-y divide-rule border-y border-rule">
                   {INTEGRACIONES_CONTENT.features
                     .filter((f) => f.cluster === cluster.id)
                     .map((f) => (

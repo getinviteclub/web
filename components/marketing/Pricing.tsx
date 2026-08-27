@@ -131,10 +131,6 @@ export function Pricing() {
         Pago único, sin suscripción. Los precios están en dólares; te pasamos
         el equivalente en pesos al momento de contratar.
       </p>
-      <p className="note-copy mt-2">
-        ¿No sabés cuál te conviene? Escribinos y te ayudamos a elegir — te
-        respondemos en el día.
-      </p>
     </section>
   )
 }

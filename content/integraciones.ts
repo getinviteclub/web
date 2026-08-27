@@ -39,22 +39,21 @@ export const INTEGRACIONES_CONTENT = {
   title: "Funciona con lo que tus invitados ya usan",
   subtitle:
     "Desde la invitación hasta la confirmación de asistencia, toda la información de su casamiento disponible desde un solo link.",
-  /** Título y bajada textuales de la PPT (Bloque 4). */
+  /** Solo el título: la bajada de cada cluster repetía lo que ya dicen las
+   *  features de abajo, así que se sacó. Los títulos quedan como separadores
+   *  narrativos, que es lo que la auditoría (Bloque 4) buscaba. */
   clusters: [
     {
       id: "llegar" as ClusterId,
       title: "Que lleguen bien",
-      text: "La logística resuelta, sin que nadie te pregunte nada por WhatsApp.",
     },
     {
       id: "confirmar" as ClusterId,
       title: "Que confirmen",
-      text: "Sabés quiénes vienen sin perseguir a nadie. La lista se arma sola.",
     },
     {
       id: "disfrutar" as ClusterId,
       title: "Que la disfruten antes",
-      text: "La invitación no es un aviso: es el primer momento de tu casamiento.",
     },
   ],
   /** Cierre: no es una feature, es una invitación a preguntar. */

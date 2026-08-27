@@ -85,8 +85,6 @@ export const PLANES: Plan[] = [
     features: [
       "Diseño original, fuera del catálogo",
       "Monograma propio",
-      "Trabajo 1-a-1 con el estudio",
-      "Revisiones sin tope",
     ],
     ctaLabel: "Hablar con el estudio",
   },
