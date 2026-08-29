@@ -20,6 +20,10 @@ export type Template = {
   image: string
   longDescription: string
   features: string[]
+  /** Slug en content/wedding/registry.ts — si existe, el detalle suma un
+   *  CTA "Ver diseño en vivo" hacia /w/[liveDemoSlug]. Solo lo tienen los
+   *  diseños ya portados (hoy: aura); el resto sigue siendo mockup. */
+  liveDemoSlug?: string
 }
 
 export const TEMPLATES: Template[] = [
@@ -85,5 +89,6 @@ export const TEMPLATES: Template[] = [
       "Galería de fotos",
       "Mapa del evento",
     ],
+    liveDemoSlug: "aura",
   },
 ]

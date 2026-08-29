@@ -29,6 +29,22 @@
   }
 }
 
+/* Entrada del lightbox de la galería: solo opacidad, corto. */
+@keyframes aura-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+.aura-fade-in {
+  animation: aura-fade-in 0.25s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aura-fade-in {
+    animation: none;
+  }
+}
+
 .font-hero-script {
   font-family: var(--font-pinyon-script), cursive;
   color: #1c1b18;
