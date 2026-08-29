@@ -1,4 +1,3 @@
-import type { Metadata } from "next"
 import {
   Pinyon_Script,
   Ibarra_Real_Nova,
@@ -9,10 +8,16 @@ import { cn } from "@/lib/utils"
 import "./aura.css"
 
 /**
- * Layout de la invitación real "Aura" (Valentina & Patricio). Identidad
- * propia, aislada del sitio de marketing: no hereda --font-display ni
- * --font-ui de app/layout.tsx (ese layout raíz solo pone <html>/<body>,
- * las fuentes de acá se aplican sobre ese body vía el wrapper de abajo).
+ * Layout compartido por TODO /w/[slug]. Hoy solo existe el diseño
+ * "Aura" (ver content/wedding/registry.ts), así que las fuentes acá
+ * son las suyas — cuando exista un segundo diseño con tipografías
+ * distintas, esto tiene que ramificarse por `design`, no antes.
+ *
+ * Identidad propia, aislada del sitio de marketing: no hereda
+ * --font-display ni --font-ui de app/layout.tsx (ese layout raíz solo
+ * pone <html>/<body>, las fuentes de acá se aplican sobre ese body vía
+ * el wrapper de abajo). El título/descripción de cada página se arma
+ * en page.tsx (generateMetadata), no acá — cambia por cliente.
  */
 
 const heroScript = Pinyon_Script({
@@ -44,13 +49,7 @@ const sansEditorial = Jost({
   display: "swap",
 })
 
-export const metadata: Metadata = {
-  title: "Valentina & Patricio — 18.11.2027 | Nuestra Boda",
-  description:
-    "Nos casamos el 18 de noviembre de 2027 en Finca Madero El Ombú, Pilar. Los esperamos para celebrar.",
-}
-
-export default function AuraLayout({
+export default function WeddingLayout({
   children,
 }: {
   children: React.ReactNode

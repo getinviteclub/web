@@ -1,12 +1,16 @@
 import Image from "next/image"
-import { AURA_CONFIG } from "@/content/wedding/aura"
+import type { AuraContent } from "@/content/wedding/aura/types"
 
 /**
  * Portada: los dos nombres en script gigante, la foto de la pareja
  * asomando detrás, fecha y lugar en las esquinas inferiores. Port fiel
  * del original de Flor — mismos tamaños fluidos (vw), mismo layout.
+ *
+ * Recibe `content`: no importa datos de un cliente en particular, así
+ * la misma sección sirve para la demo (Valentina & Patricio) o para
+ * cualquier cliente real que use este diseño.
  */
-export function HeroCover() {
+export function HeroCover({ content }: { content: AuraContent }) {
   return (
     <section
       id="cover"
@@ -15,10 +19,10 @@ export function HeroCover() {
     >
       <div className="aura-fade-in-scale relative flex w-full select-none flex-col items-center">
         <span className="font-hero-script relative z-10 -mt-[5vw] text-[26vw] leading-[0.85] sm:-mt-[2.2vw] sm:text-[19vw] md:-mt-[1.8vw] md:text-[16vw] lg:-mt-[3vw] lg:text-[12.5vw]">
-          {AURA_CONFIG.couple.bride}
+          {content.couple.bride}
         </span>
         <span className="font-hero-script relative z-10 mt-[20vw] text-[26vw] leading-[0.85] sm:mt-[16vw] sm:text-[19vw] md:text-[16vw] lg:text-[12.5vw]">
-          {AURA_CONFIG.couple.groom}
+          {content.couple.groom}
         </span>
 
         {/* Foto detrás de la tipografía */}
@@ -27,8 +31,8 @@ export function HeroCover() {
           style={{ backgroundColor: "#E7DECD" }}
         >
           <Image
-            src="/images/wedding/aura/hero.jpg"
-            alt={`${AURA_CONFIG.couple.bride} & ${AURA_CONFIG.couple.groom}`}
+            src={content.heroImage}
+            alt={`${content.couple.bride} & ${content.couple.groom}`}
             fill
             priority
             sizes="280px"
@@ -39,14 +43,14 @@ export function HeroCover() {
 
       {/* Fecha — abajo a la izquierda */}
       <div className="font-serif-display absolute bottom-8 left-6 z-10 text-left text-base leading-snug sm:bottom-10 sm:left-12 sm:text-lg">
-        <div>18 de Noviembre</div>
-        <div>2027</div>
+        <div>{content.date.heroDay}</div>
+        <div>{content.date.heroYear}</div>
       </div>
 
       {/* Lugar — abajo a la derecha */}
       <div className="font-serif-display absolute bottom-8 right-6 z-10 text-right text-base leading-snug sm:bottom-10 sm:right-12 sm:text-lg">
-        <div>{AURA_CONFIG.location.venueName}</div>
-        <div>{AURA_CONFIG.location.country}</div>
+        <div>{content.location.venueName}</div>
+        <div>{content.location.country}</div>
       </div>
     </section>
   )
