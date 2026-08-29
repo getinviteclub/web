@@ -10,6 +10,9 @@ export type Plan = {
   /** Etiqueta del badge cuando `featured` es true. */
   badge?: string
   ctaLabel: string
+  /** Atelier no es un tier más: es diseño desde cero, no del catálogo.
+   *  Se renderiza aparte, debajo de los tres planes. */
+  atelier?: boolean
 }
 
 /**
@@ -20,7 +23,12 @@ export type Plan = {
  * RSVP vive en el plan más barato a propósito: es la razón de compra #1,
  * cobrarlo aparte sería cobrar por la propuesta de valor central.
  *
- * La línea Atelier (USD 180+) todavía no está acá: entra en Batch 2.
+ * El diseño está desacoplado del plan: cualquier diseño del catálogo entra
+ * en cualquier plan. El plan define el ALCANCE (qué secciones tiene la
+ * invitación), nunca la estética. Ver DISENO_DESACOPLADO abajo.
+ *
+ * Atelier (USD 180+) es la excepción y por eso va aparte: ahí no se elige
+ * del catálogo, se diseña desde cero.
  */
 export const PLANES: Plan[] = [
   {
@@ -68,10 +76,26 @@ export const PLANES: Plan[] = [
     ],
     ctaLabel: "Elegir Premium",
   },
+  {
+    id: "atelier",
+    name: "Atelier",
+    price: "USD 180+",
+    tagline: "Una pieza única, diseñada desde cero con ustedes.",
+    atelier: true,
+    // Sin lista: Atelier no se vende por features sino por el trabajo a
+    // medida. Enumerar dos ítems lo hacía leer como un plan más, chico.
+    features: [],
+    ctaLabel: "Hablar con el estudio",
+  },
 ]
 
+/** Se muestra junto a la grilla: es la objeción que el pricing tiene que
+ *  resolver antes de que el usuario elija. */
+export const DISENO_DESACOPLADO =
+  "Cualquier diseño del catálogo entra en cualquier plan. El plan define qué secciones tiene tu invitación, no cómo se ve."
+
 /** El precio más bajo, para el ancla del hero y del detalle de diseño. */
-export const PRECIO_DESDE = PLANES[0].price
+export const PRECIO_DESDE = PLANES.find((p) => p.id === "esencial")!.price
 
 /** Plazo de entrega, usado en el hero y en las FAQ. */
 export const PLAZO_ENTREGA = "72 horas"

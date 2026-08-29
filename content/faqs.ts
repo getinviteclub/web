@@ -5,9 +5,9 @@
  * - "demo": hoy en el detalle de cada diseño se ven capturas reales, no una
  *   demo navegable. Cuando exista el preview navegable (Batch 2) hay que
  *   reescribirla.
- * - "cambiar de plan": la política comercial la define Facu. La respuesta
- *   actual es la más conservadora posible (antes de empezar, sin costo).
- *   CONFIRMAR antes de publicar.
+ * - "cambiar de plan": política confirmada por Facu — se puede cambiar sin
+ *   costo mientras no se haya empezado a armar la invitación; después se
+ *   cobra la diferencia.
  */
 export const FAQS_CONTENT = [
   {

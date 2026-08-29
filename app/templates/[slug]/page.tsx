@@ -5,6 +5,8 @@ import { PRECIO_DESDE, PLAZO_ENTREGA } from "@/content/planes"
 import { PhoneMockup } from "@/components/ui/phone-mockup"
 import { WhatsappCta } from "@/components/ui/whatsapp-cta"
 import { TrackView } from "@/components/ui/track-view"
+import { StickyCta } from "@/components/ui/sticky-cta"
+import { CTA_INLINE_ID } from "@/lib/dom-ids"
 import { FUNNEL_EVENTS } from "@/lib/analytics"
 
 export function generateStaticParams() {
@@ -82,19 +84,29 @@ export default function TemplatePage({
             ))}
           </ul>
 
-          <WhatsappCta
-            message={`Hola, me interesa el diseño ${template.name}`}
-            trackLabel={template.slug}
-            size="md"
-            className="mt-8"
-          >
-            Quiero este diseño
-          </WhatsappCta>
+          <div id={CTA_INLINE_ID} className="mt-8">
+            <WhatsappCta
+              message={`Hola, me interesa el diseño ${template.name}`}
+              trackLabel={template.slug}
+              size="md"
+            >
+              Quiero este diseño
+            </WhatsappCta>
+          </div>
           <p className="note-copy mt-3">
             Te respondemos en el día · Sin compromiso
           </p>
         </div>
       </div>
+
+      {/* Punto ciego #2 de la auditoría: acá está la máxima intención y
+          el CTA de arriba ya quedó fuera de pantalla. */}
+      <StickyCta
+        nombre={template.name}
+        precio={`Desde ${PRECIO_DESDE}`}
+        message={`Hola, me interesa el diseño ${template.name}`}
+        trackLabel={template.slug}
+      />
     </main>
   )
 }

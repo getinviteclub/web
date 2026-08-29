@@ -1,5 +1,13 @@
-// TODO: revisar que cada ítem corresponda a algo que hoy realmente se entrega.
-// Salieron de las features listadas en content/planes.ts.
+// Lista de features de la invitación.
+//
+// La auditoría (Bloque 4) proponía agruparlas en 3 clusters narrativos
+// ("Que lleguen bien", "Que confirmen", "Que la disfruten antes"). Se probó
+// y Facu los descartó: son categorías, no funcionalidades, y no aportaban
+// nada sobre la lista. Vuelve a ser plana a propósito — no reponerlos sin
+// acordarlo.
+//
+// "Exportar la lista" sí quedó como feature propia: estaba enterrada dentro
+// del texto de RSVP y es un beneficio concreto.
 //
 // `image`: hoy son las 3 capturas reales que ya usamos en <Galeria> y en el
 // detalle de cada template (content/mockups.ts), repetidas en rotación —
@@ -9,6 +17,7 @@ import { MOCKUPS } from "@/content/mockups"
 
 export type FeatureId =
   | "confirmacion"
+  | "exportar"
   | "mapa"
   | "regalos"
   | "informacion"
@@ -21,19 +30,26 @@ export type FeatureId =
   | "countdown"
   | "cronograma"
   | "alojamiento"
-  | "otros"
 
 export const INTEGRACIONES_CONTENT = {
   eyebrow: "Sin apps que descargar",
   title: "Funciona con lo que tus invitados ya usan",
   subtitle:
     "Desde la invitación hasta la confirmación de asistencia, toda la información de su casamiento disponible desde un solo link.",
+  /** Cierre: no es una feature, es una invitación a preguntar. */
+  consulta: "¿Necesitan algo que no está en la lista? Consultanos y vemos cómo resolverlo.",
   features: [
     {
       id: "confirmacion" as FeatureId,
       label: "Confirmación de asistencia",
-      text: "Restricciones alimentarias, cómo viajan, un formulario y una planilla con los datos de cada invitado.",
+      text: "Restricciones alimentarias, cómo viajan y todo lo que necesiten contarte, en un solo formulario.",
       image: MOCKUPS.clasica,
+    },
+    {
+      id: "exportar" as FeatureId,
+      label: "Exportar la lista",
+      text: "Descargás a los confirmados en una planilla de Excel, lista para pasarle al salón.",
+      image: MOCKUPS.manuscrita,
     },
     {
       id: "mapa" as FeatureId,
@@ -106,12 +122,6 @@ export const INTEGRACIONES_CONTENT = {
       label: "Dónde alojarse",
       text: "Hoteles cerca del lugar, con las tarifas especiales si hay convenio.",
       image: MOCKUPS.clasica,
-    },
-    {
-      id: "otros" as FeatureId,
-      label: "Otros",
-      text: "¿No encontrás lo que buscabas? Consultanos: si necesitan algo más, vemos cómo resolverlo.",
-      image: MOCKUPS.manuscrita,
     },
   ],
 } as const
