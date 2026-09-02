@@ -1,5 +1,7 @@
+import { Plus, ICON_WEIGHT } from "@/components/ui/icons"
 import { FAQS_CONTENT } from "@/content/faqs"
 import { WhatsappCta } from "@/components/ui/whatsapp-cta"
+import { MENSAJES } from "@/lib/whatsapp"
 import { Reveal } from "@/components/ui/reveal"
 import { Eyebrow } from "@/components/ui/eyebrow"
 
@@ -25,7 +27,7 @@ export function Faqs() {
             ¿No encontrás tu respuesta? Escribinos y te contestamos en el día.
           </p>
           <WhatsappCta
-            message="Hola, tengo una consulta sobre las invitaciones"
+            message={MENSAJES.consulta}
             tone="outline"
             className="mt-6"
           >
@@ -39,9 +41,15 @@ export function Faqs() {
             <details key={faq.question} className="group">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-lg font-semibold transition-colors hover:bg-bone [&::-webkit-details-marker]:hidden">
                 {faq.question}
-                <span className="shrink-0 text-xl font-normal text-muted-foreground transition-transform duration-200 group-open:rotate-45">
-                  +
-                </span>
+                {/* El mismo Plus rotado 45° hace la cruz al abrir: un
+                    solo ícono, sin cambio de glifo a mitad de la
+                    transición. */}
+                <Plus
+                  size={20}
+                  weight={ICON_WEIGHT}
+                  aria-hidden="true"
+                  className="shrink-0 text-muted-foreground transition-transform duration-200 group-open:rotate-45"
+                />
               </summary>
               <p className="px-6 pb-6 leading-relaxed desc-copy">
                 {faq.answer}

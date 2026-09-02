@@ -6,9 +6,11 @@ export const SOCIAL_LINKS = [
   },
 ] as const
 
+// Absolutos por el mismo motivo que NAV_LINKS: el footer también se
+// monta en el detalle de un diseño.
 export const FOOTER_MENU = [
-  { label: "Planes", href: "#planes" },
-  { label: "Diseños", href: "#disenos" },
-  { label: "Cómo funciona", href: "#como-funciona" },
-  { label: "Preguntas frecuentes", href: "#faqs" },
+  { label: "Diseños", href: "/#disenos" },
+  { label: "Cómo funciona", href: "/#como-funciona" },
+  { label: "Planes", href: "/#planes" },
+  { label: "Preguntas frecuentes", href: "/#faqs" },
 ] as const

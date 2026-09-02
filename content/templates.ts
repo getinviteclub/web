@@ -1,7 +1,18 @@
 import { MOCKUPS } from "@/content/mockups"
 
-// TODO: longDescription y features son placeholders razonables, no copy
-// final — falta que Facu los revise.
+// Un diseño del catálogo. Todo lo que el detalle necesita saber vive acá:
+// sumar un diseño nuevo es un objeto más en TEMPLATES, sin tocar código.
+//
+// Lo que NO vive acá y es a propósito:
+//   · el precio → sale de PRECIO_DESDE (content/planes.ts). Es el mismo
+//     para todos los diseños; ponerlo por diseño abriría la puerta a que
+//     dejen de serlo, que es justo lo contrario de lo que promete el sitio.
+//   · las funcionalidades → salen de INVITACION_INCLUYE
+//     (content/invitacion.ts). Las define el plan, no el diseño.
+//   · el mensaje de WhatsApp → lo arma mensajeDiseno() (lib/whatsapp.ts).
+//
+// TODO: longDescription son placeholders razonables, no copy final —
+// falta que Facu los revise.
 export type Template = {
   slug: string
   name: string
@@ -19,7 +30,6 @@ export type Template = {
    *  esta es el screenshot de la invitación en sí. */
   image: string
   longDescription: string
-  features: string[]
   /** Slug en content/wedding/registry.ts — si existe, el detalle suma un
    *  CTA "Ver diseño en vivo" hacia /w/[liveDemoSlug]. Solo lo tienen los
    *  diseños ya portados (hoy: aura); el resto sigue siendo mockup. */
@@ -35,12 +45,6 @@ export const TEMPLATES: Template[] = [
     image: MOCKUPS.clasica,
     longDescription:
       "Tipografía como protagonista y mucho aire en blanco. Para parejas que prefieren la elegancia de lo simple antes que la decoración.",
-    features: [
-      "RSVP integrado",
-      "Cuenta regresiva",
-      "Galería de fotos",
-      "Mapa del evento",
-    ],
   },
   {
     slug: "cielo",
@@ -50,12 +54,6 @@ export const TEMPLATES: Template[] = [
     image: MOCKUPS.manuscrita,
     longDescription:
       "Colores suaves y detalles delicados sobre fondo claro. Para celebraciones con una estética cálida y femenina.",
-    features: [
-      "RSVP integrado",
-      "Nuestra historia",
-      "Galería de fotos",
-      "Regalos (Alias/CBU)",
-    ],
   },
   {
     slug: "nocturna",
@@ -65,12 +63,6 @@ export const TEMPLATES: Template[] = [
     image: MOCKUPS.editorial,
     longDescription:
       "Fotografía en blanco y negro con tipografía de alto contraste. La opción de mayor impacto visual, para bodas con estética editorial.",
-    features: [
-      "RSVP integrado",
-      "Galería de fotos",
-      "Paleta de colores a elección",
-      "Preguntas frecuentes",
-    ],
   },
   {
     slug: "aura",
@@ -83,12 +75,11 @@ export const TEMPLATES: Template[] = [
     image: MOCKUPS.clasica,
     longDescription:
       "Texturas suaves y una paleta neutra, con foco en la fotografía. Para quienes buscan algo etéreo y sereno.",
-    features: [
-      "RSVP integrado",
-      "Cuenta regresiva",
-      "Galería de fotos",
-      "Mapa del evento",
-    ],
+    // TODO (contenido, alta prioridad): `image` apunta a MOCKUPS.clasica,
+    // que es la MISMA captura que usa Studio — o sea que el teléfono del
+    // detalle de Aura no muestra Aura. Ahora que /w/aura existe, la
+    // captura se saca de ahí (ver ASSETS.md: DevTools → device toolbar →
+    // Capture screenshot) y se guarda como /images/diseno-aura.webp.
     liveDemoSlug: "aura",
   },
 ]

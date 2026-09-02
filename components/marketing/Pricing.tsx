@@ -1,9 +1,11 @@
-import { PLANES, DISENO_DESACOPLADO } from "@/content/planes"
+import { PLANES, DISENO_VS_PLAN } from "@/content/planes"
+import { CheckItem } from "@/components/ui/check-item"
 import { WhatsappCta } from "@/components/ui/whatsapp-cta"
 import { Reveal } from "@/components/ui/reveal"
 import { Eyebrow } from "@/components/ui/eyebrow"
 import { TrackView } from "@/components/ui/track-view"
 import { FUNNEL_EVENTS } from "@/lib/analytics"
+import { mensajePlan, MENSAJES } from "@/lib/whatsapp"
 import { cn } from "@/lib/utils"
 
 export function Pricing() {
@@ -16,16 +18,32 @@ export function Pricing() {
 
       <Reveal from="left" className="mb-10 max-w-[52ch] md:mb-14">
         <Eyebrow className="mb-4">Planes</Eyebrow>
+        {/* El titular es la distinción diseño/plan y no una frase de
+            marca: es la objeción #1 del pricing —"el diseño que me gustó
+            debe estar en el plan caro"— y tiene que estar resuelta antes
+            de que el usuario mire un solo precio. */}
         <h2
           className="font-display font-normal leading-[1.15]"
           style={{ fontSize: "clamp(28px, 4vw, 44px)" }}
         >
-          Una propuesta para cada forma de celebrar
+          {DISENO_VS_PLAN.statement}
         </h2>
-        <p className="mt-4 text-lg desc-copy">
-          Elegí el plan que mejor se adapte a tu evento. Pago único, sin
-          suscripciones.
-        </p>
+        <p className="mt-4 text-lg desc-copy">{DISENO_VS_PLAN.nota}</p>
+      </Reveal>
+
+      <Reveal from="up" className="mb-10 md:mb-14">
+        <dl className="grid grid-cols-1 gap-x-10 gap-y-6 border-y border-rule py-7 sm:grid-cols-2">
+          {[DISENO_VS_PLAN.diseno, DISENO_VS_PLAN.plan].map((bloque) => (
+            <div key={bloque.title}>
+              <dt className="font-display text-xl font-normal">
+                {bloque.title}
+              </dt>
+              <dd className="mt-1.5 text-sm leading-relaxed desc-copy">
+                {bloque.text}
+              </dd>
+            </div>
+          ))}
+        </dl>
       </Reveal>
 
       {/* Atelier queda fuera de la grilla: no es un tier más caro del
@@ -63,18 +81,13 @@ export function Pricing() {
 
               <ul className="flex flex-col gap-2.5">
                 {plan.features.map((feature) => (
-                  <li
-                    key={feature}
-                    className="relative pl-6 leading-snug text-muted-foreground before:absolute before:left-0 before:font-semibold before:text-ink before:content-['✓']"
-                  >
-                    {feature}
-                  </li>
+                  <CheckItem key={feature}>{feature}</CheckItem>
                 ))}
               </ul>
 
               <WhatsappCta
-                message={`Hola, quiero el plan ${plan.name}`}
-                trackLabel={plan.id}
+                message={mensajePlan(plan.name)}
+                trackParams={{ plan: plan.id }}
                 tone={plan.featured ? "dark" : "outline"}
                 size="md"
                 className="mt-auto w-full"
@@ -85,12 +98,6 @@ export function Pricing() {
           </Reveal>
         ))}
       </div>
-
-      {/* La objeción que el pricing tiene que resolver antes de que elija:
-          que el diseño lindo no esté encerrado en el plan más caro. */}
-      <p className="mt-6 text-sm leading-relaxed desc-copy">
-        {DISENO_DESACOPLADO}
-      </p>
 
       {PLANES.filter((p) => p.atelier).map((plan) => (
         <Reveal from="up" key={plan.id}>
@@ -118,8 +125,8 @@ export function Pricing() {
               )}
             </div>
             <WhatsappCta
-              message={`Hola, me interesa la línea ${plan.name}`}
-              trackLabel={plan.id}
+              message={MENSAJES.atelier}
+              trackParams={{ plan: plan.id }}
               variant="link"
               className="shrink-0"
             >

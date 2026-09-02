@@ -9,7 +9,7 @@ export function Footer() {
     >
       <div>
         <a
-          href="#"
+          href="/"
           className="mb-4 inline-block font-display font-normal"
         >
           Invite<span className="font-display-italic"> Club</span>

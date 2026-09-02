@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { Check } from "lucide-react"
+import { Check, ICON_WEIGHT_BOLD } from "@/components/ui/icons"
 import { cn } from "@/lib/utils"
 import { TEMPLATES } from "@/content/templates"
 
@@ -35,7 +35,11 @@ export function DesignPicker({ className }: { className?: string }) {
               />
               {selected && (
                 <span className="absolute right-1 top-1 flex size-4 items-center justify-center rounded-none bg-ink">
-                  <Check className="size-2.5 text-inverse" strokeWidth={3} />
+                  <Check
+                    size={10}
+                    weight={ICON_WEIGHT_BOLD}
+                    className="text-inverse"
+                  />
                 </span>
               )}
             </div>

@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { track, type FunnelEvent } from "@/lib/analytics"
+import { track, type EventParams, type FunnelEvent } from "@/lib/analytics"
 
 /**
  * Registra un evento cuando la sección entra en pantalla, una sola vez.
@@ -20,24 +20,29 @@ import { track, type FunnelEvent } from "@/lib/analytics"
  */
 export function TrackView({
   event,
-  label,
+  params,
 }: {
   event: FunnelEvent
-  label?: string
+  params?: EventParams
 }) {
   const marcador = useRef<HTMLSpanElement>(null)
+  // Fuera del efecto a propósito: `params` es un objeto literal, así que
+  // cambia de identidad en cada render y vuelve a correr el efecto. Con la
+  // bandera adentro, cada corrida armaba un observer nuevo que podía
+  // registrar el mismo evento otra vez.
+  const registrado = useRef(false)
+  const datos = useRef({ event, params })
+  datos.current = { event, params }
 
   useEffect(() => {
     const seccion = marcador.current?.parentElement
     if (!seccion) return
 
-    let registrado = false
-
     const observer = new IntersectionObserver(
       ([entrada]) => {
-        if (!entrada.isIntersecting || registrado) return
-        registrado = true
-        track(event, { label })
+        if (!entrada.isIntersecting || registrado.current) return
+        registrado.current = true
+        track(datos.current.event, datos.current.params)
         observer.disconnect()
       },
       { threshold: 0, rootMargin: "0px 0px -45% 0px" }
@@ -45,7 +50,7 @@ export function TrackView({
 
     observer.observe(seccion)
     return () => observer.disconnect()
-  }, [event, label])
+  }, [])
 
   return <span ref={marcador} aria-hidden="true" className="hidden" />
 }

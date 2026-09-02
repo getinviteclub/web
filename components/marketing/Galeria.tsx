@@ -6,6 +6,7 @@ import { Reveal } from "@/components/ui/reveal"
 import { Eyebrow } from "@/components/ui/eyebrow"
 import { TrackView } from "@/components/ui/track-view"
 import { FUNNEL_EVENTS } from "@/lib/analytics"
+import { MENSAJES } from "@/lib/whatsapp"
 
 export function Galeria() {
   return (
@@ -27,6 +28,15 @@ export function Galeria() {
             >
               Encontrá su estilo
             </h2>
+            {/* Sin precio acá (decisión de Facu): la galería es para
+                enamorarse de un diseño, no para comparar plata. El número
+                aparece un paso después, en el detalle, y en #planes.
+                Lo que sí queda es el concepto, porque es lo que evita que
+                el usuario asuma que el diseño que le gustó es el caro. */}
+            <p className="mt-3 max-w-[46ch] text-sm leading-relaxed desc-copy">
+              El diseño define cómo se ve la invitación. Qué incluye lo
+              define el plan.
+            </p>
           </div>
         </div>
       </Reveal>
@@ -79,7 +89,7 @@ export function Galeria() {
           </p>
           <div className="mt-6">
             <WhatsappCta
-              message="Hola, quiero ayuda para elegir un diseño"
+              message={MENSAJES.recomendacion}
               variant="link"
             >
               Que me recomienden

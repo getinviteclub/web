@@ -1,4 +1,9 @@
-import { Link2, Check } from "lucide-react"
+import {
+  Check,
+  LinkSimple,
+  ICON_WEIGHT,
+  ICON_WEIGHT_BOLD,
+} from "@/components/ui/icons"
 import { cn } from "@/lib/utils"
 
 const CONFIRMACIONES = [
@@ -17,7 +22,11 @@ export function RsvpCard({ className }: { className?: string }) {
     >
       {/* El link */}
       <div className="flex items-center gap-2 rounded-none bg-paper px-4 py-3">
-        <Link2 className="size-4 shrink-0 text-muted-foreground" />
+        <LinkSimple
+          size={16}
+          weight={ICON_WEIGHT}
+          className="shrink-0 text-muted-foreground"
+        />
         <span className="truncate text-sm">
           getinviteclub.com/<span className="text-muted-foreground">tu-boda</span>
         </span>
@@ -38,7 +47,11 @@ export function RsvpCard({ className }: { className?: string }) {
           {CONFIRMACIONES.map((item) => (
             <li key={item.name} className="flex items-center gap-2.5">
               <span className="flex size-5 shrink-0 items-center justify-center rounded-none bg-ink">
-                <Check className="size-3 text-inverse" strokeWidth={3} />
+                <Check
+                  size={12}
+                  weight={ICON_WEIGHT_BOLD}
+                  className="text-inverse"
+                />
               </span>
               <span className="flex-1 truncate text-sm">{item.name}</span>
               <span className="note-copy shrink-0">
