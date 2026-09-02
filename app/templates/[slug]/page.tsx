@@ -37,6 +37,18 @@ export default function TemplatePage({
             alt={`Invitación ${template.name}`}
             priority
           />
+          {template.liveDemoSlug && (
+            <div className="mt-8 text-center">
+              <Link
+                href={`/w/${template.liveDemoSlug}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="label-copy underline underline-offset-4 transition-opacity hover:opacity-60"
+              >
+                Ver diseño en vivo ↗
+              </Link>
+            </div>
+          )}
         </div>
 
         <div>
