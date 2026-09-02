@@ -25,6 +25,7 @@ export const FUNNEL_EVENTS = {
   heroCta: "hero_cta_click",
   viewGallery: "view_gallery",
   viewTemplate: "view_template",
+  viewLiveDemo: "view_live_demo",
   viewPricing: "view_pricing",
   whatsappCta: "whatsapp_cta_click",
   // Todavía no existen en el producto (Batch 3). Los nombres se definen acá
@@ -36,7 +37,17 @@ export const FUNNEL_EVENTS = {
 
 export type FunnelEvent = (typeof FUNNEL_EVENTS)[keyof typeof FUNNEL_EVENTS]
 
-type EventPayload = Record<string, string | number | boolean | undefined>
+/**
+ * Contexto del evento. Los dos que importan para el funnel son `design` y
+ * `plan`: sin ellos un `whatsapp_cta_click` dice que alguien escribió, pero
+ * no desde qué diseño ni con qué plan en la cabeza — que es justo lo que hay
+ * que saber para decidir qué diseño producir primero.
+ */
+export type EventParams = {
+  design?: string
+  plan?: string
+  [key: string]: string | number | boolean | undefined
+}
 
 declare global {
   interface Window {
@@ -48,7 +59,7 @@ declare global {
  * Registra un evento del funnel. Seguro de llamar desde cualquier lado:
  * en el servidor no hace nada, y en el cliente nunca tira si no hay GTM.
  */
-export function track(event: FunnelEvent, payload: EventPayload = {}) {
+export function track(event: FunnelEvent, payload: EventParams = {}) {
   if (typeof window === "undefined") return
 
   window.dataLayer = window.dataLayer ?? []

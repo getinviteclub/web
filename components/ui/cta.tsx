@@ -2,7 +2,7 @@
 
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
-import { track, type FunnelEvent } from "@/lib/analytics"
+import { track, type EventParams, type FunnelEvent } from "@/lib/analytics"
 
 /**
  * CTA del sistema. Dos formas, misma tipografía de label:
@@ -94,8 +94,8 @@ type CtaProps = VariantProps<typeof ctaVariants> & {
   external?: boolean
   /** Evento de funnel a registrar al hacer click. */
   trackAs?: FunnelEvent
-  /** Contexto extra del evento, p. ej. el plan o el diseño. */
-  trackLabel?: string
+  /** Contexto del evento: `design`, `plan`, lo que haga falta. */
+  trackParams?: EventParams
 }
 
 export function Cta({
@@ -107,14 +107,14 @@ export function Cta({
   className,
   external,
   trackAs,
-  trackLabel,
+  trackParams,
 }: CtaProps) {
   return (
     <a
       href={href}
       className={cn(ctaVariants({ variant, tone, size }), className)}
       onClick={() => {
-        if (trackAs) track(trackAs, { label: trackLabel })
+        if (trackAs) track(trackAs, trackParams)
       }}
       {...(external
         ? { target: "_blank", rel: "noopener noreferrer" }

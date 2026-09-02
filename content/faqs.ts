@@ -1,13 +1,17 @@
 /**
- * Las respuestas describen lo que el producto hace HOY, no lo que va a
- * hacer. Ojo con dos de ellas cuando cambie el producto:
+ * Las respuestas describen lo que el producto hace HOY.
  *
- * - "demo": hoy en el detalle de cada diseño se ven capturas reales, no una
- *   demo navegable. Cuando exista el preview navegable (Batch 2) hay que
- *   reescribirla.
- * - "cambiar de plan": política confirmada por Facu — se puede cambiar sin
- *   costo mientras no se haya empezado a armar la invitación; después se
- *   cobra la diferencia.
+ * Criterio para sumar o sacar una: la FAQ es para lo que NO se puede
+ * resolver visualmente en el flujo. Si la respuesta ya está a la vista en
+ * la galería, en el detalle o en Precios, acá sobra y solo alarga la
+ * página.
+ *
+ * Por eso salió "¿Puedo elegir cualquier diseño con cualquier plan?": hoy
+ * eso encabeza la sección de Precios (ver DISENO_VS_PLAN) y se repite en
+ * cada detalle de diseño.
+ *
+ * Y entró "¿Cómo se paga?": es la última duda antes de escribir y no está
+ * resuelta en ningún lado del sitio.
  */
 export const FAQS_CONTENT = [
   {
@@ -16,14 +20,14 @@ export const FAQS_CONTENT = [
       "72 horas desde que nos pasás los datos y las fotos. Si tenés una fecha ajustada, contanos y vemos cómo acomodarnos.",
   },
   {
-    question: "¿Qué incluye cada plan?",
+    question: "¿Puedo ver un diseño funcionando antes de contratar?",
     answer:
-      "Los tres planes incluyen el diseño que elijas y la confirmación de asistencia. Completa suma cuenta regresiva, galería, dress code y cronograma; Premium agrega “Nuestra historia”, paleta a elección y dominio propio. El detalle está en Precios.",
+      "Sí. En Diseños entrás a cualquiera y, en los que tienen demo, abrís la invitación completa y navegable, igual que la vería un invitado. Si querés ver una en particular, escribinos y te la mostramos.",
   },
   {
-    question: "¿Puedo elegir cualquier diseño con cualquier plan?",
+    question: "¿Qué incluye cada plan?",
     answer:
-      "Sí. El diseño no cambia el precio: elegís el que más les guste y el plan define qué secciones va a tener la invitación.",
+      "Los tres incluyen el diseño que elijas y la confirmación de asistencia. Completa suma cuenta regresiva, galería, dress code y cronograma; Premium agrega “Nuestra historia”, paleta a elección y dominio propio. El detalle está en Precios.",
   },
   {
     question: "¿La confirmación de asistencia viene en todos los planes?",
@@ -31,18 +35,18 @@ export const FAQS_CONTENT = [
       "Sí, incluso en el más económico. Tus invitados confirman desde la invitación y vos ves la lista actualizada, sin perseguir a nadie por WhatsApp.",
   },
   {
-    question: "¿Puedo cambiar de plan después?",
+    question: "¿Cómo se paga?",
     answer:
-      "Sí, mientras no hayamos empezado a armar la invitación. Una vez publicada, pasar a un plan superior se cobra la diferencia.",
-  },
-  {
-    question: "¿Puedo ver un diseño antes de contratar?",
-    answer:
-      "Sí. En Diseños entrás a cualquiera y ves las pantallas reales de esa invitación. Si querés ver una funcionando de punta a punta, escribinos y te la mostramos.",
+      "Por Mercado Pago, en un solo pago y antes de que empecemos a armarla. Te pasamos el link por WhatsApp una vez que elegimos juntos el diseño y el plan. No hay suscripción ni costos mensuales.",
   },
   {
     question: "¿Los precios están en dólares?",
     answer:
-      "Sí, para que el precio no se desactualice. Al momento de contratar te pasamos el equivalente en pesos y podés pagar en moneda local.",
+      "Sí, para que el precio no se desactualice. Al momento de contratar te pasamos el equivalente en pesos y pagás en moneda local.",
+  },
+  {
+    question: "¿Puedo cambiar de plan después?",
+    answer:
+      "Sí, mientras no hayamos empezado a armar la invitación. Una vez publicada, pasar a un plan superior se cobra la diferencia.",
   },
 ] as const

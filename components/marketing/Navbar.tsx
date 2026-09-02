@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { NAV_LINKS } from "@/content/nav"
 import { WhatsappCta } from "@/components/ui/whatsapp-cta"
 import { MenuMobile } from "@/components/marketing/MenuMobile"
+import { MENSAJES } from "@/lib/whatsapp"
 import { cn } from "@/lib/utils"
 
 /** Píxeles a recorrer antes de empezar a esconder la barra. */
@@ -48,7 +49,7 @@ export function Navbar() {
       )}
     >
       <div className="mx-auto flex max-w-max items-center justify-between gap-4 px-[var(--pad-x)] py-4">
-        <a href="#" className="font-display text-lg font-normal">
+        <a href="/" className="font-display text-lg font-normal">
           Invite<span className="font-display-italic"> Club</span>
         </a>
 
@@ -73,7 +74,7 @@ export function Navbar() {
             el CTA se va adentro del menú. */}
         <div className="hidden md:block">
           <WhatsappCta
-            message="Hola, quiero info de Invite Club"
+            message={MENSAJES.info}
             variant="link"
           >
             Escribinos

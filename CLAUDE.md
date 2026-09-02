@@ -40,6 +40,7 @@ app/
 components/
   ui/                      # design system compartido (shadcn + tokens)
   marketing/               # Hero, Galeria, ComoFunciona, Testimonios, Pricing, Faqs, Navbar, Footer
+  templates/               # piezas del detalle de un diseño (preview, precio, qué incluye)
   wedding/                 # FASE 2: piezas reutilizables de templates (RSVP, Guestbook, Galeria…)
 lib/
   supabase/                # clients (server/browser) + queries
@@ -84,6 +85,16 @@ La jerarquía la da el gris, **no** un negro aguado.
 - `--pad-x: clamp(20px, 3.91vw, 50px)` · `--max: 1440px`
 - **Sin radios**: todo en `0px`. La única excepción son los CTA en pill (`--r-pill: 50px`).
 
+**Íconos** — **Phosphor** (`@phosphor-icons/react`), centralizados en
+`components/ui/icons.tsx`. Se importan siempre desde ahí, nunca del paquete
+directo, y se usa el peso del sistema (`ICON_WEIGHT` = `light`): la identidad
+es de trazo fino y `regular` engorda al lado de la tipografía. `fill` solo
+para figuras sólidas (estrellas), `bold` solo para íconos ≤12px sobre fondo
+sólido. Prohibido: glifos tipográficos sueltos ("✓", "↗", "←", "+") — los
+resuelve la fuente del sistema y cambian de forma según el dispositivo.
+`components/wedding/aura/*` es la excepción: sigue con lucide, tiene su
+propio lenguaje visual.
+
 **Movimiento**
 
 - **Mobile-first.** Solo CSS transitions, **sin Framer Motion**.
@@ -127,4 +138,4 @@ Nunca reimplementes el rol a mano con clases sueltas de Tailwind.
 ## Do / Don't
 
 - ✅ Componentes chicos y reutilizables · ✅ tokens · ✅ contenido en `content/` · ✅ build/preview antes de mergear
-- ❌ Archivos de +200 líneas · ❌ un solo archivo gigante · ❌ lógica de pago en la web (es vitrina) · ❌ Framer Motion · ❌ secrets en el repo · ❌ formulario de contacto (el CTA único es WhatsApp)
+- ❌ Archivos de +200 líneas · ❌ íconos fuera de `components/ui/icons.tsx` · ❌ un solo archivo gigante · ❌ lógica de pago en la web (es vitrina) · ❌ Framer Motion · ❌ secrets en el repo · ❌ formulario de contacto (el CTA único es WhatsApp)

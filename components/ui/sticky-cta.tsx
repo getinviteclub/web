@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { WhatsappCta } from "@/components/ui/whatsapp-cta"
 import { CTA_INLINE_ID } from "@/lib/dom-ids"
+import type { EventParams } from "@/lib/analytics"
 
 /**
  * Barra de conversión fija al pie.
@@ -34,14 +35,14 @@ export function StickyCta({
   nombre,
   precio,
   message,
-  trackLabel,
+  trackParams,
 }: {
   /** Nombre del diseño que se está viendo. */
   nombre: string
   /** Ancla de precio, p. ej. "Desde USD 25". */
   precio: string
   message: string
-  trackLabel?: string
+  trackParams?: EventParams
 }) {
   const [visible, setVisible] = useState(false)
 
@@ -95,10 +96,10 @@ export function StickyCta({
 
         <WhatsappCta
           message={message}
-          trackLabel={trackLabel}
+          trackParams={trackParams}
           className="shrink-0"
         >
-          Escribinos
+          Me gusta
         </WhatsappCta>
       </div>
     </div>

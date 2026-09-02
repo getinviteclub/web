@@ -2,8 +2,10 @@
 
 import { useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
+import { ArrowUpRight, List, X, ICON_WEIGHT } from "@/components/ui/icons"
 import { NAV_LINKS } from "@/content/nav"
 import { WhatsappCta } from "@/components/ui/whatsapp-cta"
+import { MENSAJES } from "@/lib/whatsapp"
 import { Eyebrow } from "@/components/ui/eyebrow"
 
 /**
@@ -67,10 +69,7 @@ export function MenuMobile() {
         aria-controls="menu-mobile"
         className="-mr-2 flex size-11 items-center justify-center md:hidden"
       >
-        <span aria-hidden="true" className="flex w-6 flex-col gap-[7px]">
-          <span className="h-px w-full bg-ink" />
-          <span className="h-px w-full bg-ink" />
-        </span>
+        <List size={26} weight={ICON_WEIGHT} aria-hidden="true" />
       </button>
 
       {abierto &&
@@ -84,7 +83,7 @@ export function MenuMobile() {
           >
             <div className="flex items-center justify-between gap-4 border-b border-ink px-[var(--pad-x)] py-4">
               <a
-                href="#"
+                href="/"
                 onClick={cerrar}
                 className="font-display text-lg font-normal"
               >
@@ -98,16 +97,7 @@ export function MenuMobile() {
                 aria-label="Cerrar menú"
                 className="-mr-2 flex size-11 items-center justify-center"
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                  className="size-6"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                >
-                  <path d="M5 5l14 14M19 5L5 19" />
-                </svg>
+                <X size={26} weight={ICON_WEIGHT} aria-hidden="true" />
               </button>
             </div>
 
@@ -130,9 +120,11 @@ export function MenuMobile() {
                       {/* La flecha solo donde el link se va del sitio. Los
                         demás son anclas de esta misma página. */}
                       {link.external && (
-                        <span aria-hidden="true" className="text-base">
-                          ↗
-                        </span>
+                        <ArrowUpRight
+                          size={18}
+                          weight={ICON_WEIGHT}
+                          aria-hidden="true"
+                        />
                       )}
                     </a>
                   </li>
@@ -145,7 +137,7 @@ export function MenuMobile() {
               <div className="mt-auto flex items-center justify-between gap-4 pt-10">
                 <Eyebrow>Contacto</Eyebrow>
                 <WhatsappCta
-                  message="Hola, quiero info de Invite Club"
+                  message={MENSAJES.info}
                   variant="link"
                   // El texto mide 14px de alto: el padding agranda el
                   // área táctil y el margen negativo lo saca del layout,

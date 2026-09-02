@@ -5,16 +5,16 @@ export const FEATURES_CONTENT = {
   title: "Vos elegís.\nNosotros nos encargamos de todo.",
   items: [
     {
-      title: "Elegí un diseño",
-      text: "Encontrá el estilo que mejor represente su celebración.",
+      title: "Elegí su diseño",
+      text: "Encontrá el estilo que más los represente.",
     },
     {
-      title: "Compartinos la información",
-      text: "Fotos, nombres, fecha, ubicación y todo lo que quieran incluir.",
+      title: "Compartinos sus datos",
+      text: "Fotos, nombres, fecha y toda la información del evento.",
     },
     {
-      title: "Recibí tu invitación",
-      text: "Nosotros adaptamos el diseño elegido y dejamos todo listo para compartir.",
+      title: "Nosotros hacemos el resto",
+      text: "Personalizamos la invitación y la dejamos lista para compartir.",
     },
   ],
 } as const

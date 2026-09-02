@@ -66,7 +66,10 @@ export const PLANES: Plan[] = [
     id: "premium",
     name: "Premium",
     price: "USD 75",
-    tagline: "Para quienes quieren una pieza propia de punta a punta.",
+    // "Pieza propia de punta a punta" chocaba con Atelier ("una pieza
+    // única, diseñada desde cero"): sonaban al mismo servicio a distinto
+    // precio. Premium es el catálogo llevado al máximo, no diseño a medida.
+    tagline: "Para quienes quieren llevar la invitación más lejos.",
     features: [
       "Todo lo del plan Completa",
       "Sección “Nuestra historia”",
@@ -89,10 +92,30 @@ export const PLANES: Plan[] = [
   },
 ]
 
-/** Se muestra junto a la grilla: es la objeción que el pricing tiene que
- *  resolver antes de que el usuario elija. */
-export const DISENO_DESACOPLADO =
-  "Cualquier diseño del catálogo entra en cualquier plan. El plan define qué secciones tiene tu invitación, no cómo se ve."
+/**
+ * La distinción diseño / plan.
+ *
+ * Es la objeción que el pricing tiene que resolver ANTES de que el usuario
+ * compare precios, y por eso pasó de ser una nota gris al pie de la grilla
+ * a encabezar la sección: mientras no queda claro, el usuario lee los tres
+ * planes como "tres calidades de diseño" y asume que el que le gustó está
+ * en el más caro.
+ */
+export const DISENO_VS_PLAN = {
+  statement: "Elegís el diseño. El plan define qué incluye.",
+  diseno: {
+    title: "El diseño",
+    text: "Define la estética: tipografía, colores, composición y cómo se ven sus fotos.",
+  },
+  plan: {
+    title: "El plan",
+    text: "Define el alcance: qué secciones y funcionalidades tiene la invitación.",
+  },
+  nota: "Todos los diseños están disponibles en todos los planes. El diseño que elijas no cambia el precio.",
+} as const
+
+/** La misma idea en una línea, para el detalle de un diseño. */
+export const PRECIO_UNIFORME = "El diseño que elijas no cambia el precio."
 
 /** El precio más bajo, para el ancla del hero y del detalle de diseño. */
 export const PRECIO_DESDE = PLANES.find((p) => p.id === "esencial")!.price

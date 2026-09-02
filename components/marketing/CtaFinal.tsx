@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { CTA_FINAL_CONTENT } from "@/content/cta-final"
+import { Cta } from "@/components/ui/cta"
 import { WhatsappCta } from "@/components/ui/whatsapp-cta"
 import { Reveal } from "@/components/ui/reveal"
 
@@ -33,13 +34,22 @@ export function CtaFinal() {
           <p className="max-w-[44ch] text-base leading-relaxed text-white/85 md:text-lg">
             {CTA_FINAL_CONTENT.subtitle}
           </p>
-          <WhatsappCta
-            message={CTA_FINAL_CONTENT.ctaMessage}
-            tone="frost"
-            size="md"
-          >
-            {CTA_FINAL_CONTENT.ctaText}
-          </WhatsappCta>
+          {/* Dos salidas con pesos distintos: el pill vuelve al catálogo
+              —el paso que falta para casi todo el que llegó hasta acá— y
+              el link subrayado es para el que ya eligió. Un solo CTA a
+              WhatsApp acá mandaba al chat a gente sin diseño elegido. */}
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
+            <Cta href={CTA_FINAL_CONTENT.ctaHref} tone="frost" size="md">
+              {CTA_FINAL_CONTENT.ctaText}
+            </Cta>
+            <WhatsappCta
+              message={CTA_FINAL_CONTENT.secondaryMessage}
+              variant="link"
+              tone="frost"
+            >
+              {CTA_FINAL_CONTENT.secondaryText}
+            </WhatsappCta>
+          </div>
         </Reveal>
       </div>
     </section>

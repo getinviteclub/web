@@ -1,16 +1,22 @@
 "use client"
 
 import { useState } from "react"
-import { Star } from "lucide-react"
+import {
+  ArrowLeft,
+  ArrowRight,
+  Star,
+  ICON_WEIGHT,
+  ICON_WEIGHT_SOLID,
+} from "@/components/ui/icons"
 import { TESTIMONIOS } from "@/content/testimonios"
 import { Reveal } from "@/components/ui/reveal"
 import { Eyebrow } from "@/components/ui/eyebrow"
-import { ArrowGlyph } from "@/components/ui/arrow-glyph"
 
 /**
  * Carrusel editorial: un testimonio a la vez, centrado, sin card —
- * mismo criterio de banda gris que <ComoFunciona>. Las flechas usan el
- * mismo glifo caligráfico que <Integraciones>.
+ * mismo criterio de banda gris que <ComoFunciona>. Las flechas son las de
+ * Phosphor en peso `light`, igual que el resto del sistema (antes eran un
+ * glifo caligráfico dibujado a mano).
  */
 export function Testimonios() {
   const [i, setI] = useState(0)
@@ -32,7 +38,7 @@ export function Testimonios() {
         <Reveal from="up" className="mt-7 flex justify-center md:mt-8">
           <div className="flex justify-center gap-1" aria-hidden="true">
             {Array.from({ length: 5 }).map((_, idx) => (
-              <Star key={idx} className="size-3.5 fill-ink text-ink" />
+              <Star key={idx} size={14} weight={ICON_WEIGHT_SOLID} />
             ))}
           </div>
         </Reveal>
@@ -70,7 +76,7 @@ export function Testimonios() {
               aria-label="Testimonio anterior"
               className="p-1 text-ink transition-opacity hover:opacity-60"
             >
-              <ArrowGlyph flip className="size-6" />
+              <ArrowLeft size={22} weight={ICON_WEIGHT} />
             </button>
             {total > 1 && (
               <span className="text-xs uppercase tracking-label text-muted-foreground">
@@ -83,7 +89,7 @@ export function Testimonios() {
               aria-label="Testimonio siguiente"
               className="p-1 text-ink transition-opacity hover:opacity-60"
             >
-              <ArrowGlyph className="size-6" />
+              <ArrowRight size={22} weight={ICON_WEIGHT} />
             </button>
           </div>
         </Reveal>
