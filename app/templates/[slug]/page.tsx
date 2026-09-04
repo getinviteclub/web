@@ -2,26 +2,32 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { TEMPLATES } from "@/content/templates"
-import { PRECIO_DESDE } from "@/content/planes"
+import { PRECIO_DESDE } from "@/content/precio"
 import { Navbar } from "@/components/marketing/Navbar"
 import { Footer } from "@/components/marketing/Footer"
 import { ArrowLeft, ICON_WEIGHT } from "@/components/ui/icons"
-import { TemplatePreview } from "@/components/templates/TemplatePreview"
-import { TemplatePrecio } from "@/components/templates/TemplatePrecio"
+import { TemplateShowcase } from "@/components/templates/TemplateShowcase"
+import { TemplateCompra } from "@/components/templates/TemplateCompra"
 import { TemplateIncluye } from "@/components/templates/TemplateIncluye"
-import { WhatsappCta } from "@/components/ui/whatsapp-cta"
+import { TemplateExtras } from "@/components/templates/TemplateExtras"
 import { TrackView } from "@/components/ui/track-view"
-import { StickyCta } from "@/components/ui/sticky-cta"
-import { CTA_INLINE_ID } from "@/lib/dom-ids"
 import { FUNNEL_EVENTS } from "@/lib/analytics"
-import { mensajeDiseno } from "@/lib/whatsapp"
 
 /**
  * La pantalla más importante del MVP: acá se decide.
  *
- * El orden de la columna derecha es el orden en que se decide —qué es,
- * cuánto sale, qué trae, cómo sigo— y cada bloque vive en su propio
- * componente; esta página solo los ensambla.
+ * Arriba, la estructura de studiogail.co: la evidencia a la izquierda —la
+ * foto con el teléfono encima— y la decisión a la derecha, en el orden en
+ * que se toma: qué es → cómo se ve → cuánto sale → qué hago. El precio y
+ * los dos CTA entran en la primera pantalla.
+ *
+ * Abajo, a lo ancho, lo que esta página tiene que responder ahora que no
+ * hay planes: "me gusta esta invitación, ¿qué puedo hacer con ella?".
+ * <TemplateIncluye> lo contesta y <TemplateExtras> cierra con lo que se
+ * suma aparte y con Atelier. Van a ancho completo y no en una columna
+ * porque son composiciones con foto, no una lista.
+ *
+ * La página solo ensambla; cada bloque vive en su propio componente.
  */
 
 export function generateStaticParams() {
@@ -49,14 +55,17 @@ export default function TemplatePage({
   const template = TEMPLATES.find((t) => t.slug === params.slug)
   if (!template) notFound()
 
-  const mensaje = mensajeDiseno(template.name)
-
   return (
     <>
       <Navbar />
 
       {/* pt alto: el navbar es fixed y sin esto le come el breadcrumb. */}
       <main className="mx-auto max-w-max px-[var(--pad-x)] pb-16 pt-28 md:pb-20 md:pt-32">
+        <TrackView
+          event={FUNNEL_EVENTS.viewTemplate}
+          params={{ design: template.slug }}
+        />
+
         <Link
           href="/#disenos"
           className="label-copy inline-flex items-center gap-1.5 transition-opacity hover:opacity-70"
@@ -65,67 +74,26 @@ export default function TemplatePage({
           Volver a diseños
         </Link>
 
-        {/* Nombre y descripción van ARRIBA de la grilla y no dentro de la
-            columna derecha: en mobile la grilla se apila y el usuario se
-            encontraba con la foto y el botón "Ver la invitación completa"
-            antes de leer de qué diseño se trata. Así el orden es el mismo
-            en las dos anchuras: qué es → cómo se ve → cuánto sale → qué
-            trae → cómo sigo. */}
-        <header className="mt-6 max-w-[52ch]">
-          <TrackView
-            event={FUNNEL_EVENTS.viewTemplate}
-            params={{ design: template.slug }}
-          />
-          <h1
-            className="font-display font-normal leading-[1.05]"
-            style={{ fontSize: "clamp(32px, 5vw, 48px)" }}
-          >
-            {template.name}
-          </h1>
-          <p className="mt-4 text-lg desc-copy">{template.longDescription}</p>
-        </header>
+        {/* Dos columnas desde 640px y no desde 768: en una ventana a media
+            pantalla —o en un panel lateral— el md las apilaba y el detalle
+            perdía justo lo que lo hace leer como ficha de producto, que es
+            la evidencia al lado de la decisión. A 640 la columna queda en
+            280px y el teléfono se achica con ella, porque su ancho es un
+            porcentaje de la caja y no un valor fijo. */}
+        <div className="mt-6 grid gap-10 sm:grid-cols-2 sm:items-center sm:gap-8 md:mt-8 lg:gap-16">
+          <TemplateShowcase template={template} />
 
-        <div className="mt-10 grid gap-12 md:mt-14 md:grid-cols-2 md:items-start md:gap-16">
-          <TemplatePreview template={template} />
-
-          <div className="flex flex-col gap-8">
-            <TemplatePrecio />
-
-            <TemplateIncluye />
-
-            {/* El CTA no dice "Comprar" ni "Contratar" a propósito: abre un
-                WhatsApp, no un checkout. "Me gusta este diseño" describe
-                exactamente lo que el usuario está haciendo —elegir— y baja
-                el costo percibido de tocarlo. */}
-            <div className="border-t border-border pt-6">
-              <div id={CTA_INLINE_ID}>
-                <WhatsappCta
-                  message={mensaje}
-                  trackParams={{ design: template.slug }}
-                  size="md"
-                >
-                  Me gusta este diseño
-                </WhatsappCta>
-              </div>
-              <p className="note-copy mt-3 text-muted-foreground">
-                Te escribimos por WhatsApp con el diseño ya elegido. Te
-                respondemos en el día, sin compromiso.
-              </p>
-            </div>
-          </div>
+          <TemplateCompra template={template} />
         </div>
+
+        <div className="mt-16 md:mt-24">
+          <TemplateIncluye template={template} />
+        </div>
+
+        <TemplateExtras diseno={template.slug} />
       </main>
 
       <Footer />
-
-      {/* Acá está la máxima intención de todo el sitio y el CTA de arriba
-          ya quedó fuera de pantalla. */}
-      <StickyCta
-        nombre={template.name}
-        precio={`Desde ${PRECIO_DESDE}`}
-        message={mensaje}
-        trackParams={{ design: template.slug }}
-      />
     </>
   )
 }

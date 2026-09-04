@@ -38,14 +38,13 @@ export const FUNNEL_EVENTS = {
 export type FunnelEvent = (typeof FUNNEL_EVENTS)[keyof typeof FUNNEL_EVENTS]
 
 /**
- * Contexto del evento. Los dos que importan para el funnel son `design` y
- * `plan`: sin ellos un `whatsapp_cta_click` dice que alguien escribió, pero
- * no desde qué diseño ni con qué plan en la cabeza — que es justo lo que hay
- * que saber para decidir qué diseño producir primero.
+ * Contexto del evento. El que importa para el funnel es `design`: sin él
+ * un `whatsapp_cta_click` dice que alguien escribió, pero no desde qué
+ * diseño salió — que es justo lo que hay que saber para decidir qué diseño
+ * producir primero.
  */
 export type EventParams = {
   design?: string
-  plan?: string
   [key: string]: string | number | boolean | undefined
 }
 
