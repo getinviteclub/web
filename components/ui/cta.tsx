@@ -24,6 +24,8 @@ import { track, type EventParams, type FunnelEvent } from "@/lib/analytics"
  *   glass   → sobre la barra transparente del navbar
  *
  * `size` solo cambia el pill: el link no tiene caja que dimensionar.
+ * `lg` está reservado al CTA del hero (24px de padding lateral, 12 de
+ * alto); el resto del sitio usa `md`.
  */
 const ctaVariants = cva(
   [
@@ -45,7 +47,7 @@ const ctaVariants = cva(
         link: "underline underline-offset-4 transition-opacity hover:opacity-60",
       },
       tone: { outline: "", light: "", dark: "", frost: "", glass: "" },
-      size: { sm: "", md: "" },
+      size: { sm: "", md: "", lg: "" },
     },
     compoundVariants: [
       /* ── pill: color ── */
@@ -70,6 +72,11 @@ const ctaVariants = cva(
       /* ── pill: caja ── */
       { variant: "pill", size: "sm", class: "min-w-[104px] px-4 py-2" },
       { variant: "pill", size: "md", class: "min-w-[130px] px-5 py-2.5" },
+      // Solo para el CTA del hero: es el único de la página y compite con
+      // una foto a sangre completa, así que necesita más caja que el resto.
+      // Mismo valor en mobile —24/12 no aprieta a 375px— para que el
+      // botón no cambie de peso entre pantallas.
+      { variant: "pill", size: "lg", class: "min-w-[150px] px-6 py-3" },
       /* ── link: color ── */
       {
         variant: "link",
@@ -94,7 +101,7 @@ type CtaProps = VariantProps<typeof ctaVariants> & {
   external?: boolean
   /** Evento de funnel a registrar al hacer click. */
   trackAs?: FunnelEvent
-  /** Contexto del evento: `design`, `plan`, lo que haga falta. */
+  /** Contexto del evento: `design`, y lo que haga falta sumar. */
   trackParams?: EventParams
 }
 

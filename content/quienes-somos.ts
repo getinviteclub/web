@@ -29,7 +29,7 @@ export const QUIENES_SOMOS_CONTENT = {
     },
     {
       title: "Sin sorpresas",
-      text: "Precio cerrado desde el principio y revisiones incluidas en todos los planes.",
+      text: "Precio cerrado desde el principio, con las revisiones que hagan falta hasta que quede como se la imaginaron.",
     },
   ],
 } as const

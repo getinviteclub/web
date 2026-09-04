@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import { GALERIA_CONTENT } from "@/content/galeria"
 import { TEMPLATES } from "@/content/templates"
 import { WhatsappCta } from "@/components/ui/whatsapp-cta"
 import { Reveal } from "@/components/ui/reveal"
@@ -19,23 +20,15 @@ export function Galeria() {
       <Reveal from="left" className="mb-10 md:mb-14">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <div>
-            <Eyebrow>
-              Diseños
-            </Eyebrow>
+            <Eyebrow>{GALERIA_CONTENT.eyebrow}</Eyebrow>
             <h2
               className="mt-4 font-display font-normal"
               style={{ fontSize: "clamp(28px, 4vw, 44px)" }}
             >
-              Encontrá su estilo
+              {GALERIA_CONTENT.title}
             </h2>
-            {/* Sin precio acá (decisión de Facu): la galería es para
-                enamorarse de un diseño, no para comparar plata. El número
-                aparece un paso después, en el detalle, y en #planes.
-                Lo que sí queda es el concepto, porque es lo que evita que
-                el usuario asuma que el diseño que le gustó es el caro. */}
-            <p className="mt-3 max-w-[46ch] text-sm leading-relaxed desc-copy">
-              El diseño define cómo se ve la invitación. Qué incluye lo
-              define el plan.
+            <p className="mt-3 max-w-[46ch] whitespace-pre-line text-sm leading-relaxed desc-copy">
+              {GALERIA_CONTENT.subtitle}
             </p>
           </div>
         </div>
@@ -65,7 +58,7 @@ export function Galeria() {
                 {template.description}
               </p>
               <span className="label-copy mt-3 inline-block underline underline-offset-4">
-                Ver diseño
+                {GALERIA_CONTENT.cardCta}
               </span>
             </Link>
           </Reveal>
@@ -82,17 +75,17 @@ export function Galeria() {
             className="mx-auto max-w-[18ch] font-display font-normal leading-[1.15]"
             style={{ fontSize: "clamp(26px, 3.4vw, 38px)" }}
           >
-            ¿No sabés cuál elegir?
+            {GALERIA_CONTENT.rescate.title}
           </p>
           <p className="mx-auto mt-3 max-w-[44ch] text-sm leading-relaxed desc-copy">
-            Contanos cómo es tu boda y te recomendamos el diseño que mejor va.
+            {GALERIA_CONTENT.rescate.text}
           </p>
           <div className="mt-6">
             <WhatsappCta
               message={MENSAJES.recomendacion}
               variant="link"
             >
-              Que me recomienden
+              {GALERIA_CONTENT.rescate.ctaText}
             </WhatsappCta>
           </div>
         </div>
