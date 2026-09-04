@@ -6,10 +6,13 @@ import { Galeria } from "@/components/marketing/Galeria"
 // justo después del header. El componente queda intacto en
 // components/marketing/ para reutilizarlo más adelante o en otra sección.
 // import { Proceso } from "@/components/marketing/Proceso"
+// La lista completa de funcionalidades vive en el detalle de cada diseño.
+// Acá <Integraciones> quedó como un vistazo de seis nombres: en la home la
+// pregunta todavía es "¿esto me sirve?", no "¿qué trae exactamente?".
 import { Integraciones } from "@/components/marketing/Integraciones"
 import { Testimonios } from "@/components/marketing/Testimonios"
 import { QuienesSomos } from "@/components/marketing/QuienesSomos"
-import { Pricing } from "@/components/marketing/Pricing"
+import { Precio } from "@/components/marketing/Precio"
 import { Faqs } from "@/components/marketing/Faqs"
 import { CtaFinal } from "@/components/marketing/CtaFinal"
 import { Footer } from "@/components/marketing/Footer"
@@ -22,7 +25,11 @@ export default function Home() {
     <>
       <Navbar />
       <Hero />
-      {/* Beneficio → deseo → facilidad → prueba → marca → precio → objeciones → cierre */}
+      {/* Qué es → diseños → cómo funciona → qué puede incluir → confianza
+          → marca → precio → objeciones → cierre.
+
+          Ya no hay sección de planes: se vende UNA invitación, no tres
+          paquetes. <Precio> dice el número y manda al catálogo. */}
       {/* Galería al segundo viewport: la auditoría marca el salto
           hero → galería como el mayor contribuyente al bounce. Lo primero
           después del hero tiene que ser el activo real, los diseños. */}
@@ -32,7 +39,7 @@ export default function Home() {
       <Integraciones />
       <Testimonios />
       <QuienesSomos />
-      <Pricing />
+      <Precio />
       <Faqs />
       <CtaFinal />
       <Footer />

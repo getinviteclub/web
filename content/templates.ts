@@ -4,11 +4,14 @@ import { MOCKUPS } from "@/content/mockups"
 // sumar un diseño nuevo es un objeto más en TEMPLATES, sin tocar código.
 //
 // Lo que NO vive acá y es a propósito:
-//   · el precio → sale de PRECIO_DESDE (content/planes.ts). Es el mismo
+//   · el precio → sale de PRECIO_DESDE (content/precio.ts). Es el mismo
 //     para todos los diseños; ponerlo por diseño abriría la puerta a que
 //     dejen de serlo, que es justo lo contrario de lo que promete el sitio.
-//   · las funcionalidades → salen de INVITACION_INCLUYE
-//     (content/invitacion.ts). Las define el plan, no el diseño.
+//   · las funcionalidades → salen de INVITACION_CONTENT
+//     (content/invitacion.ts) y se muestran a lo ancho del detalle. Las
+//     y son parte del producto, no del diseño: la lista es la misma para
+//     los cuatro, y qué secciones lleva cada invitación se decide con la
+//     pareja.
 //   · el mensaje de WhatsApp → lo arma mensajeDiseno() (lib/whatsapp.ts).
 //
 // TODO: longDescription son placeholders razonables, no copy final —
@@ -30,11 +33,21 @@ export type Template = {
    *  esta es el screenshot de la invitación en sí. */
   image: string
   longDescription: string
+  /** Foto de estilo de vida que va DE FONDO en el showcase del detalle,
+   *  detrás del teléfono. Tiene que ser una fotografía, nunca una pieza
+   *  de diseño: si acá va una invitación, el resultado es una invitación
+   *  detrás de otra y los dos textos compiten. Si falta, se usa
+   *  FOTO_SHOWCASE_DEFAULT. */
+  showcaseImage?: string
   /** Slug en content/wedding/registry.ts — si existe, el detalle suma un
    *  CTA "Ver diseño en vivo" hacia /w/[liveDemoSlug]. Solo lo tienen los
    *  diseños ya portados (hoy: aura); el resto sigue siendo mockup. */
   liveDemoSlug?: string
 }
+
+/** El fondo del showcase cuando un diseño no trae el suyo. Es la misma
+ *  foto del hero: una fotografía real, sin texto encima. */
+export const FOTO_SHOWCASE_DEFAULT = "/images/wedding-hero.jpeg"
 
 export const TEMPLATES: Template[] = [
   {
@@ -73,6 +86,8 @@ export const TEMPLATES: Template[] = [
     // fecha y el lugar al pie. Subido a 90% para que entren.
     coverPosition: "50% 90%",
     image: MOCKUPS.clasica,
+    // Foto real de la sesión de Aura, la misma que abre /w/aura.
+    showcaseImage: "/images/wedding/aura/hero.jpg",
     longDescription:
       "Texturas suaves y una paleta neutra, con foco en la fotografía. Para quienes buscan algo etéreo y sereno.",
     // TODO (contenido, alta prioridad): `image` apunta a MOCKUPS.clasica,

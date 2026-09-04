@@ -29,7 +29,7 @@ type WhatsappCtaProps = VariantProps<typeof ctaVariants> & {
   message: string
   children: React.ReactNode
   className?: string
-  /** Contexto del click: desde qué diseño y/o plan sale. */
+  /** Contexto del click: desde qué diseño sale. */
   trackParams?: EventParams
 }
 

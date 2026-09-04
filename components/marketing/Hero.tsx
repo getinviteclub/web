@@ -42,7 +42,7 @@ export function Hero() {
           <Cta
             href={HERO_CONTENT.ctaHref}
             tone="frost"
-            size="md"
+            size="lg"
             trackAs={FUNNEL_EVENTS.heroCta}
           >
             {HERO_CONTENT.ctaText}

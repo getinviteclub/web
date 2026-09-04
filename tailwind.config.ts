@@ -6,6 +6,13 @@ const config: Config = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    // content/ también: no es solo copy. El collage de la galería de Aura
+    // guarda ahí el layout de cada foto como clases sueltas
+    // (`col-span-6 md:col-span-3 md:col-start-9`, `aspect-[3/4]`), y
+    // Tailwind solo genera lo que ve escrito en los archivos que escanea.
+    // Sin este glob esas clases no existían en el CSS y las fotos caían a
+    // una columna de doce: se veían en miniatura.
+    "./content/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
