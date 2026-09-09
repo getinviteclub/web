@@ -43,6 +43,45 @@
     color: var(--c-muted);
     letter-spacing: normal;
   }
+
+  /* Subrayado que se dibuja al pasar el mouse.
+     En reposo no hay línea: el afordance lo da la ficha entera, que ya es
+     clickeable, y una línea fija ahí competía con el nombre del diseño.
+     Reacciona al hover del contenedor `.group`, no al propio, para que se
+     dibuje al pasar por cualquier parte de la ficha.
+     1px real y no `text-decoration`, que redondea a 2px en pantallas @2x. */
+  .rule-hover {
+    position: relative;
+  }
+  .rule-hover::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+  }
+  .group:hover .rule-hover::after,
+  .rule-hover:hover::after,
+  a:focus-visible .rule-hover::after {
+    transform: scaleX(1);
+  }
+
+  /* Ajuste óptico para cuerpo grande (18px+).
+     El `:not(.font-display)` no es opcional: los titulares usan las mismas
+     clases de tamaño y la Instrument Serif no lleva tracking negativo
+     —está en el design system—. Además sube la especificidad a 0,2,0, así
+     le gana a `.desc-copy` sin depender del orden en que salgan. */
+  .text-lg:not(.font-display),
+  .text-xl:not(.font-display),
+  .text-2xl:not(.font-display),
+  .text-3xl:not(.font-display) {
+    letter-spacing: var(--ls-lg);
+  }
 }
 
 html {
@@ -108,9 +147,23 @@ body {
        la misma grotesca que la UI; vive aparte para poder cambiarla sola. */
     --font-label: var(--font-inter), "Helvetica Neue", Arial, sans-serif;
 
-    /* Tracking del sistema, tomado de la referencia */
-    --ls-body: 0.045em;
-    --ls-label: 0.1em;
+    /* Tracking del sistema.
+       --ls-body bajó de .045em a .012em (pedido de Facu): a .045 la Inter
+       leía separada en párrafos largos. Sigue por encima de 0 para no
+       perder del todo el aire que hace que la grotesca lea editorial y no
+       UI, pero el ajuste es global y toca todo el cuerpo del sitio.
+       --ls-label se mantiene alto: son mayúsculas de 12px, y ahí el
+       tracking no es estilo sino legibilidad. */
+    --ls-body: 0.012em;
+    --ls-label: 0.09em;
+    /* Cuerpos de 18px para arriba. El tracking es óptico: lo que a 14px da
+       aire, a 18 o 20 ya separa. Va en negativo leve y SOLO sobre la Inter
+       —ver la regla que lo aplica—, nunca sobre la serif de los titulares. */
+    --ls-lg: -0.011em;
+    /* Los CTA en mayúsculas van más apretados que los labels: son piezas
+       cortas y con caja propia, no necesitan el aire que un label suelto
+       sí necesita para leerse. */
+    --ls-cta: 0.05em;
 
     /* Espaciado fluido */
     --pad-x: clamp(20px, 3.91vw, 50px);

@@ -9,7 +9,7 @@
  * qué se vende. Si se toca el titular, la categoría tiene que seguir
  * estando en alguna de las dos.
  *
- * DECISIÓN TOMADA (Facu), sigue en pie: el ancla "72 h · desde USD 25"
+ * DECISIÓN TOMADA (Facu), sigue en pie: el ancla "72 h · desde $40.000"
  * queda FUERA del hero. Hablar de plazos y precio en la primera pantalla
  * contradice el posicionamiento premium. El precio se conoce igual y
  * temprano: está en cada ficha de la galería, en cada detalle de diseño y

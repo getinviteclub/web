@@ -24,13 +24,16 @@ import { track, type EventParams, type FunnelEvent } from "@/lib/analytics"
  *   glass   → sobre la barra transparente del navbar
  *
  * `size` solo cambia el pill: el link no tiene caja que dimensionar.
- * `lg` está reservado al CTA del hero (24px de padding lateral, 12 de
- * alto); el resto del sitio usa `md`.
+ * `lg` es el CTA de sección: hero, cierre de "Cómo funciona" y CTA final.
+ * Todos los "Ver los diseños" del sitio usan este tamaño y ninguno lleva
+ * clases de estilo sueltas encima — si hace falta otro tamaño, se agrega
+ * acá, no en el componente que lo usa.
  */
 const ctaVariants = cva(
   [
     "inline-flex items-center justify-center",
-    "font-ui text-xs font-medium uppercase leading-none tracking-label",
+    "font-ui text-xs font-medium uppercase leading-none",
+    "[letter-spacing:var(--ls-cta)]",
     "transition-colors duration-200 ease-[cubic-bezier(.86,0,.07,1)]",
     "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
   ],
@@ -44,7 +47,9 @@ const ctaVariants = cva(
           "before:ease-[cubic-bezier(.86,0,.07,1)]",
           "hover:before:scale-x-100 focus-visible:before:scale-x-100",
         ],
-        link: "underline underline-offset-4 transition-opacity hover:opacity-60",
+        // decoration-1: sin esto el subrayado redondea a 2px en pantallas
+        // @2x y el trazo queda más grueso que las reglas del sistema.
+        link: "underline decoration-1 underline-offset-4 transition-opacity hover:opacity-60",
       },
       tone: { outline: "", light: "", dark: "", frost: "", glass: "" },
       size: { sm: "", md: "", lg: "" },
@@ -76,7 +81,7 @@ const ctaVariants = cva(
       // una foto a sangre completa, así que necesita más caja que el resto.
       // Mismo valor en mobile —24/12 no aprieta a 375px— para que el
       // botón no cambie de peso entre pantallas.
-      { variant: "pill", size: "lg", class: "min-w-[150px] px-6 py-3" },
+      { variant: "pill", size: "lg", class: "min-w-[168px] px-7 py-3.5 text-[13px]" },
       /* ── link: color ── */
       {
         variant: "link",

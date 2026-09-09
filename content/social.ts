@@ -25,6 +25,5 @@ export const SOCIAL_LINKS = [
 export const FOOTER_MENU = [
   { label: "Diseños", href: "/#disenos" },
   { label: "Cómo funciona", href: "/#como-funciona" },
-  { label: "Precio", href: "/#precio" },
   { label: "Preguntas frecuentes", href: "/#faqs" },
 ] as const

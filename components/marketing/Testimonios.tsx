@@ -9,6 +9,7 @@ import {
   ICON_WEIGHT_SOLID,
 } from "@/components/ui/icons"
 import { TESTIMONIOS } from "@/content/testimonios"
+import { cn } from "@/lib/utils"
 import { Reveal } from "@/components/ui/reveal"
 import { Eyebrow } from "@/components/ui/eyebrow"
 
@@ -44,15 +45,34 @@ export function Testimonios() {
         </Reveal>
 
         <Reveal from="up" className="mx-auto mt-7 max-w-[62ch] md:mt-8">
-          <div aria-live="polite" className="text-center">
-            <blockquote
-              key={i}
-              className="fade-in font-display font-normal leading-snug"
-              style={{ fontSize: "clamp(22px, 3vw, 32px)" }}
-            >
-              &ldquo;{testimonio.quote}&rdquo;
-            </blockquote>
+          {/* Las tres citas se renderizan SIEMPRE, apiladas en la misma
+              celda de grilla; solo cambia cuál es visible. Así el alto del
+              bloque lo fija la cita más larga y no salta al pasar de una
+              de 3 renglones a una de 2 —que era lo que movía al autor, a
+              las flechas y a la sección de abajo—.
 
+              Se hace así y no con un min-height en em porque el número de
+              renglones cambia con el ancho: la misma cita ocupa 3 en
+              desktop y 4 en un teléfono. Cualquier testimonio nuevo entra
+              sin recalcular nada. */}
+          <div aria-live="polite" className="grid text-center">
+            {TESTIMONIOS.map((t, idx) => (
+              <blockquote
+                key={t.author}
+                aria-hidden={idx !== i}
+                className={cn(
+                  "[grid-area:1/1] font-display font-normal leading-snug",
+                  "transition-opacity duration-300",
+                  idx === i ? "opacity-100" : "invisible opacity-0"
+                )}
+                style={{ fontSize: "clamp(22px, 3vw, 32px)" }}
+              >
+                &ldquo;{t.quote}&rdquo;
+              </blockquote>
+            ))}
+          </div>
+
+          <div className="text-center">
             {/* Sin avatar: quitarlo ya achica el bloque solo (era un
                 size-11 + su gap), no queda hueco que compensar a mano. */}
             <figcaption className="mt-8 flex flex-col items-center">

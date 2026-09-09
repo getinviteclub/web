@@ -23,7 +23,7 @@ export function Hero() {
         <h1
           // Sin text-balance: el corte lo define el \n del content y
           // balance competía con él.
-          className="max-w-[22ch] whitespace-pre-line font-display font-normal leading-[1.06]"
+          className="max-w-[22ch] whitespace-pre-line font-display font-normal leading-[0.98]"
           // Recalibrado para el copy actual: la línea más larga es "una
           // gran celebración" (20ch). Con el 8.9vw anterior —pensado para
           // un título más largo— en un teléfono de 375px ocupaba 236px de
