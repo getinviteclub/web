@@ -76,8 +76,9 @@ La jerarquía la da el gris, **no** un negro aguado.
 - **Instrument Serif** (`--font-display`) — headlines. Un solo peso (400) + itálica
   para énfasis: la jerarquía la da el tamaño, no el grosor. Sin tracking negativo.
 - **Inter** (`--font-ui`, `--font-label`) — cuerpo, UI y labels. Única sans del sistema.
-- Tracking: `--ls-body: .045em` en el body (parte de la identidad, hace que la
-  grotesca lea editorial y no UI) · `--ls-label: .1em` en labels · titulares en `normal`.
+- Tracking: `--ls-body: .012em` en el body · `--ls-label: .09em` en labels ·
+  titulares en `normal`. El body arrancó en `.045em` y se bajó a pedido de Facu:
+  a ese valor la Inter leía separada en párrafos largos.
 - Tamaños de headline con `clamp()` inline; el rol "label" vive en `.label-copy`.
 
 **Layout y forma**

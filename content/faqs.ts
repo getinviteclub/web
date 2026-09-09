@@ -52,8 +52,8 @@ export const FAQS_CONTENT = [
       "Por Mercado Pago, en un solo pago y antes de que empecemos a armarla. Te pasamos el link por WhatsApp una vez que elegimos el diseño.",
   },
   {
-    question: "¿Los precios están en dólares?",
+    question: "¿El precio es final?",
     answer:
-      "Sí, para que el precio no se desactualice. Al momento de contratar te pasamos el equivalente en pesos y podés pagar en moneda local.",
+      "Sí. El precio que ves es en pesos, es un pago único y no tiene suscripción ni costos ocultos. Lo único aparte son los extras opcionales, que están listados con su precio en cada diseño.",
   },
 ] as const

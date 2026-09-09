@@ -2,12 +2,10 @@ import Image from "next/image"
 import Link from "next/link"
 import { GALERIA_CONTENT } from "@/content/galeria"
 import { TEMPLATES } from "@/content/templates"
-import { WhatsappCta } from "@/components/ui/whatsapp-cta"
 import { Reveal } from "@/components/ui/reveal"
 import { Eyebrow } from "@/components/ui/eyebrow"
 import { TrackView } from "@/components/ui/track-view"
 import { FUNNEL_EVENTS } from "@/lib/analytics"
-import { MENSAJES } from "@/lib/whatsapp"
 
 export function Galeria() {
   return (
@@ -27,9 +25,6 @@ export function Galeria() {
             >
               {GALERIA_CONTENT.title}
             </h2>
-            <p className="mt-3 max-w-[46ch] whitespace-pre-line text-sm leading-relaxed desc-copy">
-              {GALERIA_CONTENT.subtitle}
-            </p>
           </div>
         </div>
       </Reveal>
@@ -54,10 +49,17 @@ export function Galeria() {
               <h3 className="mt-4 font-display text-xl font-normal">
                 {template.name}
               </h3>
-              <p className="mt-1 text-sm leading-relaxed desc-copy">
+              {/* 12px: la descripción es un pie de foto, no un párrafo.
+                  A 14 competía con el nombre del diseño, que es lo único
+                  que tiene que leerse de un golpe en la grilla. */}
+              <p className="mt-1 text-xs leading-relaxed desc-copy">
                 {template.description}
               </p>
-              <span className="label-copy mt-3 inline-block underline underline-offset-4">
+              {/* Sin línea en reposo: la ficha entera ya es clickeable y
+                  una línea fija competía con el nombre. Se dibuja al pasar
+                  el mouse por cualquier parte de la ficha (ver
+                  .rule-hover en globals.css). */}
+              <span className="rule-hover label-copy mt-3 inline-block [letter-spacing:var(--ls-cta)]">
                 {GALERIA_CONTENT.cardCta}
               </span>
             </Link>
@@ -65,31 +67,6 @@ export function Galeria() {
         ))}
       </div>
 
-      {/* Rescate para quien no se decide. Es lo único sin caja y
-          centrado de toda la página: destaca por romper la estructura
-          de grilla, no por color, así no suma un cuarto bloque oscuro
-          a una sección de Integraciones. Las dos líneas lo enmarcan. */}
-      <Reveal from="up">
-        <div className="mt-16 border-y border-rule py-14 text-center">
-          <p
-            className="mx-auto max-w-[18ch] font-display font-normal leading-[1.15]"
-            style={{ fontSize: "clamp(26px, 3.4vw, 38px)" }}
-          >
-            {GALERIA_CONTENT.rescate.title}
-          </p>
-          <p className="mx-auto mt-3 max-w-[44ch] text-sm leading-relaxed desc-copy">
-            {GALERIA_CONTENT.rescate.text}
-          </p>
-          <div className="mt-6">
-            <WhatsappCta
-              message={MENSAJES.recomendacion}
-              variant="link"
-            >
-              {GALERIA_CONTENT.rescate.ctaText}
-            </WhatsappCta>
-          </div>
-        </div>
-      </Reveal>
     </section>
   )
 }

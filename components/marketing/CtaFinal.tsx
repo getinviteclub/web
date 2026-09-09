@@ -39,7 +39,7 @@ export function CtaFinal() {
               el link subrayado es para el que ya eligió. Un solo CTA a
               WhatsApp acá mandaba al chat a gente sin diseño elegido. */}
           <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
-            <Cta href={CTA_FINAL_CONTENT.ctaHref} tone="frost" size="md">
+            <Cta href={CTA_FINAL_CONTENT.ctaHref} tone="frost" size="lg">
               {CTA_FINAL_CONTENT.ctaText}
             </Cta>
             <WhatsappCta
