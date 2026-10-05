@@ -39,8 +39,8 @@ app/
   api/framer/              # endpoints de forms de Framer (rsvp, guestbook)
 components/
   ui/                      # design system compartido (shadcn + tokens)
-  marketing/               # Hero, Galeria, ComoFunciona, Testimonios, Pricing, Faqs, Navbar, Footer
-  templates/               # piezas del detalle de un diseño (preview, precio, qué incluye)
+  marketing/               # Hero, Manifiesto, Coleccion, Realizadas, LaInvitacion, Secciones, ComoTrabajamos, Testimonios, Estudio, Faqs, CtaFinal, Navbar, Footer
+  templates/               # piezas del detalle de un diseño (galería, compra, ideal para, demo, extras)
   wedding/                 # FASE 2: piezas reutilizables de templates (RSVP, Guestbook, Galeria…)
 lib/
   supabase/                # clients (server/browser) + queries
@@ -71,15 +71,18 @@ styles/ (o app/globals.css)# tokens: colores, fuentes
 
 La jerarquía la da el gris, **no** un negro aguado.
 
-**Tipografía** — dos familias, cargadas con `next/font/google` (no self-hosted):
+**Tipografía** — las dos familias del logo ("INVITE" grotesca pesada +
+"CLUB" serif itálica), cargadas con `next/font/google`:
 
 - **Instrument Serif** (`--font-display`) — headlines. Un solo peso (400) + itálica
-  para énfasis: la jerarquía la da el tamaño, no el grosor. Sin tracking negativo.
-- **Inter** (`--font-ui`, `--font-label`) — cuerpo, UI y labels. Única sans del sistema.
-- Tracking: `--ls-body: .012em` en el body · `--ls-label: .09em` en labels ·
-  titulares en `normal`. El body arrancó en `.045em` y se bajó a pedido de Facu:
-  a ese valor la Inter leía separada en párrafos largos.
-- Tamaños de headline con `clamp()` inline; el rol "label" vive en `.label-copy`.
+  para énfasis. Pone el tono editorial. Tamaños en `<Heading size="hero|xl|lg|md">`
+  (`components/ui/heading.tsx`); nada de `style={{ fontSize: clamp(...) }}` sueltos.
+- **Inter** (`--font-ui`, `--font-label`) — cuerpo y UI; en mayúsculas con peso
+  600 y `--ls-label: .12em` es el rol "label" (`.label-copy`), el gesto del
+  "INVITE" del logo. `.label-copy` NO fija color: lo hereda.
+- Sin caligrafías ni notas "a mano" (decisión de Facu).
+- El logo es una imagen (`public/images/logo.png`, `<Logo>` / `<Wordmark>` en
+  `components/ui/wordmark.tsx`). No se recompone con texto.
 
 **Layout y forma**
 
@@ -93,12 +96,25 @@ es de trazo fino y `regular` engorda al lado de la tipografía. `fill` solo
 para figuras sólidas (estrellas), `bold` solo para íconos ≤12px sobre fondo
 sólido. Prohibido: glifos tipográficos sueltos ("✓", "↗", "←", "+") — los
 resuelve la fuente del sistema y cambian de forma según el dispositivo.
-`components/wedding/aura/*` es la excepción: sigue con lucide, tiene su
-propio lenguaje visual.
+`components/wedding/*` es la excepción: cada invitación tiene su propio
+lenguaje visual (fuentes, colores y CSS en su "shell", ver
+`components/wedding/<diseño>/*Shell.tsx`). Aura sigue con lucide.
+Todas las invitaciones usan el MISMO contenido (`content/wedding/types.ts`):
+a cada pareja se le pide siempre lo mismo, elija el diseño que elija.
+
+**Fotografía** — toda foto pasa por `<FilmPhoto>` (`components/ui/film-photo.tsx`):
+SIEMPRE a color, con un punto menos de saturación y grano muy leve. Nada de
+blanco y negro. Las URLs viven en `content/fotos.ts` (hoy placeholders de Unsplash).
+
+**Ilustraciones** — dibujos de trazo fino propios en `components/ui/illustrations/`
+(sobre, copas, anillos, velas, mapa…). SVG con `currentColor` y trazo de 1px
+real. El content las pide por clave (`ilustracion: "sobre"`). No son íconos:
+los íconos de UI siguen siendo Phosphor.
 
 **Movimiento**
 
 - **Mobile-first.** Solo CSS transitions, **sin Framer Motion**.
+- Cintas corridas con `<Marquee>` (solo CSS, quieta con `prefers-reduced-motion`).
 - La entrada de secciones es `<Reveal>` (`components/ui/reveal.tsx`): fade +
   desplazamiento con IntersectionObserver, una vez por elemento. Respeta
   `prefers-reduced-motion`.

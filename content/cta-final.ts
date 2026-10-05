@@ -1,21 +1,16 @@
+import { FOTOS } from "@/content/fotos"
+
 /**
- * Cierre de la landing.
+ * El cierre de la home: una foto a sangre y una pregunta.
  *
- * El CTA primario vuelve al catálogo y NO a WhatsApp: quien llegó hasta acá
- * sin elegir un diseño todavía no tiene qué decir en el chat, y un mensaje
- * sin diseño elegido arranca la conversación desde cero. El link a WhatsApp
- * queda igual, en segundo plano, para el que ya se decidió o tiene una duda.
+ * El CTA principal vuelve a la colección y no a WhatsApp: quien llegó
+ * hasta acá sin elegir diseño todavía no tiene qué decir en el chat.
  */
 export const CTA_FINAL_CONTENT = {
-  title: "¿Ya encontraron su diseño?",
-  subtitle:
-    "Elegí el que más los represente y escribinos. Te respondemos el mismo día, sin compromiso.",
-  ctaText: "Ver los diseños",
-  ctaHref: "/#disenos",
-  /** Salida secundaria, para el que ya sabe qué quiere. */
-  secondaryText: "Escribinos por WhatsApp",
-  secondaryMessage: "Hola, quiero empezar mi invitación de casamiento.",
-  // Foto propia a sangre completa. Original: 1332×732.
-  imageSrc: "/images/cta-final.webp",
-  imageAlt: "",
+  title: ["¿Empezamos", "con la suya?"] as const,
+  ctaText: "Ver la colección",
+  ctaHref: "/#coleccion",
+  secondaryText: "Escribirnos por WhatsApp",
+  secondaryMessage: "Hola, queremos empezar nuestra invitación de casamiento.",
+  foto: FOTOS.pasillo,
 } as const

@@ -7,6 +7,9 @@
  * resolvía la fuente del sistema, así que el mismo tilde se veía distinto
  * en cada dispositivo y nunca alineaba con el texto.
  *
+ * Los dibujos de trazo fino (copas, sobre, anillos…) NO son íconos: son
+ * ilustraciones y viven en components/ui/illustrations/.
+ *
  * EXCEPCIÓN: components/wedding/aura/* sigue con lucide a propósito. Es la
  * invitación en vivo, tiene su propio lenguaje visual y no se toca desde
  * el sistema de marketing.
@@ -24,7 +27,10 @@ export {
   ArrowLeft,
   ArrowRight,
   ArrowUpRight,
+  Asterisk,
+  CaretDown,
   Check,
+  InstagramLogo,
   LinkSimple,
   List,
   Plus,

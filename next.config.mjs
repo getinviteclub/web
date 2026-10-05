@@ -8,6 +8,14 @@ const nextConfig = {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
+      // ⚠️ SOLO PARA MAQUETAR: fotos de Pinterest en la demo de Nocturna
+      // (content/wedding/nocturna/). Tienen derechos de sus autores: se
+      // reemplazan por fotos propias antes de publicar, y entonces se
+      // borra esta entrada.
+      {
+        protocol: "https",
+        hostname: "i.pinimg.com",
+      },
     ],
   },
 };

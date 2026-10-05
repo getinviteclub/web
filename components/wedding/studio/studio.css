@@ -1,0 +1,123 @@
+/**
+ * Sistema visual de la invitación "Studio": papelería dibujada a mano.
+ * Papel cálido, UNA tinta roja de marcador y estampillas.
+ *
+ * Aislado del sitio de marketing (no toca app/globals.css): los tokens
+ * viven en #studio-page y solo existen dentro de esta invitación.
+ */
+#studio-page {
+  --st-paper: #f4f0e6;
+  --st-card: #fbf8f1;
+  --st-ink: #c2321f;
+  --st-text: #2a2622;
+  --st-muted: #7a7268;
+  --st-rule: rgba(42, 38, 34, 0.14);
+
+  background-color: var(--st-paper);
+  color: var(--st-text);
+  font-family: var(--font-studio-serif), Georgia, serif;
+}
+
+/* Textura de papel: grano fijo encima de toda la página, muy leve. */
+#studio-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.2  0 0 0 0 0.16  0 0 0 0 0.1  0 0 0 .5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+}
+
+#studio-page ::selection {
+  background: var(--st-ink);
+  color: var(--st-card);
+}
+
+/* ── Familias ── */
+.st-hand {
+  font-family: var(--font-studio-hand), cursive;
+  line-height: 0.95;
+}
+.st-script {
+  font-family: var(--font-studio-script), cursive;
+  line-height: 1.4;
+}
+.st-mono {
+  font-family: var(--font-studio-mono), "Courier New", monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.st-ink {
+  color: var(--st-ink);
+}
+.st-muted {
+  color: var(--st-muted);
+}
+
+/* ── Estampilla ──
+   Borde dentado de verdad: una capa de agujeros en grilla (radial) unida
+   a un rectángulo interior opaco. Lo que queda calado son los agujeros
+   del borde. El tamaño de los dientes lo dan --hole y --gap.
+   La sombra va en el padre (.st-stamp-shadow): una máscara la recortaría. */
+.st-stamp {
+  --hole: 5px;
+  --gap: 14px;
+  background: var(--st-card);
+  padding: calc(var(--hole) * 2.6);
+  -webkit-mask:
+    radial-gradient(circle var(--hole), #0000 96%, #000) calc(var(--gap) / -2) calc(var(--gap) / -2) / var(--gap) var(--gap) round,
+    linear-gradient(#000 0 0) 50% / calc(100% - var(--hole) * 2) calc(100% - var(--hole) * 2) no-repeat;
+  mask:
+    radial-gradient(circle var(--hole), #0000 96%, #000) calc(var(--gap) / -2) calc(var(--gap) / -2) / var(--gap) var(--gap) round,
+    linear-gradient(#000 0 0) 50% / calc(100% - var(--hole) * 2) calc(100% - var(--hole) * 2) no-repeat;
+}
+.st-stamp-shadow {
+  filter: drop-shadow(0 10px 18px rgba(42, 38, 34, 0.18));
+}
+
+/* Botón de la invitación: contorno de tinta, se llena al pasar. */
+.st-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border: 1.5px solid var(--st-ink);
+  border-radius: 999px;
+  padding: 0.85rem 1.75rem;
+  color: var(--st-ink);
+  font-family: var(--font-studio-mono), monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+.st-btn:hover,
+.st-btn[data-activo="true"] {
+  background: var(--st-ink);
+  color: var(--st-card);
+}
+.st-btn:disabled {
+  opacity: 0.5;
+}
+
+/* Campos del RSVP: solo la línea de abajo, como una tarjeta para completar a mano. */
+.st-field {
+  width: 100%;
+  border: 0;
+  border-bottom: 1.5px solid var(--st-rule);
+  background: transparent;
+  padding: 0.6rem 0;
+  font-family: var(--font-studio-hand), cursive;
+  font-size: 26px;
+  color: var(--st-text);
+  outline: none;
+}
+.st-field:focus {
+  border-bottom-color: var(--st-ink);
+}
+.st-field::placeholder {
+  color: var(--st-muted);
+  opacity: 0.6;
+}

@@ -1,97 +1,48 @@
-import { EXTRAS, ATELIER } from "@/content/precio"
-import { Reveal } from "@/components/ui/reveal"
+import { EXTRAS, EXTRAS_CONTENT as E } from "@/content/extras"
 import { Eyebrow } from "@/components/ui/eyebrow"
+import { Heading } from "@/components/ui/heading"
+import { Reveal } from "@/components/ui/reveal"
+import { Dibujo } from "@/components/ui/illustrations"
 import { WhatsappCta } from "@/components/ui/whatsapp-cta"
-import { mensajeExtras, mensajeAtelier } from "@/lib/whatsapp"
+import { mensajeExtras } from "@/lib/whatsapp"
 
 /**
- * "También podés sumar" + Atelier: el cierre del detalle.
+ * "Si quieren sumar algo más": lo que acompaña a la invitación. Visible y
+ * con el mismo lenguaje de las secciones —dibujo, nombre, una línea—, sin
+ * precios (se cotizan por WhatsApp).
  *
- * Los extras son lo ÚNICO del sitio que tiene un costo aparte, y por eso
- * van acá abajo y no al lado de las funcionalidades: si comparten fila con
- * lo que ya viene incluido, el usuario vuelve a leer la página como una
- * tabla de precios y a preguntarse qué le falta a la invitación base.
- *
- * Cuatro columnas sin caja ni borde alrededor, solo la regla de arriba:
- * es una nota al pie de lujo, no una segunda grilla de planes.
- *
- * Atelier cierra la página porque es la salida para quien llegó hasta acá
- * y ninguno de los cuatro diseños lo convenció. No es un tier más caro: es
- * otro servicio, y el bloque oscuro lo separa visualmente del resto.
+ * Va sobre bone para separarlo de "Todo esto viene en su invitación": lo
+ * de arriba viene incluido; esto se suma aparte.
  */
 export function TemplateExtras({ diseno }: { diseno: string }) {
   return (
-    <>
-      <section className="mt-16 border-t border-rule pt-12 md:mt-24">
-        <Reveal from="left" className="max-w-[46ch]">
-          <Eyebrow>Extras</Eyebrow>
-          <h2
-            className="mt-4 font-display font-normal leading-[1.1]"
-            style={{ fontSize: "clamp(24px, 3vw, 34px)" }}
-          >
-            ¿Quieren llevarla un poco más allá?
-          </h2>
-          <p className="mt-3 desc-copy">
-            Detalles que se suman aparte, si les hacen sentido.
-          </p>
+    <section className="bg-bone">
+      <div className="mx-auto max-w-max px-[var(--pad-x)] py-20 md:py-28">
+        <Reveal from="up" className="text-center">
+          <Eyebrow>{E.eyebrow}</Eyebrow>
+          <Heading size="lg" className="mt-5">
+            {E.title}
+          </Heading>
         </Reveal>
 
-        <Reveal from="up" className="mt-10">
-          <ul className="grid grid-cols-1 gap-x-10 gap-y-0 border-t border-rule sm:grid-cols-2 lg:grid-cols-4">
+        <Reveal from="up">
+          <ul className="mx-auto mt-12 grid max-w-[1040px] gap-px border border-rule bg-rule sm:grid-cols-3 md:mt-16">
             {EXTRAS.map((extra) => (
-              <li key={extra.id} className="border-b border-rule py-5">
-                <div className="flex items-baseline justify-between gap-3">
-                  <h3 className="font-display text-lg font-normal">
-                    {extra.name}
-                  </h3>
-                  <span className="label-copy shrink-0 text-muted-foreground">
-                    {extra.price}
-                  </span>
-                </div>
-                <p className="mt-2 text-sm leading-relaxed desc-copy">
-                  {extra.text}
-                </p>
+              <li key={extra.id} className="flex flex-col items-center bg-paper px-6 py-10 text-center">
+                <Dibujo nombre={extra.ilustracion} className="w-16 text-ink md:w-20" />
+                <h3 className="mt-6 font-display text-2xl leading-tight">{extra.name}</h3>
+                <p className="mt-2 max-w-[28ch] text-sm leading-snug desc-copy">{extra.text}</p>
               </li>
             ))}
           </ul>
 
-          <div className="mt-6">
-            <WhatsappCta
-              message={mensajeExtras(diseno)}
-              trackParams={{ design: diseno }}
-              variant="link"
-            >
-              Consultar por un extra
+          <div className="mt-10 flex justify-center">
+            <WhatsappCta message={mensajeExtras(diseno)} trackParams={{ design: diseno }}>
+              {E.ctaText}
             </WhatsappCta>
           </div>
         </Reveal>
-      </section>
-
-      <section className="mt-20 bg-ink px-[var(--pad-x)] py-16 text-inverse md:mt-28 md:py-20">
-        <Reveal from="up" className="mx-auto max-w-[60ch]">
-          <Eyebrow onDark>{ATELIER.name}</Eyebrow>
-          <p
-            className="mt-5 font-display font-normal leading-[1.1]"
-            style={{ fontSize: "clamp(26px, 3.6vw, 40px)" }}
-          >
-            {ATELIER.claim}
-          </p>
-          <p className="mt-5 leading-relaxed text-white/70">{ATELIER.text}</p>
-          <p className="mt-6 font-display text-2xl font-normal">
-            Desde {ATELIER.precioDesde}
-          </p>
-          <div className="mt-7">
-            <WhatsappCta
-              message={mensajeAtelier()}
-              trackParams={{ design: "atelier" }}
-              tone="frost"
-              size="md"
-            >
-              {ATELIER.ctaText}
-            </WhatsappCta>
-          </div>
-        </Reveal>
-      </section>
-    </>
+      </div>
+    </section>
   )
 }

@@ -1,15 +1,24 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { NAV_LINKS } from "@/content/nav"
-import { WhatsappCta } from "@/components/ui/whatsapp-cta"
+import { NAV_LINKS, NAV_CTA } from "@/content/nav"
+import { Cta } from "@/components/ui/cta"
+import { Wordmark } from "@/components/ui/wordmark"
 import { MenuMobile } from "@/components/marketing/MenuMobile"
-import { MENSAJES } from "@/lib/whatsapp"
+import { Anuncio } from "@/components/marketing/Anuncio"
 import { cn } from "@/lib/utils"
 
 /** Píxeles a recorrer antes de empezar a esconder la barra. */
 const UMBRAL = 120
 
+/**
+ * La barra, en tres tercios como una cabecera de revista: los links a la
+ * izquierda, el logotipo al centro y el CTA a la derecha. En mobile queda
+ * logotipo + menú.
+ *
+ * La franja de aviso va adentro del mismo <nav> fixed para que se esconda
+ * y reaparezca con la barra, sin dejar un hueco.
+ */
 export function Navbar() {
   const [oculto, setOculto] = useState(false)
   const ultimaY = useRef(0)
@@ -41,27 +50,20 @@ export function Navbar() {
   return (
     <nav
       className={cn(
-        // Barra sólida sobre el fondo del sistema. Antes era vidrio con
-        // tipografía blanca y sobre las secciones claras no se leía.
         "fixed inset-x-0 top-0 z-40 border-b border-rule bg-background text-ink",
         "transition-transform duration-300 ease-out",
         oculto ? "-translate-y-full" : "translate-y-0"
       )}
     >
-      <div className="mx-auto flex max-w-max items-center justify-between gap-4 px-[var(--pad-x)] py-4">
-        <a href="/" className="font-display text-lg font-normal">
-          Invite<span className="font-display-italic"> Club</span>
-        </a>
+      <Anuncio />
 
-        <ul className="hidden gap-8 md:flex">
+      <div className="mx-auto grid max-w-max grid-cols-[1fr_auto] items-center gap-4 px-[var(--pad-x)] py-3 md:grid-cols-[1fr_auto_1fr]">
+        <ul className="hidden items-center gap-7 md:flex">
           {NAV_LINKS.map((link) => (
             <li key={link.label}>
               <a
                 href={link.href}
-                className="label-copy transition-opacity hover:opacity-70"
-                {...(link.external
-                  ? { target: "_blank", rel: "noopener noreferrer" }
-                  : {})}
+                className="label-copy transition-opacity hover:opacity-60"
               >
                 {link.label}
               </a>
@@ -69,19 +71,14 @@ export function Navbar() {
           ))}
         </ul>
 
-        {/* Subrayado, igual que el "Ver diseño" de las fichas: dentro de
-            la barra un pill compite con el logo y los links. En mobile
-            el CTA se va adentro del menú. */}
-        <div className="hidden md:block">
-          <WhatsappCta
-            message={MENSAJES.info}
-            variant="link"
-          >
-            Escribinos
-          </WhatsappCta>
-        </div>
+        <Wordmark className="md:justify-self-center" />
 
-        <MenuMobile />
+        <div className="flex items-center justify-end gap-4">
+          <Cta href={NAV_CTA.href} size="sm" className="hidden md:inline-flex">
+            {NAV_CTA.label}
+          </Cta>
+          <MenuMobile />
+        </div>
       </div>
     </nav>
   )

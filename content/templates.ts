@@ -1,100 +1,178 @@
-import { MOCKUPS } from "@/content/mockups"
+import { FOTOS } from "@/content/fotos"
 
-// Un diseño del catálogo. Todo lo que el detalle necesita saber vive acá:
-// sumar un diseño nuevo es un objeto más en TEMPLATES, sin tocar código.
-//
-// Lo que NO vive acá y es a propósito:
-//   · el precio → sale de PRECIO_DESDE (content/precio.ts). Es el mismo
-//     para todos los diseños; ponerlo por diseño abriría la puerta a que
-//     dejen de serlo, que es justo lo contrario de lo que promete el sitio.
-//   · las funcionalidades → salen de INVITACION_CONTENT
-//     (content/invitacion.ts) y se muestran a lo ancho del detalle. Las
-//     y son parte del producto, no del diseño: la lista es la misma para
-//     los cuatro, y qué secciones lleva cada invitación se decide con la
-//     pareja.
-//   · el mensaje de WhatsApp → lo arma mensajeDiseno() (lib/whatsapp.ts).
-//
-// TODO: longDescription son placeholders razonables, no copy final —
-// falta que Facu los revise.
+/**
+ * La colección. Cada diseño es un mundo visual completo —estética,
+ * tipografía, paleta— que después se completa con los datos de cada
+ * pareja. Sumar un diseño nuevo es un objeto más en TEMPLATES.
+ *
+ * DECISIÓN (Facu): el diseño llega TAL CUAL. Paleta y tipografía no se
+ * cambian; lo único que se carga es el contenido de cada pareja. Por eso
+ * `paleta` y `tipografia` se muestran como ficha del diseño, no como
+ * opciones a elegir.
+ *
+ * Lo que NO vive acá, a propósito:
+ *   · lo que incluye → content/paquete.ts y content/invitacion.ts.
+ *   · el mensaje de WhatsApp → mensajeDiseno() (lib/whatsapp.ts).
+ *
+ * `paleta` lleva hex sueltos y está bien: son DATOS del diseño que se
+ * muestran como muestras de color, no estilos del sitio.
+ *
+ * TODO (Facu): longDescription e idealPara son copy propuesto, revisarlo.
+ */
+export type ImagenDiseno = {
+  src: string
+  alt: string
+  /** true = pieza de diseño (se muestra a color y entera). */
+  pieza?: boolean
+}
+
 export type Template = {
   slug: string
   name: string
-  /** Bajada corta, la que se ve en la card de la galería. */
+  /** Número de la colección: "01". */
+  numero: string
+  /** Tres palabras que definen el diseño, como en un catálogo. */
+  keywords: readonly [string, string, string]
+  /** Bajada corta, la de la ficha en la colección. */
   description: string
-  /** Foto de portada de la card (retrato 4:5, ver <Galeria>). */
-  coverImage: string
-  /** object-position del recorte 4:5. Por defecto centrado; solo hace
-   *  falta cuando el contenido importante de la foto no está centrado
-   *  verticalmente (ver "aura", que sube el foco para no cortar la
-   *  fecha y el lugar al pie de la pieza). */
-  coverPosition?: string
-  /** Captura de la pantalla real, la que se ve en el detalle del template
-   *  dentro de <PhoneMockup>. Distinta de coverImage: esa es una foto,
-   *  esta es el screenshot de la invitación en sí. */
-  image: string
   longDescription: string
-  /** Foto de estilo de vida que va DE FONDO en el showcase del detalle,
-   *  detrás del teléfono. Tiene que ser una fotografía, nunca una pieza
-   *  de diseño: si acá va una invitación, el resultado es una invitación
-   *  detrás de otra y los dos textos compiten. Si falta, se usa
-   *  FOTO_SHOWCASE_DEFAULT. */
-  showcaseImage?: string
-  /** Slug en content/wedding/registry.ts — si existe, el detalle suma un
-   *  CTA "Ver diseño en vivo" hacia /w/[liveDemoSlug]. Solo lo tienen los
-   *  diseños ya portados (hoy: aura); el resto sigue siendo mockup. */
+  /** Portada de la ficha (retrato 4:5). Es la pieza de diseño. */
+  coverImage: string
+  coverPosition?: string
+  /** "Pensada para parejas que…": tres razones, en (I)(II)(III). */
+  idealPara: readonly [string, string, string]
+  paleta: readonly { nombre: string; hex: string }[]
+  tipografia: string
+  /** Lo que se ve en la galería del detalle, en orden. */
+  galeria: readonly ImagenDiseno[]
+  /** Slug en content/wedding/registry.ts → CTA "Ver la invitación en vivo". */
   liveDemoSlug?: string
+  /** Marca de "Nuevo" en la colección. */
+  nuevo?: boolean
 }
-
-/** El fondo del showcase cuando un diseño no trae el suyo. Es la misma
- *  foto del hero: una fotografía real, sin texto encima. */
-export const FOTO_SHOWCASE_DEFAULT = "/images/wedding-hero.jpeg"
 
 export const TEMPLATES: Template[] = [
   {
     slug: "studio",
     name: "Studio",
-    description: "Minimalismo editorial, limpio y atemporal.",
-    coverImage: "/images/disenos/studio.jpg",
-    image: MOCKUPS.clasica,
+    numero: "01",
+    keywords: ["Dibujada", "Cálida", "Con humor"],
+    description: "Papelería a mano, tinta roja y estampillas.",
     longDescription:
-      "Tipografía como protagonista y mucho aire en blanco. Para parejas que prefieren la elegancia de lo simple antes que la decoración.",
+      "Una carta escrita a marcador: sus fotos en estampillas, la fecha encerrada a mano y un cronograma que se dibuja como un camino.",
+    coverImage: "/images/disenos/studio.jpg",
+    idealPara: [
+      "Quieren una invitación con humor y personalidad.",
+      "Se imaginan una fiesta larga, relajada y con mucha gente querida.",
+      "Les gusta lo hecho a mano más que lo perfecto.",
+    ],
+    paleta: [
+      { nombre: "Papel", hex: "#F4F0E6" },
+      { nombre: "Tinta roja", hex: "#C2321F" },
+      { nombre: "Carbón", hex: "#2A2622" },
+    ],
+    tipografia: "Marcador a mano, cursiva y máquina de escribir",
+    galeria: [
+      { src: "/images/disenos/studio.jpg", alt: "Portada del diseño Studio", pieza: true },
+      FOTOS.bailando,
+      FOTOS.besoInvitados,
+      FOTOS.anillos,
+    ],
+    // TODO (Facu): la portada todavía es la pieza vieja de Studio. Sacar
+    // una captura de /w/studio (ver ASSETS.md) y reemplazar coverImage.
+    liveDemoSlug: "studio",
+    nuevo: true,
   },
   {
     slug: "cielo",
     name: "Cielo",
-    description: "Romántico y luminoso, con detalles delicados.",
-    coverImage: "/images/disenos/cielo.jpg",
-    image: MOCKUPS.manuscrita,
+    numero: "02",
+    keywords: ["Romántica", "Luminosa", "Delicada"],
+    description: "Papel claro, detalles finos, poco color.",
     longDescription:
-      "Colores suaves y detalles delicados sobre fondo claro. Para celebraciones con una estética cálida y femenina.",
+      "Papel claro, trazos finos y apenas color. Romántica sin ser recargada.",
+    coverImage: "/images/disenos/cielo.jpg",
+    idealPara: [
+      "Sueñan con una boda de día, en una quinta o al aire libre.",
+      "Quieren algo romántico sin caer en lo cursi.",
+      "Disfrutan de los detalles chicos: una inicial, una flor dibujada.",
+    ],
+    paleta: [
+      { nombre: "Niebla", hex: "#ECEEF0" },
+      { nombre: "Lavanda gris", hex: "#B9B7C4" },
+      { nombre: "Carbón", hex: "#2B2B2B" },
+    ],
+    tipografia: "Grotesca fina en mayúsculas y serif",
+    galeria: [
+      { src: "/images/disenos/cielo.jpg", alt: "Portada del diseño Cielo", pieza: true },
+      { src: "/images/diseno-2.webp", alt: "Cielo en el teléfono", pieza: true },
+      FOTOS.sonrisa,
+      FOTOS.espaldaVelo,
+    ],
   },
   {
     slug: "nocturna",
     name: "Nocturna",
-    description: "Elegancia cinematográfica en blanco y negro.",
-    coverImage: "/images/disenos/nocturna.jpg",
-    image: MOCKUPS.editorial,
+    numero: "03",
+    keywords: ["Clásica", "Formal", "Old money"],
+    description: "Papelería clásica, caligrafía y blanco y negro.",
     longDescription:
-      "Fotografía en blanco y negro con tipografía de alto contraste. La opción de mayor impacto visual, para bodas con estética editorial.",
+      "Una tarjeta de papelería llevada a la pantalla: caligrafía con rúbricas, versalitas, marfil y espresso. La más formal de la colección.",
+    coverImage: "/images/disenos/nocturna.jpg",
+    idealPara: [
+      "Se casan de noche y con etiqueta.",
+      "Les gusta lo clásico: papelería, caligrafía, blanco y negro.",
+      "Quieren algo sobrio, que no pase de moda.",
+    ],
+    paleta: [
+      { nombre: "Marfil", hex: "#F1EEE8" },
+      { nombre: "Topo", hex: "#8A7E76" },
+      { nombre: "Espresso", hex: "#3B2A28" },
+    ],
+    tipografia: "Romana de alto contraste en versalitas, caligrafía con rúbricas y sans fina",
+    galeria: [
+      { src: "/images/disenos/nocturna.jpg", alt: "Portada del diseño Nocturna", pieza: true },
+      { src: "/images/diseno-3.webp", alt: "Nocturna en el teléfono", pieza: true },
+      FOTOS.noche,
+      FOTOS.bailando,
+    ],
+    // TODO (Facu): la portada todavía es la pieza vieja de Nocturna. Sacar
+    // una captura de /w/nocturna y reemplazar coverImage.
+    liveDemoSlug: "nocturna",
   },
   {
     slug: "aura",
     name: "Aura",
-    description: "Delicado con estética suave y elegante.",
-    coverImage: "/images/disenos/aura.jpg",
-    // La foto es retrato angosto (744×1194): centrado de más se comía la
-    // fecha y el lugar al pie. Subido a 90% para que entren.
-    coverPosition: "50% 90%",
-    image: MOCKUPS.clasica,
-    // Foto real de la sesión de Aura, la misma que abre /w/aura.
-    showcaseImage: "/images/wedding/aura/hero.jpg",
+    numero: "04",
+    keywords: ["Etérea", "Serena", "Manuscrita"],
+    description: "Caligrafía amplia y fotos suaves.",
     longDescription:
-      "Texturas suaves y una paleta neutra, con foco en la fotografía. Para quienes buscan algo etéreo y sereno.",
-    // TODO (contenido, alta prioridad): `image` apunta a MOCKUPS.clasica,
-    // que es la MISMA captura que usa Studio — o sea que el teléfono del
-    // detalle de Aura no muestra Aura. Ahora que /w/aura existe, la
-    // captura se saca de ahí (ver ASSETS.md: DevTools → device toolbar →
-    // Capture screenshot) y se guarda como /images/diseno-aura.webp.
+      "Caligrafía amplia, fotos suaves y tonos neutros. La más delicada de la colección, y la primera que pueden recorrer en vivo.",
+    coverImage: "/images/disenos/aura.jpg",
+    // La foto es retrato angosto (744×1194): centrada se comía la fecha y
+    // el lugar al pie. Subida a 90% para que entren.
+    coverPosition: "50% 90%",
+    idealPara: [
+      "Les gusta lo sereno: una boda íntima, una finca, una tarde larga.",
+      "Quieren que sus nombres se lean como escritos a mano.",
+      "Quieren ver la invitación funcionando antes de decidir.",
+    ],
+    paleta: [
+      { nombre: "Blanco roto", hex: "#F2F2EF" },
+      { nombre: "Arena", hex: "#E3DACB" },
+      { nombre: "Verde bosque", hex: "#202D24" },
+    ],
+    tipografia: "Caligrafía inglesa y serif clásica",
+    galeria: [
+      { src: "/images/disenos/aura.jpg", alt: "Portada del diseño Aura", pieza: true },
+      { src: "/images/wedding/aura/hero.jpg", alt: "Foto de portada de la invitación Aura" },
+      { src: "/images/wedding/aura/story-1.jpg", alt: "Sección Nuestra historia de Aura" },
+      { src: "/images/wedding/aura/gallery-1.jpg", alt: "Galería de fotos de Aura" },
+    ],
     liveDemoSlug: "aura",
   },
 ]
+
+export function getTemplate(slug: string): Template | undefined {
+  return TEMPLATES.find((t) => t.slug === slug)
+}

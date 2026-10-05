@@ -3,7 +3,9 @@
 import { useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 import { ArrowUpRight, List, X, ICON_WEIGHT } from "@/components/ui/icons"
-import { NAV_LINKS } from "@/content/nav"
+import { NAV_LINKS, NAV_CTA } from "@/content/nav"
+import { Cta } from "@/components/ui/cta"
+import { Wordmark } from "@/components/ui/wordmark"
 import { WhatsappCta } from "@/components/ui/whatsapp-cta"
 import { MENSAJES } from "@/lib/whatsapp"
 import { Eyebrow } from "@/components/ui/eyebrow"
@@ -82,13 +84,7 @@ export function MenuMobile() {
             className="panel-in fixed inset-0 z-50 flex flex-col bg-background text-ink md:hidden"
           >
             <div className="flex items-center justify-between gap-4 border-b border-ink px-[var(--pad-x)] py-4">
-              <a
-                href="/"
-                onClick={cerrar}
-                className="font-display text-lg font-normal"
-              >
-                Invite<span className="font-display-italic"> Club</span>
-              </a>
+              <Wordmark />
 
               <button
                 ref={cerrarRef}
@@ -111,7 +107,7 @@ export function MenuMobile() {
                     <a
                       href={link.href}
                       onClick={cerrar}
-                      className="flex items-center justify-between gap-4 py-3 font-display text-2xl font-normal"
+                      className="flex items-center justify-between gap-4 py-4 font-display text-[32px] font-normal leading-none"
                       {...(link.external
                         ? { target: "_blank", rel: "noopener noreferrer" }
                         : {})}
@@ -131,9 +127,18 @@ export function MenuMobile() {
                 ))}
               </ul>
 
-              {/* Ancla al pie del viewport, en una sola fila, con el mismo
-                  CTA subrayado que usa el navbar en desktop. El pt-10 es
-                  el piso de separación cuando la pantalla es corta. */}
+              <Cta
+                href={NAV_CTA.href}
+                tone="dark"
+                size="lg"
+                className="mt-8 w-full"
+                onClick={cerrar}
+              >
+                {NAV_CTA.label}
+              </Cta>
+
+              {/* Ancla al pie del viewport. El pt-10 es el piso de
+                  separación cuando la pantalla es corta. */}
               <div className="mt-auto flex items-center justify-between gap-4 pt-10">
                 <Eyebrow>Contacto</Eyebrow>
                 <WhatsappCta

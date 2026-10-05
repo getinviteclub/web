@@ -1,15 +1,13 @@
 /**
  * Contenido del footer.
  *
- * La bajada se reescribió con el cambio de modelo: decía "Creá y compartí
- * tu invitación digital", que promete un editor donde la pareja arma la
- * invitación sola. Es exactamente lo contrario del servicio.
+ * La bajada no promete un editor ("creá tu invitación"): es exactamente
+ * lo contrario del servicio.
  */
 export const FOOTER_CONTENT = {
-  tagline:
-    "Invitaciones digitales de casamiento. Elegís el diseño, nosotros la personalizamos y te la dejamos lista para compartir.",
-  copyright: "© 2026 Invite Club. Todos los derechos reservados.",
-  lugar: "Buenos Aires, Argentina",
+  tagline: "Invitaciones digitales de casamiento, hechas a medida.",
+  copyright: "© 2026 Invite Club",
+  bajada: "Diseño personalizado, boda por boda.",
 } as const
 
 export const SOCIAL_LINKS = [
@@ -23,7 +21,8 @@ export const SOCIAL_LINKS = [
 // Absolutos por el mismo motivo que NAV_LINKS: el footer también se
 // monta en el detalle de un diseño.
 export const FOOTER_MENU = [
-  { label: "Diseños", href: "/#disenos" },
-  { label: "Cómo funciona", href: "/#como-funciona" },
+  { label: "Colección", href: "/#coleccion" },
+  { label: "La invitación", href: "/#la-invitacion" },
+  { label: "Cómo trabajamos", href: "/#como-trabajamos" },
   { label: "Preguntas frecuentes", href: "/#faqs" },
 ] as const
