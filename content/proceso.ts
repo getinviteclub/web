@@ -1,30 +1,19 @@
-export type ProcesoVisual = "diseno" | "info" | "listo"
-
+/**
+ * Cómo trabajamos: cuatro pasos, una línea cada uno.
+ *
+ * Lo que tiene que quedar claro es que ESTO NO ES UN EDITOR: la pareja
+ * elige y cuenta; el armado es nuestro. Sin plazos (es un trabajo hecho a
+ * mano) y sin cambios de paleta ni tipografía: el diseño llega tal cual.
+ */
 export const PROCESO_CONTENT = {
-  eyebrow: "Cómo funciona",
-  title: "Tu invitación lista en 3 pasos",
-  subtitle:
-    "Sin plataformas que aprender ni formularios largos. Nos escribís y nos encargamos de todo.",
-  ctaText: "Empezar por WhatsApp",
-  ctaMessage: "Hola, quiero empezar mi invitación",
+  eyebrow: "Cómo trabajamos",
+  title: "Ustedes eligen. Nosotros hacemos el resto.",
   steps: [
-    {
-      number: "01",
-      title: "Elegí tu diseño",
-      text: "Explorá la colección y elegí el estilo que más les guste.",
-      visual: "diseno" as ProcesoVisual,
-    },
-    {
-      number: "02",
-      title: "Compartinos la información",
-      text: "Completá los datos de su casamiento y enviá las fotos que quieran incluir.",
-      visual: "info" as ProcesoVisual,
-    },
-    {
-      number: "03",
-      title: "La dejamos lista",
-      text: "Adaptamos el diseño elegido con su información y se las entregamos listas para compartir.",
-      visual: "listo" as ProcesoVisual,
-    },
+    { title: "Eligen su diseño", text: "De la colección, tal como lo ven." },
+    { title: "Nos cuentan su boda", text: "Datos, fotos e historia, con una guía simple." },
+    { title: "La armamos", text: "Cargamos todo y la cuidamos en cada detalle." },
+    { title: "La envían", text: "La revisan, ajustamos y les damos el link." },
   ],
+  ctaText: "Ver la colección",
+  ctaHref: "/#coleccion",
 } as const

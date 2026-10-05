@@ -132,4 +132,7 @@ export type AuraContent = {
   accommodation: AccommodationItem[]
   bankAccounts: BankAccount[]
   faq: FAQItem[]
+  /** Fecha límite para confirmar ("15 de febrero de 2027"). Opcional:
+   *  Aura la tiene escrita en el diseño; los diseños nuevos la leen de acá. */
+  rsvpDeadline?: string
 }

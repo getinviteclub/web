@@ -1,28 +1,42 @@
+import { FOTOS } from "@/content/fotos"
+
 /**
- * Copy del hero, definido por Facu.
+ * La portada (referencia de movimiento: v0-evasion-website).
  *
- * El reparto de trabajo entre las dos partes: el titular pone la emoción
- * ("un día inolvidable") y la bajada declara la categoría en la primera
- * palabra ("Invitaciones digitales para casamientos"). Eso último es lo
- * que le faltaba a la versión original —"El comienzo de una gran
- * celebración"—, donde había que scrollear hasta la galería para entender
- * qué se vende. Si se toca el titular, la categoría tiene que seguir
- * estando en alguna de las dos.
+ * Arranca con una foto de boda a pantalla completa y el titular encima.
+ * Al scrollear, la foto se achica a una tarjeta centrada, entran fotos de
+ * bodas desde los costados y aparece la bajada debajo.
  *
- * DECISIÓN TOMADA (Facu), sigue en pie: el ancla "72 h · desde $40.000"
- * queda FUERA del hero. Hablar de plazos y precio en la primera pantalla
- * contradice el posicionamiento premium. El precio se conoce igual y
- * temprano: está en cada ficha de la galería, en cada detalle de diseño y
- * en #precio. No reponer sin acordarlo.
+ * DECISIONES TOMADAS (Facu): ni plazo ni precio en el hero, nada de notas
+ * a mano ni referencias a quiénes somos. Fotos de bodas, no invitaciones:
+ * la emoción la pone la boda; las invitaciones vienen en la colección.
  */
 export const HERO_CONTENT = {
-  // El corte deja "un día inolvidable" entero en la segunda línea. La más
-  // larga queda en 18 caracteres y entra completa a 88px en desktop y a
-  // ~39px en un teléfono de 375px, sin que el navegador la parta sola.
-  title: "La invitación a\nun día inolvidable",
-  subtitle:
-    "Invitaciones digitales para casamientos, creadas para transmitir la esencia de cada celebración.",
-  ctaText: "Ver los diseños",
-  ctaHref: "#disenos",
-  bgSrc: "/images/wedding-hero.jpeg",
+  eyebrow: "Invitaciones digitales de casamiento",
+  /** Las partes del titular. La del medio va en itálica. */
+  title: ["El primer", "recuerdo", "de su casamiento."] as const,
+  /** Lo que aparece debajo de la tarjeta al scrollear. */
+  subtitle: ["Diseños de autor,", "completados con su historia."] as const,
+  ctaText: "Ver la colección",
+  ctaHref: "#coleccion",
+  /** La foto que arranca a pantalla completa. Tiene que funcionar
+   *  apaisada: es la que más se ve. */
+  fondo: FOTOS.veloCampo,
+  /** Las que entran por los costados: arriba y abajo de cada lado. */
+  izquierda: [FOTOS.besoInvitados, FOTOS.anillos] as const,
+  derecha: [FOTOS.noviaFlash, FOTOS.bailando] as const,
 } as const
+
+/** La cinta bajo el hero: las secciones de la invitación. */
+export const CINTA_SECCIONES = [
+  "Confirmación de asistencia",
+  "Cómo llegar",
+  "Regalos",
+  "Cronograma",
+  "Dress code",
+  "Cuenta regresiva",
+  "Nuestra historia",
+  "Galería",
+  "Playlist",
+  "Dónde alojarse",
+] as const

@@ -108,6 +108,8 @@ type CtaProps = VariantProps<typeof ctaVariants> & {
   trackAs?: FunnelEvent
   /** Contexto del evento: `design`, y lo que haga falta sumar. */
   trackParams?: EventParams
+  /** Además del tracking (ej.: cerrar el menú mobile al navegar). */
+  onClick?: () => void
 }
 
 export function Cta({
@@ -120,6 +122,7 @@ export function Cta({
   external,
   trackAs,
   trackParams,
+  onClick,
 }: CtaProps) {
   return (
     <a
@@ -127,6 +130,7 @@ export function Cta({
       className={cn(ctaVariants({ variant, tone, size }), className)}
       onClick={() => {
         if (trackAs) track(trackAs, trackParams)
+        onClick?.()
       }}
       {...(external
         ? { target: "_blank", rel: "noopener noreferrer" }

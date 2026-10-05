@@ -1,0 +1,188 @@
+/**
+ * Sistema visual de la invitación "Nocturna": papelería old money.
+ * Marfil y espresso (nunca negro puro), títulos en versalitas de una
+ * romana de alto contraste, nombres en una caligrafía con rúbricas y el
+ * texto en una sans chica. Mucho aire, todo centrado, reglas de 1px.
+ *
+ * Aislado del sitio de marketing: los tokens viven en #nocturna-page.
+ */
+#nocturna-page {
+  --nc-paper: #f1eee8;
+  --nc-card: #f7f5f1;
+  --nc-ink: #2f2523;
+  --nc-deep: #3b2a28;
+  --nc-muted: #8a7e76;
+  --nc-rule: #d9d1c6;
+  /* El "relieve": letras apenas más oscuras que el papel. */
+  --nc-ghost: #e4ded4;
+
+  background-color: var(--nc-paper);
+  color: var(--nc-ink);
+  font-family: var(--font-nc-sans), "Helvetica Neue", Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+#nocturna-page ::selection {
+  background: var(--nc-deep);
+  color: var(--nc-paper);
+}
+
+/* ── Familias ── */
+.nc-display {
+  font-family: var(--font-nc-display), Georgia, serif;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+}
+/* Títulos de sección: versalitas espaciadas, como un grabado. */
+.nc-title {
+  font-family: var(--font-nc-display), Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(22px, 2.6vw, 30px);
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.nc-sans {
+  font-family: var(--font-nc-sans), "Helvetica Neue", Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+.nc-script {
+  font-family: var(--font-nc-script), cursive;
+  font-weight: 400;
+  line-height: 1;
+}
+.nc-muted {
+  color: var(--nc-muted);
+}
+
+/* La palabra en caligrafía, enorme y en relieve detrás de un título
+   (referencia: "Dress code", "August" y "Тайминг" de las invitaciones). */
+.nc-ghost {
+  color: var(--nc-ghost);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Fotos ──
+   .nc-bw:   blanco y negro suave y cálido, como copia en papel baritado.
+   .nc-film: color apagado y tibio, como negativo escaneado. */
+.nc-bw {
+  filter: grayscale(1) sepia(0.12) contrast(1.02) brightness(1.02);
+}
+.nc-film {
+  filter: saturate(0.7) sepia(0.14) contrast(0.98) brightness(1.01);
+}
+/* Sin `position`: la pone quien la usa (relative o absolute). */
+.nc-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  mix-blend-mode: overlay;
+  opacity: 0.22;
+}
+
+/* Arco: el marco de las fotos del lugar y del bloque de detalles.
+   El ::before dibuja la segunda línea, apenas adentro. */
+.nc-arch {
+  border-radius: 999px 999px 0 0;
+}
+.nc-arch-frame {
+  position: relative;
+  padding: 7px;
+  border: 1px solid var(--nc-ink);
+  border-radius: 999px 999px 0 0;
+}
+
+/* Marco doble de tarjeta de papelería (referencia: la invitación CJ). */
+.nc-card {
+  background: var(--nc-card);
+  outline: 1px solid var(--nc-ink);
+  outline-offset: -12px;
+  box-shadow: 0 24px 50px -32px rgba(47, 37, 35, 0.35);
+}
+
+/* Botón: rectángulo chico de 1px, sin radio. */
+.nc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border: 1px solid currentColor;
+  padding: 0.85rem 1.6rem;
+  font-family: var(--font-nc-sans), sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.nc-btn:hover,
+.nc-btn[data-activo="true"] {
+  background: var(--nc-ink);
+  color: var(--nc-paper);
+  border-color: var(--nc-ink);
+}
+.nc-btn-light:hover,
+.nc-btn-light[data-activo="true"] {
+  background: var(--nc-paper);
+  color: var(--nc-deep);
+  border-color: var(--nc-paper);
+}
+.nc-btn:disabled {
+  opacity: 0.5;
+}
+
+/* Link subrayado fino. */
+.nc-link {
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  transition: opacity 0.3s ease;
+}
+.nc-link:hover {
+  opacity: 0.6;
+}
+
+/* Campos del RSVP: una línea de 1px. */
+.nc-field {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--nc-rule);
+  background: transparent;
+  padding: 0.6rem 0;
+  font-family: var(--font-nc-display), serif;
+  font-size: 19px;
+  color: var(--nc-ink);
+  outline: none;
+  border-radius: 0;
+}
+.nc-field:focus {
+  border-bottom-color: var(--nc-ink);
+}
+
+/* Opción tipo radio: un círculo de 1px que se rellena. */
+.nc-radio {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: none;
+  border: 1px solid var(--nc-ink);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+.nc-radio:checked::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--nc-ink);
+}

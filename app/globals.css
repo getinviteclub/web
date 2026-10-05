@@ -9,14 +9,16 @@
 
   /* Rol "label": única definición del estilo. Usala directo para labels
      embebidos en UI (contadores, badges, nav); para el label que ABRE una
-     sección usá <Eyebrow>, que envuelve a esta misma clase. */
+     sección usá <Eyebrow>, que envuelve a esta misma clase.
+     Sin `color`: lo hereda. Con un color fijo acá, un `text-muted-foreground`
+     al lado perdía —esta regla sale después en el CSS— y el label quedaba
+     negro aunque se pidiera gris. */
   .label-copy {
-    color: var(--c-ink);
     font-family: var(--font-label);
-    font-size: 12px;
-    font-weight: 500;
+    font-size: 11px;
+    font-weight: 600;
     letter-spacing: var(--ls-label);
-    line-height: 1;
+    line-height: 1.2;
     text-transform: uppercase;
   }
 
@@ -87,7 +89,7 @@
 html {
   scroll-behavior: smooth;
   /* El navbar es fixed: sin esto las anclas quedan tapadas por la barra. */
-  scroll-padding-top: 88px;
+  scroll-padding-top: 104px;
 }
 
 /* El reveal anima translateX(±110px) y eso agranda el documento: en 375px
@@ -145,6 +147,8 @@ body {
     --font-ui: var(--font-inter), "Helvetica Neue", Arial, sans-serif;
     /* Rol "label": mayúsculas chicas con tracking (ver .label-copy). Hoy es
        la misma grotesca que la UI; vive aparte para poder cambiarla sola. */
+    /* Labels: la misma grotesca, en mayúsculas y con peso — el gesto del
+       "INVITE" del logo. Vive aparte para poder cambiarla sola. */
     --font-label: var(--font-inter), "Helvetica Neue", Arial, sans-serif;
 
     /* Tracking del sistema.
@@ -155,7 +159,7 @@ body {
        --ls-label se mantiene alto: son mayúsculas de 12px, y ahí el
        tracking no es estilo sino legibilidad. */
     --ls-body: 0.012em;
-    --ls-label: 0.09em;
+    --ls-label: 0.12em;
     /* Cuerpos de 18px para arriba. El tracking es óptico: lo que a 14px da
        aire, a 18 o 20 ya separa. Va en negativo leve y SOLO sobre la Inter
        —ver la regla que lo aplica—, nunca sobre la serif de los titulares. */
@@ -310,7 +314,55 @@ body {
   }
 }
 
+/* ─── Fotografía ───
+   Todas las fotos pasan por <FilmPhoto>. A COLOR (decisión de Facu): acá
+   solo se les baja un punto la saturación y se les suma un grano muy leve,
+   para que fotos de orígenes distintos se lean como un mismo rollo. */
+@layer utilities {
+  .film {
+    filter: saturate(0.92) contrast(1.02);
+  }
+  /* Foco apenas corrido, como una 35 mm disparada al vuelo. */
+  .film-soft {
+    filter: saturate(0.92) contrast(1.02) blur(0.5px);
+  }
+
+  /* Grano: ruido SVG encima de la foto, como capa y no como filtro, para
+     que mantenga el mismo tamaño en cualquier recorte. */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    mix-blend-mode: multiply;
+    opacity: 0.16;
+  }
+
+  /* Hoja de papel apoyada sobre una foto o un fondo: sombra corta y
+     difusa, como una tarjeta de verdad. Sin radio. */
+  .paper-shadow {
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.06),
+      0 18px 40px -18px rgba(0, 0, 0, 0.35);
+  }
+
+  /* Cinta corrida (marquesina). Dos copias del contenido en fila y se
+     desplaza la mitad: el corte no se ve. Solo CSS. */
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  .marquee-track {
+    animation: marquee var(--marquee-speed, 40s) linear infinite;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
   .reveal,
   .reveal[data-from="left"],
   .reveal[data-from="right"],

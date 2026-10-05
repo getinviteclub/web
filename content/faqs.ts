@@ -1,59 +1,61 @@
 /**
- * Las respuestas describen lo que el producto hace HOY.
+ * Las preguntas frecuentes. Describen lo que el producto hace HOY.
  *
- * Criterio para sumar o sacar una: la FAQ es para lo que NO se puede
- * resolver visualmente en el flujo. Si la respuesta ya está a la vista en
- * la galería, en el detalle o en el bloque de precio, acá sobra y solo
- * alarga la página.
+ * Sin precios ni plazos (decisión de Facu): el precio se pasa por
+ * WhatsApp y el trabajo es hecho a mano, no exprés.
  *
- * Salieron las tres que preguntaban por planes ("¿Qué incluye cada plan?",
- * "¿Viene el RSVP en todos?", "¿Puedo cambiar de plan?"). No se
- * reescribieron: dejaron de existir junto con los tiers, y mantenerlas
- * reintroduciría por la puerta de atrás justo el modelo que sacamos.
- *
- * En su lugar entró "¿Qué puede incluir?", que es la duda que sí queda, y
- * "¿Puedo pedir algo que no está?", que abre la puerta a los extras y a
- * Atelier sin nombrarlos como upsell.
+ * `enDetalle: true` = se repite al pie del detalle de cada diseño.
  */
-export const FAQS_CONTENT = [
+export type Faq = { question: string; answer: string; enDetalle?: boolean }
+
+export const FAQS_CONTENT = {
+  eyebrow: "Preguntas frecuentes",
+  title: "Lo que suelen preguntarnos.",
+  ctaText: "Hacer una consulta",
+} as const
+
+export const FAQS: Faq[] = [
   {
-    question: "¿Cuánto tarda en estar lista mi invitación?",
+    question: "¿Qué incluye la invitación?",
     answer:
-      "72 horas desde que nos pasás los datos y las fotos. Si tenés una fecha ajustada, contanos y vemos cómo acomodarnos.",
+      "Todo: el diseño que elijan con sus 15 secciones —confirmación de asistencia, cómo llegar, regalos, cronograma y el resto—, cargado por nosotros, con dos rondas de cambios.",
+    enDetalle: true,
   },
   {
-    question: "¿Qué puede incluir la invitación?",
+    question: "¿Tenemos que armarla nosotros?",
     answer:
-      "Todo lo que su casamiento necesite: confirmación de asistencia, ubicación, regalos, galería, cronograma, dress code, cuenta regresiva, su historia y más. No son paquetes cerrados — nos cuentan qué quieren y armamos la invitación con esas secciones. En cada diseño está la lista completa.",
+      "No. Nos pasan la información por WhatsApp —les mandamos una guía— y la armamos nosotros. Ustedes la revisan.",
+    enDetalle: true,
   },
   {
-    question: "¿El diseño que elija cambia el precio?",
+    question: "¿Podemos cambiar colores o tipografías?",
     answer:
-      "No. Los cuatro diseños valen lo mismo: elegís el que más les guste sin pensar en el costo. Solo tienen precio aparte los extras, como el dominio propio o el save the date.",
+      "No. Cada diseño se pensó con su paleta y su tipografía, y llega tal cual. Lo que se vuelve suyo es el contenido: nombres, fotos, textos e historia.",
+    enDetalle: true,
   },
   {
-    question: "¿Puedo ver un diseño funcionando antes de contratar?",
+    question: "¿Con cuánta anticipación tenemos que escribir?",
     answer:
-      "Sí. En Diseños entrás a cualquiera y, en los que tienen demo, abrís la invitación completa y navegable, igual que la van a ver tus invitados.",
+      "Cuanto antes, mejor. Cada invitación se hace a mano y tomamos pocas bodas por mes; lo ideal es escribirnos unos tres meses antes de enviarla.",
+    enDetalle: true,
   },
   {
-    question: "¿Tengo que armar la invitación yo?",
+    question: "¿Cómo confirman los invitados?",
     answer:
-      "No. Esto no es un editor: nos pasás las fotos, los textos y los datos por WhatsApp, y la armamos nosotros. Después la revisamos juntos y la ajustamos hasta que quede como se la imaginaron.",
+      "Desde la invitación: si van, con quién, menú y restricciones. Ustedes ven las respuestas al día y las descargan en una planilla.",
   },
   {
-    question: "¿Y si quiero algo que no está en ninguno de los diseños?",
+    question: "¿Podemos verla funcionando antes de decidir?",
     answer:
-      "Existe Atelier: una invitación diseñada desde cero, con tipografía, paleta y composición propias. Es otro servicio, con otro precio y otros tiempos. Escribinos y lo charlamos.",
+      "Sí. En cada diseño pueden abrir la invitación en vivo y recorrerla como la verían sus invitados.",
   },
   {
     question: "¿Cómo se paga?",
-    answer:
-      "Por Mercado Pago, en un solo pago y antes de que empecemos a armarla. Te pasamos el link por WhatsApp una vez que elegimos el diseño.",
+    answer: "Por Mercado Pago, en un solo pago, antes de empezar. Les pasamos el detalle por WhatsApp.",
+    enDetalle: true,
   },
   {
-    question: "¿El precio es final?",
-    answer:
-      "Sí. El precio que ves es en pesos, es un pago único y no tiene suscripción ni costos ocultos. Lo único aparte son los extras opcionales, que están listados con su precio en cada diseño.",
+    question: "¿Trabajan con parejas de otros países?",
+    answer: "Sí. Todo se coordina por WhatsApp y la invitación es un link: funciona igual en cualquier lado.",
   },
-] as const
+]

@@ -1,57 +1,52 @@
+import { FAQS, FAQS_CONTENT as F, type Faq } from "@/content/faqs"
 import { Plus, ICON_WEIGHT } from "@/components/ui/icons"
-import { FAQS_CONTENT } from "@/content/faqs"
 import { WhatsappCta } from "@/components/ui/whatsapp-cta"
-import { MENSAJES } from "@/lib/whatsapp"
-import { Reveal } from "@/components/ui/reveal"
 import { Eyebrow } from "@/components/ui/eyebrow"
+import { Heading } from "@/components/ui/heading"
+import { Reveal } from "@/components/ui/reveal"
+import { Indice, dosDigitos } from "@/components/ui/indice"
+import { MENSAJES } from "@/lib/whatsapp"
 
-export function Faqs() {
+/**
+ * Preguntas frecuentes: título fijo a la izquierda, acordeón a la derecha.
+ *
+ * Acordeón con <details> nativo: abre y cierra sin JavaScript, funciona
+ * con teclado y el contenido está en el HTML para buscadores. Sin caja
+ * alrededor, solo reglas: cada pregunta numerada como un índice.
+ *
+ * En el detalle se pasan `items` (las marcadas `enDetalle`).
+ */
+export function Faqs({ items = FAQS }: { items?: Faq[] }) {
   return (
-    <section
-      id="faqs"
-      className="mx-auto max-w-max px-[var(--pad-x)] py-20 md:py-28"
-    >
-      <div className="grid grid-cols-1 gap-10 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:gap-16">
-        {/* Columna izquierda: título + salida a WhatsApp */}
-        <Reveal from="left" className="md:sticky md:top-10 md:self-start">
-          <Eyebrow>
-            Preguntas frecuentes
-          </Eyebrow>
-          <h2
-            className="mt-4 font-display font-normal leading-[1.05]"
-            style={{ fontSize: "clamp(28px, 4vw, 44px)" }}
-          >
-            Todo lo que suelen preguntarnos
-          </h2>
-          <p className="mt-4 desc-copy">
-            ¿No encontrás tu respuesta? Escribinos y te contestamos en el día.
-          </p>
-          <WhatsappCta
-            message={MENSAJES.consulta}
-            tone="outline"
-            className="mt-6"
-          >
-            Hacer una consulta
+    <section id="faqs" className="mx-auto max-w-max px-[var(--pad-x)] py-20 md:py-28">
+      <div className="grid gap-12 md:grid-cols-12 md:gap-10">
+        <Reveal from="left" className="md:sticky md:top-32 md:col-span-4 md:self-start">
+          <Eyebrow>{F.eyebrow}</Eyebrow>
+          <Heading size="lg" className="mt-5">
+            {F.title}
+          </Heading>
+          <WhatsappCta message={MENSAJES.consulta} className="mt-7">
+            {F.ctaText}
           </WhatsappCta>
         </Reveal>
 
-        {/* Columna derecha: acordeón contenido */}
-        <Reveal from="right" className="divide-y divide-border overflow-hidden rounded-none border border-border">
-          {FAQS_CONTENT.map((faq) => (
-            <details key={faq.question} className="group">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-lg font-semibold transition-colors hover:bg-bone [&::-webkit-details-marker]:hidden">
-                {faq.question}
-                {/* El mismo Plus rotado 45° hace la cruz al abrir: un
-                    solo ícono, sin cambio de glifo a mitad de la
-                    transición. */}
+        <Reveal from="right" className="border-t border-ink md:col-span-7 md:col-start-6">
+          {items.map((faq, i) => (
+            <details key={faq.question} className="group border-b border-rule">
+              <summary className="grid cursor-pointer list-none grid-cols-[3.25rem_1fr_auto] items-baseline gap-x-3 py-6 [&::-webkit-details-marker]:hidden">
+                <Indice>{dosDigitos(i + 1)}</Indice>
+                <span className="font-display text-[clamp(20px,2vw,26px)] leading-snug">
+                  {faq.question}
+                </span>
+                {/* El mismo Plus rotado 45° hace la cruz al abrir. */}
                 <Plus
                   size={20}
                   weight={ICON_WEIGHT}
                   aria-hidden="true"
-                  className="shrink-0 text-muted-foreground transition-transform duration-200 group-open:rotate-45"
+                  className="self-center transition-transform duration-300 group-open:rotate-45"
                 />
               </summary>
-              <p className="px-6 pb-6 leading-relaxed desc-copy">
+              <p className="max-w-[60ch] pb-7 pl-[calc(3.25rem+0.75rem)] pr-8 leading-relaxed desc-copy">
                 {faq.answer}
               </p>
             </details>
